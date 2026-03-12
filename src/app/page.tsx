@@ -486,7 +486,9 @@ export default function Home() {
                     <span>{item.role}</span>
                     <span>{item.rating} stars</span>
                   </div>
-                  <p className="mt-3 text-sm text-ink">"{item.quote}"</p>
+                  <p className="mt-3 text-sm text-ink">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
                   <p className="mt-4 text-xs font-semibold text-ink">
                     {item.name}
                   </p>
@@ -504,8 +506,8 @@ export default function Home() {
               </div>
             </div>
             <p className="mt-6 text-sm text-ink-muted">
-              "Melody Monks gave me structure and confidence. I finally feel ready to
-              perform."
+              &ldquo;Melody Monks gave me structure and confidence. I finally feel
+              ready to perform.&rdquo;
             </p>
             <p className="mt-3 text-xs font-semibold text-ink">
               Sofia T., Violin
