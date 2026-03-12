@@ -52,6 +52,7 @@ Backend (`/backend/.env.example`):
 
 ```
 DATABASE_URL=
+DIRECT_URL=
 CORS_ORIGIN=http://localhost:3000
 WHATSAPP_NUMBER=91XXXXXXXXXX
 WHATSAPP_MESSAGE=Hi, I want to book a free piano trial class.
