@@ -75,6 +75,9 @@ npm run prisma:migrate
 npm run prisma:generate
 ```
 
+If your local network blocks Supabase direct connections, use the VPS workflow:
+[docs/vps-migrations.md](C:\Users\vaibh\Desktop\Debojeet lehri\docs\vps-migrations.md)
+
 Seed demo data:
 
 ```bash
