@@ -1,16 +1,25 @@
-# Melody Monks Music Academy
+# Melody Monks | Vasu Guitar Academy
 
-Melody Monks by Debojeet Lahiri.
-
-A production-ready global music academy platform built with Next.js 14, Supabase, and interactive audio tools.
+Premium music academy platform for guitarist Vasu (Debojeet Lahiri).
 
 ## Stack
 
+Frontend:
 - Next.js 14 (App Router)
 - React + TypeScript
 - Tailwind CSS
+- Framer Motion
 - Tone.js + Web Audio API
-- Supabase (Auth, Database, Storage)
+
+Backend:
+- Node.js + Express
+- Supabase (database)
+
+## Project Structure
+
+- `/frontend` Next.js app
+- `/backend` Express API
+- `/backend/supabase` database schema
 
 ## Getting Started
 
@@ -19,29 +28,45 @@ npm install
 npm run dev
 ```
 
+Backend (optional):
+
+```bash
+npm run dev:backend
+```
+
 ## Environment Variables
 
-Create a `.env.local` file in the project root:
+Frontend (`/frontend/.env.example`):
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-
-# Optional payments
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your-stripe-key
-NEXT_PUBLIC_RAZORPAY_KEY_ID=your-razorpay-key
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5001
+NEXT_PUBLIC_WHATSAPP_NUMBER=91XXXXXXXXXX
+NEXT_PUBLIC_WHATSAPP_MESSAGE=Hi, I want to book a free guitar trial class.
 ```
 
-## Gallery Assets
+Backend (`/backend/.env.example`):
 
-- Place photos in `public/gallery`.
-- Add video files in `public/gallery` and update `src/data/gallery.ts`.
-- Update `instagramItems` in `src/data/gallery.ts` with real post or reel URLs.
+```
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_ANON_KEY=
+CORS_ORIGIN=http://localhost:3000
+WHATSAPP_NUMBER=91XXXXXXXXXX
+WHATSAPP_MESSAGE=Hi, I want to book a free guitar trial class.
+PORT=5001
+```
+
+## Media Assets
+
+Place real photos and videos here:
+
+- `/frontend/public/vasu` (portraits, teaching, performance photos)
+- `/frontend/public/videos` (hero and performance MP4 files)
 
 ## Supabase Schema
 
-See `supabase/schema.sql` for the required tables.
+Use `backend/supabase/schema.sql` to create required tables, including `trial_bookings` for free trial leads.
 
 ## Deployment
 
-Optimized for Vercel. Run `npm run build` to verify the production build.
+Frontend is optimized for Vercel. Backend can be deployed on any Node.js host (Render, Railway, Fly, etc.).

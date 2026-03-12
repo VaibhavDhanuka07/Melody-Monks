@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-base: #070707;
+  --color-ink: #f5f2ec;
+  --color-ink-muted: #a7a3a0;
+  --color-brand-gold: #d4af37;
+  --color-brand-gold-soft: #f3d27a;
+  --color-panel: rgba(15, 15, 15, 0.72);
+  --color-stroke: rgba(255, 255, 255, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-ink);
+  background: #070707;
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: #070707;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px
+      );
+    background-size: 48px 48px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(120deg, #f6e3a1 0%, #d4af37 45%, #c08e2f 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl border border-stroke bg-panel shadow-soft backdrop-blur;
+  }
+
+  .card-strong {
+    @apply rounded-3xl border border-white/10 bg-black/70 shadow-lift backdrop-blur;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-stroke bg-white/5 px-4 py-2 text-xs font-semibold text-ink-muted shadow-soft;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-black shadow-glow transition hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-stroke bg-white/5 px-6 py-3 text-sm font-semibold text-ink transition hover:border-brand-gold hover:text-brand-gold;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-ink-muted transition hover:text-ink;
+  }
+
+  .glass-panel {
+    @apply rounded-3xl border border-stroke bg-white/5 shadow-soft backdrop-blur;
+  }
+}
