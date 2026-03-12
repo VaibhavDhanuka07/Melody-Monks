@@ -93,3 +93,14 @@ npm run prisma:studio
 ## Deployment
 
 Frontend is optimized for Vercel. Backend can be deployed on Railway or any Node.js host.
+
+## Prisma Deploy (GitHub Actions)
+
+This repo includes a workflow to run `prisma migrate deploy` on pushes that
+change Prisma files. Add these GitHub Actions secrets:
+
+- `DATABASE_URL` (direct Supabase connection string)
+- `DIRECT_URL` (same direct string)
+
+Workflow file:
+[.github/workflows/prisma-deploy.yml](C:\Users\vaibh\Desktop\Debojeet lehri\.github\workflows\prisma-deploy.yml)
