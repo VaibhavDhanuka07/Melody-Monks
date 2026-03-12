@@ -104,3 +104,9 @@ change Prisma files. Add these GitHub Actions secrets:
 
 Workflow file:
 [.github/workflows/prisma-deploy.yml](C:\Users\vaibh\Desktop\Debojeet lehri\.github\workflows\prisma-deploy.yml)
+
+Manual migration workflow:
+[.github/workflows/prisma-migrate-manual.yml](C:\Users\vaibh\Desktop\Debojeet lehri\.github\workflows\prisma-migrate-manual.yml)
+
+Scheduled deploy workflow (runs daily at 02:00 UTC):
+[.github/workflows/prisma-deploy-scheduled.yml](C:\Users\vaibh\Desktop\Debojeet lehri\.github\workflows\prisma-deploy-scheduled.yml)
