@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Login",
-  description: "Sign in to access your Melody Monks student dashboard.",
+  description: "Sign in to access your piano student dashboard.",
 };
 
 export default function LoginPage() {
@@ -13,11 +13,11 @@ export default function LoginPage() {
             Log in to continue your practice
           </h1>
           <p className="mt-4 text-ink-muted">
-            Access lesson recordings, track progress, and join live classes.
+            Access lesson recordings, track progress, and upload performances.
           </p>
           <div className="card mt-8 p-6 text-sm text-ink-muted">
-            Use Supabase authentication to enable magic links, OAuth providers,
-            and secure access.
+            Configure Supabase Auth or Firebase Auth to enable secure sign-in and
+            OAuth providers.
           </div>
         </div>
 
@@ -28,7 +28,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 placeholder="you@example.com"
-                className="mt-2 w-full rounded-2xl border border-stroke bg-white px-4 py-3 text-sm"
+                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
               />
             </div>
             <div>
@@ -36,16 +36,11 @@ export default function LoginPage() {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="mt-2 w-full rounded-2xl border border-stroke bg-white px-4 py-3 text-sm"
+                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
               />
             </div>
-            <button className="btn-primary w-full">
-              Log In
-            </button>
-            <button
-              type="button"
-              className="btn-secondary w-full"
-            >
+            <button className="btn-primary w-full">Log In</button>
+            <button type="button" className="btn-secondary w-full">
               Continue with Google
             </button>
           </form>
@@ -54,4 +49,3 @@ export default function LoginPage() {
     </div>
   );
 }
-

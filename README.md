@@ -1,6 +1,6 @@
-# Melody Monks | Vasu Guitar Academy
+# Melody Monks Piano Academy
 
-Premium music academy platform for guitarist Vasu (Debojeet Lahiri).
+Premium piano learning platform with a cinematic, high-end EdTech experience.
 
 ## Stack
 
@@ -9,17 +9,19 @@ Frontend:
 - React + TypeScript
 - Tailwind CSS
 - Framer Motion
-- Tone.js + Web Audio API
 
 Backend:
 - Node.js + Express
-- Supabase (database)
+- PostgreSQL + Prisma
+
+Auth:
+- Supabase Auth or Firebase Auth (frontend-ready)
 
 ## Project Structure
 
 - `/frontend` Next.js app
 - `/backend` Express API
-- `/backend/supabase` database schema
+- `/backend/prisma` Prisma schema
 
 ## Getting Started
 
@@ -41,18 +43,18 @@ Frontend (`/frontend/.env.example`):
 ```
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5001
 NEXT_PUBLIC_WHATSAPP_NUMBER=91XXXXXXXXXX
-NEXT_PUBLIC_WHATSAPP_MESSAGE=Hi, I want to book a free guitar trial class.
+NEXT_PUBLIC_WHATSAPP_MESSAGE=Hi, I want to book a free piano trial class.
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
 ```
 
 Backend (`/backend/.env.example`):
 
 ```
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-SUPABASE_ANON_KEY=
+DATABASE_URL=
 CORS_ORIGIN=http://localhost:3000
 WHATSAPP_NUMBER=91XXXXXXXXXX
-WHATSAPP_MESSAGE=Hi, I want to book a free guitar trial class.
+WHATSAPP_MESSAGE=Hi, I want to book a free piano trial class.
 PORT=5001
 ```
 
@@ -60,13 +62,18 @@ PORT=5001
 
 Place real photos and videos here:
 
-- `/frontend/public/vasu` (portraits, teaching, performance photos)
-- `/frontend/public/videos` (hero and performance MP4 files)
+- `/frontend/public/piano` (portraits, performances, studio shots)
+- `/frontend/public/videos` (hero and lesson MP4 files)
 
-## Supabase Schema
+## Prisma
 
-Use `backend/supabase/schema.sql` to create required tables, including `trial_bookings` for free trial leads.
+Create the database and run migrations:
+
+```bash
+cd backend
+npm run prisma:migrate
+```
 
 ## Deployment
 
-Frontend is optimized for Vercel. Backend can be deployed on any Node.js host (Render, Railway, Fly, etc.).
+Frontend is optimized for Vercel. Backend can be deployed on Railway or any Node.js host.

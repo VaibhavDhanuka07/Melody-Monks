@@ -1,8 +1,8 @@
 export type GalleryCategory =
-  | "Performances"
-  | "Teaching sessions"
-  | "Student achievements"
-  | "Events";
+  | "Instructor Performances"
+  | "Student Performances"
+  | "Practice Clips"
+  | "Behind the Scenes";
 
 export type GalleryItem = {
   id: string;
@@ -16,66 +16,66 @@ export type GalleryItem = {
 
 export const galleryItems: GalleryItem[] = [
   {
-    id: "perf-1",
-    title: "Acoustic solo spotlight",
-    category: "Performances",
+    id: "inst-1",
+    title: "Concert hall recital",
+    category: "Instructor Performances",
     kind: "image",
-    src: "/vasu/vasu-performance.svg",
-    caption: "Replace with a live stage photo of Vasu.",
+    src: "/piano/piano-performance.svg",
+    caption: "Replace with an instructor performance photo.",
   },
   {
-    id: "perf-2",
-    title: "Studio performance set",
-    category: "Performances",
+    id: "inst-2",
+    title: "Studio performance",
+    category: "Instructor Performances",
     kind: "image",
-    src: "/vasu/vasu-studio.svg",
-    caption: "Add a concert or studio performance shot.",
+    src: "/piano/piano-studio.svg",
+    caption: "Swap with a studio recording shot.",
   },
   {
-    id: "teach-1",
-    title: "Guitar coaching session",
-    category: "Teaching sessions",
+    id: "stud-1",
+    title: "Student recital",
+    category: "Student Performances",
     kind: "image",
-    src: "/vasu/vasu-teaching.svg",
-    caption: "Swap with an in-class teaching moment.",
+    src: "/piano/piano-students.svg",
+    caption: "Showcase a student performance moment.",
   },
   {
-    id: "teach-2",
-    title: "Instructor portrait",
-    category: "Teaching sessions",
+    id: "stud-2",
+    title: "Graduation showcase",
+    category: "Student Performances",
     kind: "image",
-    src: "/vasu/vasu-portrait.svg",
-    caption: "Replace with Vasu's hero portrait.",
+    src: "/piano/piano-class.svg",
+    caption: "Highlight a cohort recital or showcase.",
   },
   {
-    id: "student-1",
-    title: "Student showcase",
-    category: "Student achievements",
+    id: "prac-1",
+    title: "Daily practice clip",
+    category: "Practice Clips",
     kind: "image",
-    src: "/vasu/vasu-students.svg",
-    caption: "Showcase student achievements or recitals.",
+    src: "/piano/piano-practice.svg",
+    caption: "Replace with a short practice clip still.",
   },
   {
-    id: "event-1",
-    title: "Community jam",
-    category: "Events",
+    id: "bts-1",
+    title: "Behind the scenes",
+    category: "Behind the Scenes",
     kind: "image",
-    src: "/vasu/vasu-live.svg",
-    caption: "Replace with workshop or event photos.",
+    src: "/piano/piano-foundations.svg",
+    caption: "Share a coaching or prep session photo.",
   },
   {
     id: "video-1",
-    title: "Performance reel",
-    category: "Performances",
+    title: "Instructor recital clip",
+    category: "Instructor Performances",
     kind: "video",
-    poster: "/vasu/vasu-performance.svg",
-    caption: "Add a short performance video file here.",
+    poster: "/piano/piano-performance.svg",
+    caption: "Add a performance video file here.",
   },
 ];
 
 export const galleryCategories: GalleryCategory[] = [
-  "Performances",
-  "Teaching sessions",
-  "Student achievements",
-  "Events",
+  "Instructor Performances",
+  "Student Performances",
+  "Practice Clips",
+  "Behind the Scenes",
 ];

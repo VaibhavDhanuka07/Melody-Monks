@@ -21,15 +21,15 @@ const body = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Vasu Guitar Academy | Melody Monks",
-    template: "%s | Vasu Guitar Academy",
+    default: "Melody Monks Piano Academy",
+    template: "%s | Melody Monks Piano Academy",
   },
   description:
-    "Premium guitar academy by professional musician Vasu. Cinematic lessons, live classes, and performance coaching.",
+    "Premium piano academy with a 12-week curriculum, performance coaching, and certification.",
   openGraph: {
-    title: "Vasu Guitar Academy | Melody Monks",
+    title: "Melody Monks Piano Academy",
     description:
-      "Learn guitar with structured paths, live coaching, and premium performance training.",
+      "Learn piano with cinematic lessons, structured curriculum, and expert coaching.",
     type: "website",
   },
   icons: {

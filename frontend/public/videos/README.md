@@ -1,8 +1,9 @@
 Add your hero and performance videos here.
 
 Expected filenames referenced in the UI:
-- hero-guitar.mp4
-- vasu-acoustic.mp4
-- vasu-electric.mp4
-- vasu-live.mp4
-- vasu-reel.mp4
+- hero-piano.mp4
+- piano-instructor.mp4
+- piano-student.mp4
+- piano-practice.mp4
+- piano-session.mp4
+- lesson-sample.mp4

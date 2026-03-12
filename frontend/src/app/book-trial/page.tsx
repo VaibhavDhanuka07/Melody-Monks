@@ -9,16 +9,16 @@ export default function BookTrialPage() {
           <div>
             <p className="text-sm font-semibold text-brand-gold">Book Trial</p>
             <h1 className="mt-3 text-4xl font-semibold text-ink">
-              Start your music journey today
+              Start your piano journey today
             </h1>
             <p className="mt-4 text-sm text-ink-muted">
-              Book a free 30-minute guitar trial class and receive a custom
-              roadmap to reach your next milestone.
+              Book a free 30-minute piano trial class and receive a personalized
+              roadmap for the 12-week program.
             </p>
             <div className="mt-6 space-y-2 text-sm text-ink-muted">
-              <p>- One-on-one guidance with Vasu</p>
-              <p>- Personalized practice plan</p>
-              <p>- Performance feedback</p>
+              <p>- 1:1 assessment with the instructor</p>
+              <p>- Customized practice plan</p>
+              <p>- Performance feedback preview</p>
             </div>
           </div>
           <div className="rounded-3xl border border-white/10 bg-black/60 p-8">

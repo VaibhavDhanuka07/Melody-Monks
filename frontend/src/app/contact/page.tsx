@@ -8,7 +8,7 @@ export default function ContactPage() {
           <div>
             <p className="text-sm font-semibold text-brand-gold">Contact</p>
             <h1 className="mt-3 text-4xl font-semibold text-ink">
-              Connect with Melody Monks
+              Connect with the piano academy
             </h1>
             <p className="mt-4 text-sm text-ink-muted">
               Reach out for course details, trial booking, or performance
@@ -33,7 +33,7 @@ export default function ContactPage() {
               rel="noreferrer"
               className="btn-primary mt-6 w-full"
             >
-              Chat with Vasu
+              Chat with the team
             </a>
           </div>
         </div>

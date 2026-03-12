@@ -2,14 +2,14 @@ import TestimonialsCarousel from "@/components/site/TestimonialsCarousel";
 import { testimonials } from "@/data/site";
 
 const before = [
-  "Cannot hold chords confidently",
-  "Slow finger movement",
-  "No rhythm control",
+  "Cannot read sheet music",
+  "Uneven rhythm and timing",
+  "Low confidence playing in front of others",
 ];
 
 const after = [
-  "Play full songs",
-  "Fingerstyle technique",
+  "Read music fluently",
+  "Play full pieces with expression",
   "Confident performances",
 ];
 
@@ -21,22 +21,22 @@ export default function StudentSuccessPage() {
           <div>
             <p className="text-sm font-semibold text-brand-gold">Student Success</p>
             <h1 className="mt-3 text-4xl font-semibold text-ink">
-              Transformation journeys with Vasu
+              Transformation journeys in 12 weeks
             </h1>
             <p className="mt-4 text-sm text-ink-muted">
-              Students move from first chords to performance-ready confidence in
-              three months with structured coaching.
+              Students progress from zero experience to expressive performances
+              through the structured Piano Mastery Program.
             </p>
           </div>
           <div className="grid gap-4 text-sm text-ink-muted">
             <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-4">
-              92% report better rhythm within 4 weeks
+              92% report improved rhythm within 4 weeks
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-4">
-              4.9 average rating from students
+              4.9 average rating across cohorts
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-4">
-              Performance showcases every quarter
+              Quarterly virtual recitals and showcases
             </div>
           </div>
         </div>

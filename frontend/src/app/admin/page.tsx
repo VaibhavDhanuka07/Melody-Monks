@@ -1,32 +1,29 @@
 export const metadata = {
   title: "Admin Panel",
-  description: "Instructor admin dashboard for managing courses and students.",
+  description: "Admin dashboard for managing piano courses and students.",
 };
 
 export default function AdminPage() {
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16">
       <div className="mb-8">
-        <p className="text-sm font-semibold text-brand-gold-soft">Admin Panel</p>
+        <p className="text-sm font-semibold text-brand-gold">Admin Panel</p>
         <h1 className="mt-2 text-4xl font-semibold text-ink">
-          Instructor Admin
+          Piano Academy Admin
         </h1>
         <p className="mt-3 text-ink-muted">
-          Manage students, courses, lessons, bookings, and analytics.
+          Manage courses, lessons, enrollments, trial leads, and submissions.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
         {[
-          { label: "Active students", value: "312" },
-          { label: "Courses", value: "12" },
-          { label: "Bookings", value: "48" },
-          { label: "Revenue", value: "INR 4.2L" },
+          { label: "Active students", value: "412" },
+          { label: "Courses", value: "1" },
+          { label: "Trial leads", value: "64" },
+          { label: "Pending reviews", value: "12" },
         ].map((item) => (
-          <div
-            key={item.label}
-            className="card p-6"
-          >
+          <div key={item.label} className="card p-6">
             <p className="text-sm text-ink-muted">{item.label}</p>
             <p className="mt-3 text-2xl font-semibold text-ink">
               {item.value}
@@ -37,31 +34,19 @@ export default function AdminPage() {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="card p-6">
-          <p className="text-sm font-semibold text-ink">Recent Bookings</p>
+          <p className="text-sm font-semibold text-ink">Recent Trial Leads</p>
           <div className="mt-4 space-y-3 text-sm text-ink-muted">
-            <div className="card px-4 py-3">
-              Arjun K. - Piano Mastery - Confirmed
-            </div>
-            <div className="card px-4 py-3">
-              Mei L. - Vocal Studio - Pending
-            </div>
-            <div className="card px-4 py-3">
-              Luis M. - Guitar Foundations - Confirmed
-            </div>
+            <div className="card px-4 py-3">Riya K. - Piano Trial - New</div>
+            <div className="card px-4 py-3">Arun B. - Piano Trial - Follow-up</div>
+            <div className="card px-4 py-3">Maya P. - Piano Trial - Scheduled</div>
           </div>
         </div>
         <div className="card p-6">
-          <p className="text-sm font-semibold text-ink">Quick Actions</p>
+          <p className="text-sm font-semibold text-ink">Admin Actions</p>
           <div className="mt-4 space-y-3 text-sm text-ink-muted">
-            <div className="card px-4 py-3">
-              Upload lesson videos
-            </div>
-            <div className="card px-4 py-3">
-              Manage instructor roster
-            </div>
-            <div className="card px-4 py-3">
-              View analytics report
-            </div>
+            <div className="card px-4 py-3">Manage lessons and modules</div>
+            <div className="card px-4 py-3">Review performance uploads</div>
+            <div className="card px-4 py-3">Issue certificates</div>
           </div>
         </div>
       </div>

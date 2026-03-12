@@ -9,7 +9,7 @@ export default function InstructorPage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-white/10">
             <Image
-              src="/vasu/vasu-portrait.svg"
+              src="/piano/piano-portrait.svg"
               alt={site.instructor.fullName}
               fill
               sizes="(max-width: 768px) 100vw, 40vw"
@@ -32,7 +32,7 @@ export default function InstructorPage() {
                 {site.instructor.experience}
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/50 px-5 py-4 text-sm text-ink-muted">
-                Specializes in fingerstyle and live performance
+                Specializes in expressive performance coaching
               </div>
             </div>
             <div>
@@ -46,7 +46,7 @@ export default function InstructorPage() {
               </ul>
             </div>
             <Link href="/book-trial" className="btn-primary">
-              Book a Session with Vasu
+              Book a Session
             </Link>
           </div>
         </div>
@@ -57,15 +57,15 @@ export default function InstructorPage() {
           {[
             {
               title: "Performance Coaching",
-              detail: "Stage-ready presence, tone, and dynamics.",
+              detail: "Stage-ready presence, tone, and musicality.",
             },
             {
-              title: "Personalized Practice",
-              detail: "Custom routines tailored to your goals.",
+              title: "Technique Mastery",
+              detail: "Detailed fingering and strength training.",
             },
             {
               title: "Artist Development",
-              detail: "Build confidence and musical identity.",
+              detail: "Build confidence and repertoire depth.",
             },
           ].map((item) => (
             <div key={item.title} className="space-y-2">

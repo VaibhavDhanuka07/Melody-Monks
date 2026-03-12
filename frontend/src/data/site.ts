@@ -11,6 +11,7 @@ export type PerformanceVideo = {
   subtitle: string;
   src: string;
   poster: string;
+  category: "Instructor" | "Student" | "Practice";
 };
 
 export type Testimonial = {
@@ -21,27 +22,36 @@ export type Testimonial = {
   image: string;
 };
 
+export type PricingPlan = {
+  name: string;
+  price: string;
+  cadence: string;
+  description: string;
+  features: string[];
+  highlighted?: boolean;
+};
+
 const whatsappNumber =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "91XXXXXXXXXX";
 const whatsappMessage =
   process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ||
-  "Hi, I want to book a free guitar trial class.";
+  "Hi, I want to book a free piano trial class.";
 
 export const site = {
-  name: "Melody Monks",
+  name: "Melody Monks Piano Academy",
+  programName: "Piano Mastery Program",
   instructor: {
-    name: "Vasu",
-    fullName: "Debojeet Lahiri (Musician Vasu)",
-    role: "Professional guitarist, performer, composer",
-    bio: "Vasu blends classical discipline with modern stagecraft to help students master guitar with confidence.",
-    experience: "10+ years coaching students worldwide",
+    name: "Ariya Sen",
+    fullName: "Ariya Sen",
+    role: "Concert pianist, educator, curriculum designer",
+    bio: "Ariya blends classical precision with modern coaching to guide students from first notes to confident performances.",
+    experience: "10+ years teaching globally",
     achievements: [
-      "Performed across major venues and festivals",
-      "Mentored 500+ students to stage-ready performances",
-      "Specialist in fingerstyle, improvisation, and live performance",
+      "Performed in international recitals and festivals",
+      "Trained 500+ students from beginner to advanced",
+      "Specialist in technique, musicality, and performance psychology",
     ],
   },
-  instagramUrl: "https://www.instagram.com/musicianvasu",
   whatsappNumber,
   whatsappMessage,
   whatsappLink: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -53,103 +63,123 @@ export const site = {
 export const coursePaths: CoursePath[] = [
   {
     title: "Beginner",
-    description: "Build strong foundations with guided rhythm and chord training.",
-    topics: ["Guitar basics", "Basic chords", "Rhythm training"],
-    image: "/vasu/vasu-teaching.svg",
+    description: "Build strong foundations with posture, rhythm, and note reading.",
+    topics: ["Piano basics", "Reading music", "Hand coordination"],
+    image: "/piano/piano-foundations.svg",
   },
   {
     title: "Intermediate",
-    description: "Level up with barre chords, fingerstyle, and song practice.",
-    topics: ["Barre chords", "Fingerstyle", "Song practice"],
-    image: "/vasu/vasu-performance.svg",
+    description: "Strengthen technique, harmony, and musical expression.",
+    topics: ["Scales & arpeggios", "Chord harmony", "Stylistic fluency"],
+    image: "/piano/piano-studio.svg",
   },
   {
     title: "Advanced",
-    description: "Master solo techniques, improvisation, and live performance.",
-    topics: ["Solo techniques", "Improvisation", "Live performance"],
-    image: "/vasu/vasu-studio.svg",
+    description: "Master performance, improvisation, and advanced repertoire.",
+    topics: ["Improvisation", "Advanced technique", "Performance mastery"],
+    image: "/piano/piano-performance.svg",
   },
 ];
 
 export const performanceVideos: PerformanceVideo[] = [
   {
-    id: "perf-acoustic",
-    title: "Acoustic solo",
-    subtitle: "Signature fingerstyle arrangement",
-    src: "/videos/vasu-acoustic.mp4",
-    poster: "/vasu/vasu-performance.svg",
+    id: "perf-instructor",
+    title: "Instructor performance",
+    subtitle: "Concert hall recital highlight",
+    src: "/videos/piano-instructor.mp4",
+    poster: "/piano/piano-performance.svg",
+    category: "Instructor",
   },
   {
-    id: "perf-electric",
-    title: "Electric solo",
-    subtitle: "Expressive lead performance",
-    src: "/videos/vasu-electric.mp4",
-    poster: "/vasu/vasu-studio.svg",
+    id: "perf-student",
+    title: "Student showcase",
+    subtitle: "Graduation performance clip",
+    src: "/videos/piano-student.mp4",
+    poster: "/piano/piano-students.svg",
+    category: "Student",
   },
   {
-    id: "perf-live",
-    title: "Live performance",
-    subtitle: "Concert stage highlight",
-    src: "/videos/vasu-live.mp4",
-    poster: "/vasu/vasu-live.svg",
+    id: "perf-practice",
+    title: "Practice clip",
+    subtitle: "Daily technique routine",
+    src: "/videos/piano-practice.mp4",
+    poster: "/piano/piano-practice.svg",
+    category: "Practice",
   },
   {
-    id: "perf-reel",
-    title: "Instagram reel",
-    subtitle: "60-second showcase",
-    src: "/videos/vasu-reel.mp4",
-    poster: "/vasu/vasu-portrait.svg",
+    id: "perf-session",
+    title: "Live session",
+    subtitle: "Behind-the-scenes coaching",
+    src: "/videos/piano-session.mp4",
+    poster: "/piano/piano-class.svg",
+    category: "Instructor",
   },
 ];
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Aanya S.",
+    name: "Meera D.",
     title: "Beginner Student",
     rating: "5.0",
     quote:
-      "Vasu made guitar feel attainable. The structure and performance tips are exceptional.",
-    image: "/vasu/vasu-portrait.svg",
+      "The 12-week structure kept me consistent. I can finally read music and play full pieces.",
+    image: "/piano/piano-students.svg",
   },
   {
-    name: "Rohit K.",
-    title: "Intermediate Player",
+    name: "Lucas P.",
+    title: "Intermediate Student",
     rating: "4.9",
     quote:
-      "The fingerstyle modules and live feedback helped me perform confidently on stage.",
-    image: "/vasu/vasu-performance.svg",
+      "Technique drills plus performance coaching made a huge difference in my confidence.",
+    image: "/piano/piano-performance.svg",
   },
   {
-    name: "Maya P.",
+    name: "Sanya R.",
     title: "Advanced Student",
     rating: "5.0",
     quote:
-      "Every session feels premium. The performance coaching is on another level.",
-    image: "/vasu/vasu-studio.svg",
+      "The musicality lessons feel like a conservatory experience online.",
+    image: "/piano/piano-studio.svg",
   },
 ];
 
-export const instagramFallback = [
+export const pricingPlans: PricingPlan[] = [
   {
-    id: "ig-1",
-    title: "Behind the scenes studio session",
-    image: "/vasu/vasu-studio.svg",
-    url: "https://www.instagram.com/musicianvasu",
-    type: "photo",
+    name: "Beginner Program",
+    price: "INR 4,500",
+    cadence: "one-time",
+    description: "Full 12-week curriculum with guided assignments.",
+    features: [
+      "48 video lessons",
+      "Practice tracker",
+      "Weekly feedback",
+      "Certificate eligibility",
+    ],
   },
   {
-    id: "ig-2",
-    title: "Fingerstyle performance reel",
-    image: "/vasu/vasu-performance.svg",
-    url: "https://www.instagram.com/musicianvasu",
-    type: "reel",
+    name: "Monthly Piano Membership",
+    price: "INR 2,500",
+    cadence: "per month",
+    description: "Ongoing lessons, live sessions, and updated repertoire.",
+    features: [
+      "New lessons every month",
+      "Live group classes",
+      "Performance reviews",
+      "Member-only resources",
+    ],
+    highlighted: true,
   },
   {
-    id: "ig-3",
-    title: "Teaching highlight",
-    image: "/vasu/vasu-teaching.svg",
-    url: "https://www.instagram.com/musicianvasu",
-    type: "photo",
+    name: "Private Coaching",
+    price: "INR 9,000",
+    cadence: "per month",
+    description: "1:1 mentorship with Ariya Sen.",
+    features: [
+      "Weekly private lessons",
+      "Custom practice plan",
+      "Performance feedback",
+      "Priority scheduling",
+    ],
   },
 ];
 

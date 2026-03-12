@@ -3,6 +3,7 @@ import Link from "next/link";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
+  { label: "Curriculum", href: "/curriculum" },
   { label: "Instructor", href: "/instructor" },
   { label: "Student Success", href: "/student-success" },
   { label: "Gallery", href: "/gallery" },
@@ -22,7 +23,7 @@ export default function Navbar() {
               Melody Monks
             </p>
             <p className="text-xs uppercase tracking-[0.25em] text-ink-muted">
-              Vasu Academy
+              Piano Academy
             </p>
           </div>
         </Link>
@@ -47,10 +48,10 @@ export default function Navbar() {
             Book Free Trial
           </Link>
           <Link
-            href="/courses"
+            href="/login"
             className="hidden rounded-full border border-white/10 px-4 py-2 text-xs font-semibold text-ink-muted transition hover:text-ink sm:inline-flex"
           >
-            Enroll
+            Login
           </Link>
         </div>
       </div>

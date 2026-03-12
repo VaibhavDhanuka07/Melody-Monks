@@ -15,34 +15,37 @@ export default function Footer() {
                 {site.name}
               </p>
               <p className="text-xs uppercase tracking-[0.2em] text-ink-muted">
-                Premium Guitar Academy
+                Premium Piano Academy
               </p>
             </div>
           </div>
           <p className="text-sm text-ink-muted">
-            Cinematic guitar education with live coaching, performance training,
-            and professional feedback.
+            Cinematic piano education with 12-week mastery paths, performance
+            coaching, and certification.
           </p>
           <div className="flex flex-wrap items-center gap-4 text-xs text-ink-muted">
             <span>500+ Students</span>
-            <span>10+ Years Experience</span>
-            <span>Online &amp; Offline</span>
+            <span>48 Lessons</span>
+            <span>Beginner to Advanced</span>
           </div>
         </div>
 
         <div className="space-y-3 text-sm">
           <p className="font-semibold text-ink">Programs</p>
           <Link href="/courses" className="block text-ink-muted hover:text-ink">
-            Beginner Path
+            Piano Mastery Program
           </Link>
-          <Link href="/courses" className="block text-ink-muted hover:text-ink">
-            Intermediate Mastery
-          </Link>
-          <Link href="/courses" className="block text-ink-muted hover:text-ink">
-            Advanced Performance
+          <Link
+            href="/curriculum"
+            className="block text-ink-muted hover:text-ink"
+          >
+            12-Week Curriculum
           </Link>
           <Link href="/book-trial" className="block text-ink-muted hover:text-ink">
             Book Trial
+          </Link>
+          <Link href="/login" className="block text-ink-muted hover:text-ink">
+            Student Login
           </Link>
         </div>
 
@@ -51,7 +54,10 @@ export default function Footer() {
           <Link href="/instructor" className="block text-ink-muted hover:text-ink">
             Instructor
           </Link>
-          <Link href="/student-success" className="block text-ink-muted hover:text-ink">
+          <Link
+            href="/student-success"
+            className="block text-ink-muted hover:text-ink"
+          >
             Student Success
           </Link>
           <Link href="/gallery" className="block text-ink-muted hover:text-ink">
@@ -78,7 +84,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-white/5">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-6 py-6 text-xs text-ink-muted md:flex-row md:items-center md:justify-between">
-          <p>(c) 2026 Melody Monks. All rights reserved.</p>
+          <p>(c) 2026 Melody Monks Piano Academy. All rights reserved.</p>
           <div className="flex gap-4">
             <span>Privacy</span>
             <span>Terms</span>

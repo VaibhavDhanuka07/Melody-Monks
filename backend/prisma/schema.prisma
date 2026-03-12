@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String?
+  email       String?     @unique
+  role        String      @default("student")
+  createdAt   DateTime    @default(now())
+  enrollments Enrollment[]
+  practiceSessions PracticeSession[]
+  performanceSubmissions PerformanceSubmission[]
+  certificates Certificate[]
+  payments    Payment[]
+}
+
+model Course {
+  id          String      @id @default(uuid()) @db.Uuid
+  title       String
+  description String?
+  level       String?
+  price       Int?
+  createdAt   DateTime    @default(now())
+  lessons     Lesson[]
+  enrollments Enrollment[]
+}
+
+model Lesson {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  module      String
+  week        Int
+  duration    String
+  videoUrl    String?
+  notes       String?
+  sheetMusic  String?
+  assignment  String?
+  order       Int
+  createdAt   DateTime @default(now())
+  course      Course?  @relation(fields: [courseId], references: [id])
+  courseId    String?  @db.Uuid
+}
+
+model Enrollment {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  course    Course?  @relation(fields: [courseId], references: [id])
+  courseId  String?  @db.Uuid
+  progress  Int      @default(0)
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+}
+
+model TrialLead {
+  id            String   @id @default(uuid()) @db.Uuid
+  name          String
+  phone         String
+  instrument    String?
+  mode          String?
+  preferredTime String?
+  status        String   @default("new")
+  createdAt     DateTime @default(now())
+}
+
+model PracticeSession {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  routine   Json?
+  duration  Int?
+  createdAt DateTime @default(now())
+}
+
+model PerformanceSubmission {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  name      String
+  title     String
+  videoUrl  String
+  notes     String?
+  feedback  String?
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
+
+model Certificate {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  level     String
+  issuedAt  DateTime @default(now())
+  url       String?
+}
+
+model Payment {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  amount    Int
+  status    String
+  method    String
+  createdAt DateTime @default(now())
+}

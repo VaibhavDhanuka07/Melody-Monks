@@ -33,6 +33,9 @@ export default function PerformanceGallery() {
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/50 px-3 py-1 text-xs font-semibold text-ink">
+                {video.category}
+              </div>
               <div className="absolute bottom-4 left-4 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-gold text-black text-xs font-semibold">
                   Play

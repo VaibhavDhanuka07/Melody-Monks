@@ -6,8 +6,7 @@ import { apiBaseUrl, site } from "@/data/site";
 const defaultForm = {
   name: "",
   phone: "",
-  email: "",
-  instrument: "Guitar",
+  instrument: "Piano",
   mode: "Online",
   preferredTime: "",
 };
@@ -62,7 +61,7 @@ export default function BookingForm() {
       <div>
         <p className="text-sm font-semibold text-brand-gold">Book a free trial</p>
         <h3 className="mt-2 text-2xl font-semibold text-ink">
-          Reserve your guitar session
+          Reserve your piano session
         </h3>
         <p className="mt-2 text-sm text-ink-muted">
           Tell us your preferred time and we will confirm the slot on WhatsApp.
@@ -91,16 +90,6 @@ export default function BookingForm() {
           />
         </label>
         <label className="text-sm text-ink-muted">
-          Email
-          <input
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            type="email"
-            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink outline-none focus:border-brand-gold"
-          />
-        </label>
-        <label className="text-sm text-ink-muted">
           Instrument
           <input
             name="instrument"
@@ -121,7 +110,7 @@ export default function BookingForm() {
             <option>Offline</option>
           </select>
         </label>
-        <label className="text-sm text-ink-muted">
+        <label className="text-sm text-ink-muted md:col-span-2">
           Preferred time
           <input
             name="preferredTime"
