@@ -70,8 +70,20 @@ Place real photos and videos here:
 Create the database and run migrations:
 
 ```bash
-cd backend
 npm run prisma:migrate
+npm run prisma:generate
+```
+
+Seed demo data:
+
+```bash
+npm run prisma:seed
+```
+
+Open Prisma Studio:
+
+```bash
+npm run prisma:studio
 ```
 
 ## Deployment

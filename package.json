@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "melody-monks-platform",
   "private": true,
   "workspaces": [
@@ -11,6 +11,10 @@
     "start": "npm run start --workspace frontend",
     "lint": "npm run lint --workspace frontend",
     "dev:backend": "npm run dev --workspace backend",
-    "start:backend": "npm run start --workspace backend"
+    "start:backend": "npm run start --workspace backend",
+    "prisma:generate": "npm run prisma:generate --workspace backend",
+    "prisma:migrate": "npm run prisma:migrate --workspace backend",
+    "prisma:studio": "npm run prisma:studio --workspace backend",
+    "prisma:seed": "npm run prisma:seed --workspace backend"
   }
 }
