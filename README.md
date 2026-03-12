@@ -1,4 +1,6 @@
-﻿# Melody Monks Music Academy
+# Melody Monks Music Academy
+
+Melody Monks by Debojeet Lahiri.
 
 A production-ready global music academy platform built with Next.js 14, Supabase, and interactive audio tools.
 
@@ -43,4 +45,3 @@ See `supabase/schema.sql` for the required tables.
 ## Deployment
 
 Optimized for Vercel. Run `npm run build` to verify the production build.
-
