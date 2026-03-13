@@ -16,3 +16,21 @@ frontend/.next does not exist
 
  ✓ Starting...
  ✓ Ready in 2.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 3.8s (1216 modules)
+ GET / 200 in 4325ms
+ GET / 200 in 4257ms
+ ✓ Compiled in 548ms (553 modules)
+ ✓ Compiled in 80ms
+ ✓ Compiled in 2s (553 modules)
+ ✓ Compiled in 327ms (553 modules)
+ ✓ Compiled in 283ms (553 modules)
+ ✓ Compiled in 263ms (553 modules)
+ ✓ Compiled in 1753ms (553 modules)
+ ✓ Compiled in 926ms (553 modules)
+ ✓ Compiled in 395ms (553 modules)
+ ✓ Compiled in 715ms (553 modules)
+ ✓ Compiled in 807ms (553 modules)
+ ✓ Compiled in 1632ms (553 modules)
+ ✓ Compiled in 350ms (553 modules)
+ ✓ Compiled in 801ms (553 modules)
