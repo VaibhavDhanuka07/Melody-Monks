@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800" height="1100" viewBox="0 0 1800 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-how-to-play-bollywood-songs-on-piano" x1="80" y1="60" x2="1660" y2="1040" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#030303"/>
+      <stop offset="1" stop-color="#151515"/>
+    </linearGradient>
+    <radialGradient id="glow-how-to-play-bollywood-songs-on-piano" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1420 180) rotate(35) scale(460 360)">
+      <stop offset="0" stop-color="#2563EB" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gold-how-to-play-bollywood-songs-on-piano" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 960) rotate(-18) scale(420 260)">
+      <stop offset="0" stop-color="#F59E0B" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1800" height="1100" fill="url(#bg-how-to-play-bollywood-songs-on-piano)"/>
+  <circle cx="1420" cy="180" r="360" fill="url(#glow-how-to-play-bollywood-songs-on-piano)"/>
+  <circle cx="260" cy="960" r="280" fill="url(#gold-how-to-play-bollywood-songs-on-piano)"/>
+  <rect x="74" y="66" width="1652" height="968" rx="64" fill="#0A0A0A" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+  <rect x="116" y="108" width="1568" height="884" rx="42" fill="#070707" fill-opacity="0.74"/>
+  <path d="M74 886C296 804 504 802 738 854C1038 920 1292 926 1726 782V1034H74V886Z" fill="#090909"/>
+  <path d="M150 216H1648" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="3"/>
+  <path d="M156 930C412 840 638 842 890 896C1148 952 1354 950 1642 888" stroke="#FB7185" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
+  <rect x="186" y="252" width="450" height="212" rx="30" fill="#0D0D0D" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <rect x="224" y="294" width="122" height="16" rx="8" fill="#F59E0B" fill-opacity="0.36"/>
+  <rect x="224" y="334" width="262" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.12"/>
+  <rect x="224" y="372" width="208" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.08"/>
+  <rect x="224" y="410" width="164" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.06"/>
+  
+        <rect x="1122" y="682" width="512" height="182" rx="34" fill="#121212" stroke="#F59E0B" stroke-opacity="0.14"/>
+        <rect x="1184" y="728" width="388" height="84" rx="18" fill="#171717"/>
+        <g fill="#F7F3EA">
+          <rect x="1208" y="728" width="30" height="84" rx="7"/>
+          <rect x="1246" y="728" width="30" height="84" rx="7"/>
+          <rect x="1284" y="728" width="30" height="84" rx="7"/>
+          <rect x="1322" y="728" width="30" height="84" rx="7"/>
+          <rect x="1360" y="728" width="30" height="84" rx="7"/>
+          <rect x="1398" y="728" width="30" height="84" rx="7"/>
+          <rect x="1436" y="728" width="30" height="84" rx="7"/>
+          <rect x="1474" y="728" width="30" height="84" rx="7"/>
+          <rect x="1512" y="728" width="30" height="84" rx="7"/>
+        </g>
+      
+</svg>

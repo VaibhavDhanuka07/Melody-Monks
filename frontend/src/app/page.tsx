@@ -1,28 +1,130 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookingForm from "@/components/site/BookingForm";
-import PerformanceGallery from "@/components/site/PerformanceGallery";
-import TestimonialsCarousel from "@/components/site/TestimonialsCarousel";
-import { coursePaths, site, testimonials, pricingPlans } from "@/data/site";
-import { curriculumModules, curriculumSummary } from "@/data/curriculum";
+import dynamic from "next/dynamic";
+import ToolsGrid from "@/components/site/ToolsGrid";
+import BlogCard from "@/components/blog/BlogCard";
+import InstrumentImageMarqueeSection from "@/components/InstrumentImageMarqueeSection";
+import { coursePaths, site, pricingPlans } from "@/data/site";
+import { curriculumCourses } from "@/data/universal-curriculum";
+import { getLatestPosts } from "@/data/blog";
+import { reviews } from "@/data/reviews";
+import { instruments } from "@/data/instruments";
+
+const PhotoShowcaseSection = dynamic(
+  () => import("@/components/PhotoShowcaseSection"),
+  {
+    ssr: false,
+    loading: () => (
+      <section className="mx-auto w-full max-w-6xl px-6">
+        <div className="card-strong p-6 text-sm text-ink-muted">
+          Loading photo showcase...
+        </div>
+      </section>
+    ),
+  }
+);
+
+const InstrumentShowcaseSection = dynamic(
+  () => import("@/components/InstrumentShowcaseSection"),
+  {
+    ssr: false,
+    loading: () => (
+      <section className="mx-auto w-full max-w-6xl px-6">
+        <div className="card-strong p-6 text-sm text-ink-muted">
+          Loading instrument showcase...
+        </div>
+      </section>
+    ),
+  }
+);
+
+const PerformanceGallery = dynamic(
+  () => import("@/components/site/PerformanceGallery"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="card p-6 text-sm text-ink-muted">
+        Loading performances...
+      </div>
+    ),
+  }
+);
+
+const InstagramGallery = dynamic(
+  () => import("@/components/site/InstagramGallery"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="card p-6 text-sm text-ink-muted">
+        Loading Instagram highlights...
+      </div>
+    ),
+  }
+);
+
+const ReviewsCarousel = dynamic(
+  () => import("@/components/site/ReviewsCarousel"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="card-strong p-6 text-sm text-ink-muted">
+        Loading student reviews...
+      </div>
+    ),
+  }
+);
+
+const BookingForm = dynamic(() => import("@/components/site/BookingForm"), {
+  ssr: false,
+  loading: () => (
+    <div className="card-strong p-6 text-sm text-ink-muted">
+      Loading booking form...
+    </div>
+  ),
+});
 
 const trustBadges = [
-  "500+ Students",
-  "10+ Years Experience",
-  "Beginner to Advanced",
+  "2000+ Students",
+  "37 Years Experience",
+  "300+ Professional Musicians",
+];
+
+const studentSuccessBefore = [
+  "Unsteady sur and pitch control",
+  "Weak rhythm confidence",
+  "Limited stage presence",
+];
+
+const studentSuccessAfter = [
+  "Accurate sur and steady sargam",
+  "Confident taal and timing",
+  "Stage-ready performances",
 ];
 
 export default function Home() {
+  const latestPosts = getLatestPosts(3);
+  const featuredCurriculum = curriculumCourses[0];
+  const featuredInstruments = instruments.slice(0, 6).map((instrument) => ({
+    id: instrument.id,
+    name: instrument.name,
+    description: instrument.description,
+    toolType: "Instrument",
+    href: instrument.href,
+    badge: instrument.highlight,
+    image: instrument.image,
+  }));
+
   return (
     <div className="space-y-28 pb-28">
-      <section className="relative min-h-[85vh] overflow-hidden">
+      <section className="relative min-h-[75vh] sm:min-h-[85vh] overflow-hidden">
         <div className="absolute inset-0">
           <video
             autoPlay
             muted
             loop
             playsInline
-            poster="/piano/piano-performance.svg"
+            poster="/vasu/vasu-hero-stage.svg"
+            preload="none"
             className="h-full w-full object-cover"
           >
             <source src="/videos/hero-piano.mp4" />
@@ -31,27 +133,27 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/80 to-black" />
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-center gap-8 px-6 pb-16 pt-28">
-          <div className="space-y-6 animate-fade-up">
-            <span className="badge">Premium online piano academy</span>
-            <h1 className="text-balance text-4xl font-semibold leading-tight text-ink md:text-6xl">
-              Learn Piano From a Professional Musician
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-center gap-8 px-6 pb-16 pt-24 sm:pt-28">
+          <div className="space-y-6 animate-fade-up text-center sm:text-left">
+            <span className="badge">Premium Indian music academy</span>
+            <h1 className="text-balance text-3xl font-semibold leading-tight text-ink sm:text-4xl md:text-6xl">
+              Master Indian Music with a Legendary Mentor
             </h1>
-            <p className="max-w-2xl text-lg text-ink-muted">
-              Structured lessons from beginner to advanced with a cinematic
-              12-week curriculum and 48 guided lessons.
+            <p className="mx-auto max-w-2xl text-base text-ink-muted sm:mx-0 sm:text-lg">
+              Live on {site.liveClassPlatforms} | Recorded Lessons | Professional
+              Certification
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/book-trial" className="btn-primary">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <Link href="/book-trial" className="btn-primary w-full sm:w-auto">
                 Book Free Trial
               </Link>
-              <Link href="/curriculum" className="btn-secondary">
-                Explore Curriculum
+              <Link href="/courses" className="btn-secondary w-full sm:w-auto">
+                Explore Courses
               </Link>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
             {trustBadges.map((badge) => (
               <div key={badge} className="badge">
                 {badge}
@@ -60,6 +162,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <PhotoShowcaseSection />
+
+      <InstrumentShowcaseSection />
+
+      <InstrumentImageMarqueeSection />
 
       <section className="mx-auto w-full max-w-6xl px-6" id="instructor">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
@@ -77,7 +185,7 @@ export default function Home() {
                   {site.instructor.experience}
                 </span>
                 <span className="rounded-full border border-white/10 px-3 py-1">
-                  Performance coaching included
+                  Live mentorship on {site.liveClassPlatforms}
                 </span>
               </div>
               <ul className="space-y-2 text-sm text-ink-muted">
@@ -85,10 +193,27 @@ export default function Home() {
                   <li key={item}>- {item}</li>
                 ))}
               </ul>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {site.instructor.stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-xs text-ink-muted"
+                  >
+                    <p className="uppercase tracking-[0.2em]">{stat.label}</p>
+                    <p className="mt-2 text-lg font-semibold text-ink">
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["/piano/piano-portrait.svg", "/piano/piano-performance.svg"].map(
+            {[
+              "/vasu/vasu-mentor-portrait.svg",
+              "/vasu/vasu-studio-session.svg",
+              "/vasu/vasu-masterclass.svg",
+            ].map(
               (src) => (
                 <div
                   key={src}
@@ -117,26 +242,180 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-6" id="courses">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-brand-gold">Courses</p>
+            <h2 className="mt-2 text-3xl font-semibold text-ink">
+              Hindustani, Bollywood, and instrument programs
+            </h2>
+          </div>
+          <Link href="/courses" className="btn-secondary px-4 py-2 text-xs">
+            Explore Courses
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {coursePaths.slice(0, 6).map((path) => (
+            <div key={path.title} className="card-strong flex flex-col gap-6 p-6">
+              <div className="relative h-40 overflow-hidden rounded-2xl border border-white/10">
+                <Image
+                  src={path.image}
+                  alt={path.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-ink">{path.title}</h3>
+                <p className="mt-2 text-sm text-ink-muted">{path.description}</p>
+              </div>
+              <div className="flex flex-wrap gap-2 text-xs text-ink-muted">
+                <span className="rounded-full border border-white/10 px-3 py-1">
+                  {path.modules} modules
+                </span>
+                <span className="rounded-full border border-white/10 px-3 py-1">
+                  {path.lessons} lessons
+                </span>
+                {path.level ? (
+                  <span className="rounded-full border border-white/10 px-3 py-1">
+                    {path.level}
+                  </span>
+                ) : null}
+                {path.duration ? (
+                  <span className="rounded-full border border-white/10 px-3 py-1">
+                    {path.duration}
+                  </span>
+                ) : null}
+                <span className="rounded-full border border-white/10 px-3 py-1">
+                  {path.format}
+                </span>
+              </div>
+              <ul className="space-y-2 text-sm text-ink-muted">
+                {path.topics.map((topic) => (
+                  <li key={topic}>- {topic}</li>
+                ))}
+              </ul>
+              <Link href="/book-trial" className="btn-secondary mt-auto w-full sm:w-auto">
+                Enroll
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6">
+          <Link href="/courses" className="btn-secondary px-4 py-2 text-xs">
+            View all courses
+          </Link>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6" id="student-success">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-brand-gold">
+              Student Success
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold text-ink">
+              Transformation journeys in 12 weeks
+            </h2>
+            <p className="mt-2 text-sm text-ink-muted">
+              From hesitant beginners to confident performers with structured
+              coaching.
+            </p>
+          </div>
+          <Link href="/student-success" className="btn-secondary px-4 py-2 text-xs">
+            View Stories
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
+          <div className="card-strong p-6">
+            <p className="text-sm font-semibold text-brand-gold">Before</p>
+            <ul className="mt-4 space-y-2 text-sm text-ink-muted">
+              {studentSuccessBefore.map((item) => (
+                <li key={item}>- {item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="card-strong p-6">
+            <p className="text-sm font-semibold text-brand-gold">After 3 Months</p>
+            <ul className="mt-4 space-y-2 text-sm text-ink-muted">
+              {studentSuccessAfter.map((item) => (
+                <li key={item}>- {item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            "92% report stronger rhythm in 4 weeks",
+            "4.9 average cohort rating",
+            "Monthly recitals and showcases",
+          ].map((item) => (
+            <div
+              key={item}
+              className="rounded-2xl border border-white/10 bg-black/50 px-4 py-4 text-sm text-ink-muted"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6" id="performances">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-brand-gold">Performances</p>
+            <h2 className="mt-2 text-3xl font-semibold text-ink">
+              Performances and class highlights
+            </h2>
+            <p className="mt-2 text-sm text-ink-muted">
+              Watch classical recitals, Bollywood showcases, and live class clips.
+            </p>
+          </div>
+          <Link href="/gallery" className="btn-secondary px-4 py-2 text-xs">
+            Open Gallery
+          </Link>
+        </div>
+        <div className="mt-8">
+          <PerformanceGallery />
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6" id="instagram">
+        <InstagramGallery />
+      </section>
+
       <section className="mx-auto w-full max-w-6xl px-6" id="curriculum">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-sm font-semibold text-brand-gold">Curriculum</p>
             <h2 className="mt-2 text-3xl font-semibold text-ink">
-              12-week piano mastery program
+              Structured learning path for every level
             </h2>
             <p className="mt-2 text-sm text-ink-muted">
-              {curriculumSummary.weeks} modules, {curriculumSummary.lessons} lessons.
+              {featuredCurriculum.modules.length} modules,{" "}
+              {featuredCurriculum.modules.length * 4} lessons.
             </p>
           </div>
           <Link href="/curriculum" className="btn-secondary px-4 py-2 text-xs">
-            View Full Curriculum
+            Explore Curriculum
           </Link>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {curriculumModules.map((module, index) => (
+          {featuredCurriculum.modules.map((module, index) => (
             <div key={module.id} className="card-strong p-6">
+              <div className="relative h-40 overflow-hidden rounded-2xl border border-white/10">
+                <Image
+                  src={module.image}
+                  alt={module.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              </div>
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-brand-gold">
+                <p className="mt-4 text-sm font-semibold text-brand-gold">
                   Week {index + 1}
                 </p>
                 <span className="text-xs text-ink-muted">4 lessons</span>
@@ -165,73 +444,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6" id="courses">
+      <section className="mx-auto w-full max-w-6xl px-6" id="tools">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-brand-gold">Courses</p>
+            <p className="text-sm font-semibold text-brand-gold">Music Tools</p>
             <h2 className="mt-2 text-3xl font-semibold text-ink">
-              Beginner to Advanced learning paths
-            </h2>
-          </div>
-          <Link href="/courses" className="btn-secondary px-4 py-2 text-xs">
-            Explore Programs
-          </Link>
-        </div>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {coursePaths.map((path) => (
-            <div key={path.title} className="card-strong flex flex-col gap-6 p-6">
-              <div className="relative h-40 overflow-hidden rounded-2xl border border-white/10">
-                <Image
-                  src={path.image}
-                  alt={path.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-ink">{path.title}</h3>
-                <p className="mt-2 text-sm text-ink-muted">{path.description}</p>
-              </div>
-              <ul className="space-y-2 text-sm text-ink-muted">
-                {path.topics.map((topic) => (
-                  <li key={topic}>- {topic}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-6" id="performances">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-brand-gold">Performances</p>
-            <h2 className="mt-2 text-3xl font-semibold text-ink">
-              Instructor and student performances
+              Practice tools by instrument
             </h2>
             <p className="mt-2 text-sm text-ink-muted">
-              Watch instructor recitals, student showcases, and practice clips.
+              Choose your instrument to access tailored tools and practice flows.
             </p>
           </div>
-          <Link href="/gallery" className="btn-secondary px-4 py-2 text-xs">
-            Open Gallery
+          <Link href="/tools" className="btn-secondary px-4 py-2 text-xs">
+            Open Tools
           </Link>
         </div>
         <div className="mt-8">
-          <PerformanceGallery />
+          <ToolsGrid tools={featuredInstruments} />
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6">
         <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
           <div className="card-strong p-8">
-            <p className="text-sm font-semibold text-brand-gold">Testimonials</p>
+            <p className="text-sm font-semibold text-brand-gold">Reviews</p>
             <h2 className="mt-3 text-3xl font-semibold text-ink">
-              Students love the piano mastery path
+              Rated 4.9 by Indian music learners
             </h2>
             <p className="mt-2 text-sm text-ink-muted">
-              Confidence, musicality, and consistent progress in every cohort.
+              Hear from students while exploring the most popular learning tracks.
             </p>
             <div className="mt-6 grid gap-4">
               {pricingPlans.map((plan) => (
@@ -242,14 +483,36 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <TestimonialsCarousel testimonials={testimonials} />
+          <ReviewsCarousel reviews={reviews} />
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6" id="blog">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-brand-gold">Blog</p>
+            <h2 className="mt-2 text-3xl font-semibold text-ink">
+              Tips, training, and student success stories
+            </h2>
+            <p className="mt-2 text-sm text-ink-muted">
+              Read the latest insights from the academy.
+            </p>
+          </div>
+          <Link href="/blog" className="btn-secondary px-4 py-2 text-xs">
+            View All Posts
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {latestPosts.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6">
         <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-black via-black/80 to-black p-10 text-center shadow-lift">
           <p className="text-xs uppercase tracking-[0.4em] text-brand-gold">
-            Free Piano Trial Class
+            Free Music Trial Class
           </p>
           <h2 className="mt-4 text-3xl font-semibold text-ink">
             Only limited slots available this week
@@ -270,11 +533,12 @@ export default function Home() {
             <div className="space-y-4">
               <p className="text-sm font-semibold text-brand-gold">What you get</p>
               <h3 className="text-2xl font-semibold text-ink">
-                A premium coaching experience
+                A premium Indian music coaching experience
               </h3>
               <ul className="space-y-3 text-sm text-ink-muted">
                 <li>- Personalized assessment</li>
-                <li>- Custom practice routine</li>
+                <li>- Live classes on {site.liveClassPlatforms}</li>
+                <li>- Recorded lessons and replays</li>
                 <li>- Performance feedback</li>
                 <li>- Certification roadmap</li>
               </ul>
@@ -301,3 +565,5 @@ export default function Home() {
     </div>
   );
 }
+
+

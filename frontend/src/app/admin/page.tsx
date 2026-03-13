@@ -1,6 +1,8 @@
+import AdminManagement from "@/components/admin/AdminManagement";
+
 export const metadata = {
   title: "Admin Panel",
-  description: "Admin dashboard for managing piano courses and students.",
+  description: "Admin dashboard for managing Indian music courses and students.",
 };
 
 export default function AdminPage() {
@@ -9,7 +11,7 @@ export default function AdminPage() {
       <div className="mb-8">
         <p className="text-sm font-semibold text-brand-gold">Admin Panel</p>
         <h1 className="mt-2 text-4xl font-semibold text-ink">
-          Piano Academy Admin
+          Indian Music Academy Admin
         </h1>
         <p className="mt-3 text-ink-muted">
           Manage courses, lessons, enrollments, trial leads, and submissions.
@@ -19,7 +21,7 @@ export default function AdminPage() {
       <div className="grid gap-4 md:grid-cols-4">
         {[
           { label: "Active students", value: "412" },
-          { label: "Courses", value: "1" },
+          { label: "Courses", value: "12" },
           { label: "Trial leads", value: "64" },
           { label: "Pending reviews", value: "12" },
         ].map((item) => (
@@ -36,9 +38,9 @@ export default function AdminPage() {
         <div className="card p-6">
           <p className="text-sm font-semibold text-ink">Recent Trial Leads</p>
           <div className="mt-4 space-y-3 text-sm text-ink-muted">
-            <div className="card px-4 py-3">Riya K. - Piano Trial - New</div>
-            <div className="card px-4 py-3">Arun B. - Piano Trial - Follow-up</div>
-            <div className="card px-4 py-3">Maya P. - Piano Trial - Scheduled</div>
+            <div className="card px-4 py-3">Riya K. - Vocal Trial - New</div>
+            <div className="card px-4 py-3">Arun B. - Guitar Trial - Follow-up</div>
+            <div className="card px-4 py-3">Maya P. - Bollywood Trial - Scheduled</div>
           </div>
         </div>
         <div className="card p-6">
@@ -49,6 +51,10 @@ export default function AdminPage() {
             <div className="card px-4 py-3">Issue certificates</div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-12">
+        <AdminManagement />
       </div>
     </div>
   );

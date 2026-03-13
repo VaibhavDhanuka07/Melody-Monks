@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --color-base: #070707;
-  --color-ink: #f5f2ec;
-  --color-ink-muted: #a7a3a0;
-  --color-brand-gold: #d4af37;
-  --color-brand-gold-soft: #f3d27a;
-  --color-panel: rgba(15, 15, 15, 0.72);
-  --color-stroke: rgba(255, 255, 255, 0.12);
+  --color-base: #0b0b0b;
+  --color-ink: #ffffff;
+  --color-ink-muted: #b9b9b9;
+  --color-brand-gold: #c8a96a;
+  --color-brand-gold-soft: #e6d3a8;
+  --color-brand-blue: #2f80ed;
+  --color-panel: rgba(31, 31, 31, 0.72);
+  --color-stroke: rgba(255, 255, 255, 0.14);
 }
 
 html {
@@ -18,7 +19,7 @@ html {
 
 body {
   color: var(--color-ink);
-  background: #070707;
+  background: #0b0b0b;
   font-family: var(--font-body);
   min-height: 100vh;
 }
@@ -57,7 +58,7 @@ body {
   }
 
   .text-gradient-gold {
-    background: linear-gradient(120deg, #f6e3a1 0%, #d4af37 45%, #c08e2f 100%);
+    background: linear-gradient(120deg, #f1e2bb 0%, #c8a96a 45%, #a98340 100%);
     -webkit-background-clip: text;
     color: transparent;
   }
@@ -73,19 +74,19 @@ body {
   }
 
   .badge {
-    @apply inline-flex items-center gap-2 rounded-full border border-stroke bg-white/5 px-4 py-2 text-xs font-semibold text-ink-muted shadow-soft;
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-gold/30 bg-white/5 px-4 py-2 text-xs font-semibold text-ink-muted shadow-soft;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-black shadow-glow transition hover:-translate-y-0.5 hover:shadow-lift;
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-full bg-brand-blue px-6 py-3 text-sm font-semibold text-white shadow-glow-blue transition hover:-translate-y-0.5 hover:shadow-lift;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-stroke bg-white/5 px-6 py-3 text-sm font-semibold text-ink transition hover:border-brand-gold hover:text-brand-gold;
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-full border border-brand-gold/40 bg-white/5 px-6 py-3 text-sm font-semibold text-ink transition hover:border-brand-gold hover:text-brand-gold;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-ink-muted transition hover:text-ink;
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-ink-muted transition hover:text-ink;
   }
 
   .glass-panel {

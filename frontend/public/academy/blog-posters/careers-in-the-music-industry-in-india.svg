@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800" height="1100" viewBox="0 0 1800 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-careers-in-the-music-industry-in-india" x1="80" y1="60" x2="1660" y2="1040" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#030303"/>
+      <stop offset="1" stop-color="#151515"/>
+    </linearGradient>
+    <radialGradient id="glow-careers-in-the-music-industry-in-india" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1420 180) rotate(35) scale(460 360)">
+      <stop offset="0" stop-color="#2563EB" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gold-careers-in-the-music-industry-in-india" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 960) rotate(-18) scale(420 260)">
+      <stop offset="0" stop-color="#E7C57B" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#E7C57B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1800" height="1100" fill="url(#bg-careers-in-the-music-industry-in-india)"/>
+  <circle cx="1420" cy="180" r="360" fill="url(#glow-careers-in-the-music-industry-in-india)"/>
+  <circle cx="260" cy="960" r="280" fill="url(#gold-careers-in-the-music-industry-in-india)"/>
+  <rect x="74" y="66" width="1652" height="968" rx="64" fill="#0A0A0A" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
+  <rect x="116" y="108" width="1568" height="884" rx="42" fill="#070707" fill-opacity="0.74"/>
+  <path d="M74 886C296 804 504 802 738 854C1038 920 1292 926 1726 782V1034H74V886Z" fill="#090909"/>
+  <path d="M150 216H1648" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="3"/>
+  <path d="M156 930C412 840 638 842 890 896C1148 952 1354 950 1642 888" stroke="#67E8F9" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
+  <rect x="186" y="252" width="450" height="212" rx="30" fill="#0D0D0D" stroke="#FFFFFF" stroke-opacity="0.05"/>
+  <rect x="224" y="294" width="122" height="16" rx="8" fill="#E7C57B" fill-opacity="0.36"/>
+  <rect x="224" y="334" width="262" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.12"/>
+  <rect x="224" y="372" width="208" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.08"/>
+  <rect x="224" y="410" width="164" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.06"/>
+  
+        <rect x="1120" y="302" width="276" height="182" rx="26" fill="#111111" stroke="#FFFFFF" stroke-opacity="0.05"/>
+        <rect x="1160" y="350" width="154" height="16" rx="8" fill="#E7C57B" fill-opacity="0.32"/>
+        <rect x="1160" y="390" width="208" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.12"/>
+        <rect x="1160" y="428" width="162" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.08"/>
+        <path d="M1420 792C1504 706 1584 624 1702 520" stroke="#67E8F9" stroke-opacity="0.4" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="1702" cy="520" r="24" fill="#2563EB" fill-opacity="0.22"/>
+      
+</svg>

@@ -1,0 +1,18 @@
+
+> dev:clean
+> npm run dev:clean --workspace frontend
+
+
+> melody-monks-frontend@0.1.0 dev:clean
+> npm run clean && next dev
+
+
+> melody-monks-frontend@0.1.0 clean
+> node ./scripts/clean-next.mjs
+
+frontend/.next does not exist
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.1s

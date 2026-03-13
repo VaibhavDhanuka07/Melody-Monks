@@ -16,20 +16,35 @@ model User {
   createdAt   DateTime    @default(now())
   enrollments Enrollment[]
   practiceSessions PracticeSession[]
+  practiceFeedbacks PracticeFeedback[]
+  lessonProgress   LessonProgress[]
+  practiceAnalyses PracticeAnalysis[]
+  practicePlans    PracticePlan[]
   performanceSubmissions PerformanceSubmission[]
+  competitionSubmissions CompetitionSubmission[]
+  competitionVotes CompetitionVote[]
+  marketplaceOrders MarketplaceOrder[]
+  marketplaceReviews MarketplaceReview[]
   certificates Certificate[]
   payments    Payment[]
+
+  @@index([role, createdAt])
 }
 
 model Course {
   id          String      @id @default(uuid()) @db.Uuid
   title       String
+  instrument  String?
   description String?
   level       String?
   price       Int?
+  thumbnailUrl String?
   createdAt   DateTime    @default(now())
   lessons     Lesson[]
   enrollments Enrollment[]
+  modules     Module[]
+
+  @@index([instrument, level, createdAt])
 }
 
 model Lesson {
@@ -40,12 +55,55 @@ model Lesson {
   duration    String
   videoUrl    String?
   notes       String?
+  theory      String?
   sheetMusic  String?
   assignment  String?
   order       Int
   createdAt   DateTime @default(now())
   course      Course?  @relation(fields: [courseId], references: [id])
   courseId    String?  @db.Uuid
+  moduleRef   Module?  @relation(fields: [moduleId], references: [id])
+  moduleId    String?  @db.Uuid
+  practiceFeedbacks PracticeFeedback[]
+  assignments Assignment[]
+  practiceExercises PracticeExercise[]
+
+  @@index([courseId, moduleId, order, week])
+}
+
+model Module {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  description String?
+  order       Int
+  lessonCount Int?
+  duration    String?
+  course      Course?  @relation(fields: [courseId], references: [id])
+  courseId    String?  @db.Uuid
+  lessons     Lesson[]
+  createdAt   DateTime @default(now())
+
+  @@index([courseId, order])
+}
+
+model Assignment {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  instructions String
+  dueDays     Int?
+  lesson      Lesson?  @relation(fields: [lessonId], references: [id])
+  lessonId    String?  @db.Uuid
+  createdAt   DateTime @default(now())
+}
+
+model PracticeExercise {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  description String
+  duration    String?
+  lesson      Lesson?  @relation(fields: [lessonId], references: [id])
+  lessonId    String?  @db.Uuid
+  createdAt   DateTime @default(now())
 }
 
 model Enrollment {
@@ -57,6 +115,8 @@ model Enrollment {
   progress  Int      @default(0)
   status    String   @default("active")
   createdAt DateTime @default(now())
+
+  @@index([userId, courseId, status])
 }
 
 model TrialLead {
@@ -74,9 +134,193 @@ model PracticeSession {
   id        String   @id @default(uuid()) @db.Uuid
   user      User?    @relation(fields: [userId], references: [id])
   userId    String?  @db.Uuid
+  practiceType String?
   routine   Json?
   duration  Int?
+  date      DateTime?
   createdAt DateTime @default(now())
+
+  @@index([userId, date, createdAt])
+}
+
+model PracticeFeedback {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  lesson    Lesson?  @relation(fields: [lessonId], references: [id])
+  lessonId  String?  @db.Uuid
+  feedback  String
+  score     Float?
+  createdAt DateTime @default(now())
+
+  @@index([userId, lessonId, createdAt])
+}
+
+model LessonProgress {
+  id          String   @id @default(uuid()) @db.Uuid
+  user        User?    @relation(fields: [userId], references: [id])
+  userId      String?  @db.Uuid
+  lessonId    String
+  completed   Boolean  @default(false)
+  watchedTime Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId, lessonId])
+}
+
+model PracticeAnalysis {
+  id         String   @id @default(uuid()) @db.Uuid
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     String?  @db.Uuid
+  lessonId   String?
+  pitchScore Float?
+  tempoScore Float?
+  feedback   String?
+  createdAt  DateTime @default(now())
+
+  @@index([userId, lessonId, createdAt])
+}
+
+model PracticePlan {
+  id         String   @id @default(uuid()) @db.Uuid
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     String?  @db.Uuid
+  instrument String
+  planData   Json
+  date       DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([userId, instrument, date])
+}
+
+model Competition {
+  id          String   @id @default(uuid()) @db.Uuid
+  instrument  String
+  title       String
+  description String?
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  submissions CompetitionSubmission[]
+
+  @@index([instrument, startDate, createdAt])
+}
+
+model CompetitionSubmission {
+  id            String   @id @default(uuid()) @db.Uuid
+  competition   Competition? @relation(fields: [competitionId], references: [id])
+  competitionId String?  @db.Uuid
+  user          User?    @relation(fields: [userId], references: [id])
+  userId        String?  @db.Uuid
+  instrument    String
+  songTitle     String
+  description   String?
+  videoUrl      String
+  pitchScore    Float?
+  rhythmScore   Float?
+  techniqueScore Float?
+  expressionScore Float?
+  createdAt     DateTime @default(now())
+  votes         CompetitionVote[]
+
+  @@index([competitionId, instrument, userId, createdAt])
+}
+
+model CompetitionVote {
+  id            String   @id @default(uuid()) @db.Uuid
+  submission    CompetitionSubmission? @relation(fields: [submissionId], references: [id])
+  submissionId  String?  @db.Uuid
+  user          User?    @relation(fields: [userId], references: [id])
+  userId        String?  @db.Uuid
+  createdAt     DateTime @default(now())
+
+  @@index([submissionId])
+  @@index([submissionId, userId])
+}
+
+model MarketplaceService {
+  id           String   @id @default(uuid()) @db.Uuid
+  slug         String   @unique
+  title        String
+  description  String
+  price        Int
+  category     String
+  deliveryTime String
+  sellerName   String?
+  sellerBio    String?
+  sellerImage  String?
+  portfolio    Json?
+  createdAt    DateTime @default(now())
+  orders       MarketplaceOrder[]
+  reviews      MarketplaceReview[]
+
+  @@map("services")
+  @@index([category, createdAt])
+}
+
+model MarketplaceOrder {
+  id          String   @id @default(uuid()) @db.Uuid
+  service     MarketplaceService? @relation(fields: [serviceId], references: [id])
+  serviceId   String?  @db.Uuid
+  user        User?    @relation(fields: [userId], references: [id])
+  userId      String?  @db.Uuid
+  buyerName   String?
+  buyerEmail  String?
+  status      String   @default("Pending")
+  amount      Int
+  createdAt   DateTime @default(now())
+
+  @@map("orders")
+  @@index([serviceId, userId, status, createdAt])
+}
+
+model MarketplaceReview {
+  id         String   @id @default(uuid()) @db.Uuid
+  service    MarketplaceService? @relation(fields: [serviceId], references: [id])
+  serviceId  String?  @db.Uuid
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     String?  @db.Uuid
+  buyerName  String?
+  rating     Float
+  reviewText String
+  createdAt  DateTime @default(now())
+
+  @@map("marketplace_reviews")
+}
+
+model Talent {
+  id               String   @id @default(uuid()) @db.Uuid
+  username         String   @unique
+  name             String
+  instrument       String
+  bio              String?
+  image            String?
+  location         String?
+  achievements     Json?
+  highlights       Json?
+  performanceVideos Json?
+  competitionScore Float?
+  aiScore          Float?
+  engagementScore  Float?
+  rankingScore     Float?
+  createdAt        DateTime @default(now())
+  requests         TalentRequest[]
+
+  @@map("talents")
+  @@index([instrument, rankingScore, createdAt])
+}
+
+model TalentRequest {
+  id           String   @id @default(uuid()) @db.Uuid
+  talent       Talent?  @relation(fields: [talentId], references: [id])
+  talentId     String?  @db.Uuid
+  producerName String
+  contactEmail String
+  message      String
+  createdAt    DateTime @default(now())
+
+  @@map("talent_requests")
 }
 
 model PerformanceSubmission {
@@ -109,4 +353,51 @@ model Payment {
   status    String
   method    String
   createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id        String   @id @default(uuid()) @db.Uuid
+  title     String
+  slug      String   @unique
+  content   String
+  image     String?
+  imageUrl  String?
+  author    String
+  category  String
+  createdAt DateTime @default(now())
+
+  @@index([category, createdAt])
+}
+
+model Instrument {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String
+  slug        String   @unique
+  description String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+
+  @@index([name, createdAt])
+}
+
+model Review {
+  id          String   @id @default(uuid()) @db.Uuid
+  studentName String
+  photo       String?
+  rating      Float
+  reviewText  String
+  program     String?
+  videoUrl    String?
+  createdAt   DateTime @default(now())
+}
+
+model Tool {
+  id          String   @id @default(uuid()) @db.Uuid
+  instrument  String   @default("General")
+  toolName    String
+  description String
+  toolType    String
+  createdAt   DateTime @default(now())
+
+  @@index([instrument, toolType, createdAt])
 }

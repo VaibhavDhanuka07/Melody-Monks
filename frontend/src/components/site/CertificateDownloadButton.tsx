@@ -41,7 +41,7 @@ export default function CertificateDownloadButton({
       color: rgb(0.15, 0.15, 0.15),
     });
 
-    page.drawText("Melody Monks Piano Academy", {
+    page.drawText("Melody Monks Indian Music Academy", {
       x: 240,
       y: 120,
       size: 14,

@@ -9,7 +9,7 @@ export default function InstructorPage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-white/10">
             <Image
-              src="/piano/piano-portrait.svg"
+              src="/vasu/vasu-mentor-portrait.svg"
               alt={site.instructor.fullName}
               fill
               sizes="(max-width: 768px) 100vw, 40vw"
@@ -32,7 +32,7 @@ export default function InstructorPage() {
                 {site.instructor.experience}
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/50 px-5 py-4 text-sm text-ink-muted">
-                Specializes in expressive performance coaching
+                Specializes in Indian classical and Bollywood performance coaching
               </div>
             </div>
             <div>
@@ -45,10 +45,51 @@ export default function InstructorPage() {
                 ))}
               </ul>
             </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-ink-muted">
+                Impact
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {site.instructor.stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-xs text-ink-muted"
+                  >
+                    <p className="uppercase tracking-[0.2em]">{stat.label}</p>
+                    <p className="mt-2 text-lg font-semibold text-ink">
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
             <Link href="/book-trial" className="btn-primary">
               Book a Session
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6">
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            "/vasu/vasu-hero-stage.svg",
+            "/vasu/vasu-masterclass.svg",
+            "/vasu/vasu-judge-panel.svg",
+          ].map((src) => (
+            <div
+              key={src}
+              className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10"
+            >
+              <Image
+                src={src}
+                alt="Debojeet Lahiri gallery visual"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
       </section>
 

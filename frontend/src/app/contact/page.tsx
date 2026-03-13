@@ -8,7 +8,7 @@ export default function ContactPage() {
           <div>
             <p className="text-sm font-semibold text-brand-gold">Contact</p>
             <h1 className="mt-3 text-4xl font-semibold text-ink">
-              Connect with the piano academy
+              Connect with the Indian music academy
             </h1>
             <p className="mt-4 text-sm text-ink-muted">
               Reach out for course details, trial booking, or performance
@@ -18,6 +18,7 @@ export default function ContactPage() {
               <p>Email: hello@melodymonks.com</p>
               <p>Studio: Kolkata, India</p>
               <p>Online sessions available worldwide</p>
+              <p>Instagram: @musicianvasu</p>
             </div>
           </div>
           <div className="rounded-3xl border border-white/10 bg-black/60 p-8">

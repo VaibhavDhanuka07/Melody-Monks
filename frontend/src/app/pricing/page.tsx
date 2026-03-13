@@ -3,7 +3,7 @@ import { pricingPlans } from "@/data/site";
 
 export const metadata = {
   title: "Pricing",
-  description: "Choose a piano program that fits your goals.",
+  description: "Choose an Indian music program that fits your goals.",
 };
 
 export default function PricingPage() {
@@ -12,7 +12,7 @@ export default function PricingPage() {
       <div>
         <p className="text-sm font-semibold text-brand-gold">Pricing</p>
         <h1 className="mt-2 text-4xl font-semibold text-ink">
-          Piano programs and memberships
+          Indian music programs and memberships
         </h1>
         <p className="mt-3 text-ink-muted">
           Choose a plan that matches your learning pace and coaching needs.

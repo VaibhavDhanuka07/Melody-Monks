@@ -15,17 +15,17 @@ export default function Footer() {
                 {site.name}
               </p>
               <p className="text-xs uppercase tracking-[0.2em] text-ink-muted">
-                Premium Piano Academy
+                Premium Indian Music Academy
               </p>
             </div>
           </div>
           <p className="text-sm text-ink-muted">
-            Cinematic piano education with 12-week mastery paths, performance
-            coaching, and certification.
+            Cinematic Indian music education with live classes on{" "}
+            {site.liveClassPlatforms}, performance coaching, and certification.
           </p>
           <div className="flex flex-wrap items-center gap-4 text-xs text-ink-muted">
-            <span>500+ Students</span>
-            <span>48 Lessons</span>
+            <span>2000+ Students</span>
+            <span>37 Years Teaching</span>
             <span>Beginner to Advanced</span>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="space-y-3 text-sm">
           <p className="font-semibold text-ink">Programs</p>
           <Link href="/courses" className="block text-ink-muted hover:text-ink">
-            Piano Mastery Program
+            Indian Music Mastery Program
           </Link>
           <Link
             href="/curriculum"
@@ -60,6 +60,15 @@ export default function Footer() {
           >
             Student Success
           </Link>
+          <Link href="/reviews" className="block text-ink-muted hover:text-ink">
+            Reviews
+          </Link>
+          <Link href="/blog" className="block text-ink-muted hover:text-ink">
+            Blog
+          </Link>
+          <Link href="/tools" className="block text-ink-muted hover:text-ink">
+            Tools
+          </Link>
           <Link href="/gallery" className="block text-ink-muted hover:text-ink">
             Gallery
           </Link>
@@ -84,7 +93,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-white/5">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-6 py-6 text-xs text-ink-muted md:flex-row md:items-center md:justify-between">
-          <p>(c) 2026 Melody Monks Piano Academy. All rights reserved.</p>
+          <p>(c) 2026 Melody Monks Indian Music Academy. All rights reserved.</p>
           <div className="flex gap-4">
             <span>Privacy</span>
             <span>Terms</span>

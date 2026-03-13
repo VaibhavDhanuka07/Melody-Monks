@@ -14,7 +14,7 @@ export default function SheetMusicDownloadButton({
     const page = pdfDoc.addPage([595, 842]);
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
-    page.drawText("Melody Monks Piano Academy", {
+    page.drawText("Melody Monks Indian Music Academy", {
       x: 50,
       y: 790,
       size: 12,

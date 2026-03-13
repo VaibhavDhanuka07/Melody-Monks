@@ -1,16 +1,16 @@
-import TestimonialsCarousel from "@/components/site/TestimonialsCarousel";
-import { testimonials } from "@/data/site";
+import ReviewsCarousel from "@/components/site/ReviewsCarousel";
+import { reviews } from "@/data/reviews";
 
 const before = [
-  "Cannot read sheet music",
-  "Uneven rhythm and timing",
-  "Low confidence playing in front of others",
+  "Unstable sur and pitch",
+  "Weak taal sense and timing",
+  "Low confidence in live performance",
 ];
 
 const after = [
-  "Read music fluently",
-  "Play full pieces with expression",
-  "Confident performances",
+  "Accurate sur and sargam control",
+  "Strong taal and layakari",
+  "Confident stage performances",
 ];
 
 export default function StudentSuccessPage() {
@@ -25,7 +25,7 @@ export default function StudentSuccessPage() {
             </h1>
             <p className="mt-4 text-sm text-ink-muted">
               Students progress from zero experience to expressive performances
-              through the structured Piano Mastery Program.
+              through the structured Indian Music Mastery Program.
             </p>
           </div>
           <div className="grid gap-4 text-sm text-ink-muted">
@@ -36,7 +36,7 @@ export default function StudentSuccessPage() {
               4.9 average rating across cohorts
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-4">
-              Quarterly virtual recitals and showcases
+              Monthly recitals and live showcases
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function StudentSuccessPage() {
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6">
-        <TestimonialsCarousel testimonials={testimonials} />
+        <ReviewsCarousel reviews={reviews} />
       </section>
     </div>
   );

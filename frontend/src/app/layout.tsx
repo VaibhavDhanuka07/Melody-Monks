@@ -20,16 +20,19 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
   title: {
-    default: "Melody Monks Piano Academy",
-    template: "%s | Melody Monks Piano Academy",
+    default: "Melody Monks Indian Music Academy",
+    template: "%s | Melody Monks Indian Music Academy",
   },
   description:
-    "Premium piano academy with a 12-week curriculum, performance coaching, and certification.",
+    "Premium Indian music academy with live classes on Google Meet or Zoom, recorded lessons, and certification.",
   openGraph: {
-    title: "Melody Monks Piano Academy",
+    title: "Melody Monks Indian Music Academy",
     description:
-      "Learn piano with cinematic lessons, structured curriculum, and expert coaching.",
+      "Learn Indian music with live Google Meet and Zoom classes, cinematic lessons, structured programs, and expert coaching.",
     type: "website",
   },
   icons: {

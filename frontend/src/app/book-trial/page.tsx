@@ -9,11 +9,11 @@ export default function BookTrialPage() {
           <div>
             <p className="text-sm font-semibold text-brand-gold">Book Trial</p>
             <h1 className="mt-3 text-4xl font-semibold text-ink">
-              Start your piano journey today
+              Start your Indian music journey today
             </h1>
             <p className="mt-4 text-sm text-ink-muted">
-              Book a free 30-minute piano trial class and receive a personalized
-              roadmap for the 12-week program.
+              Book a free 30-minute trial class and receive a personalized
+              roadmap for the Indian music mastery program.
             </p>
             <div className="mt-6 space-y-2 text-sm text-ink-muted">
               <p>- 1:1 assessment with the instructor</p>

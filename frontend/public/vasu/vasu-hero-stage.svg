@@ -1,0 +1,62 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="60" x2="1420" y2="1130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#040404"/>
+      <stop offset="1" stop-color="#161616"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="800" y1="760" x2="800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#20160b" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="250" y1="150" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#121212"/>
+      <stop offset="1" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(340 250) rotate(45) scale(430)">
+      <stop offset="0" stop-color="#C8A96A" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#C8A96A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 220) rotate(45) scale(380)">
+      <stop offset="0" stop-color="#2F80ED" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#2F80ED" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <circle cx="340" cy="250" r="360" fill="url(#glowA)"/>
+  <circle cx="1220" cy="220" r="320" fill="url(#glowB)"/>
+  <rect x="94" y="86" width="1412" height="1028" rx="56" fill="url(#panel)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="130" y="122" width="1340" height="956" rx="40" fill="#161616" fill-opacity="0.42"/>
+  <path d="M0 924C264 818 505 846 790 898C1072 950 1292 920 1600 782V1200H0V924Z" fill="url(#floor)"/>
+  <path d="M140 988C336 912 532 904 794 954C1070 1006 1280 984 1460 928" stroke="#C8A96A" stroke-opacity="0.22" stroke-width="2"/>
+  <path d="M180 214H1420" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
+    <g opacity="0.9">
+    <circle cx="340" cy="220" r="24" fill="#C8A96A"/>
+    <circle cx="510" cy="250" r="18" fill="#2F80ED"/>
+    <circle cx="1280" cy="198" r="20" fill="#C8A96A"/>
+  </g>
+  <rect x="244" y="720" width="408" height="132" rx="28" fill="#111111" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="274" y="748" width="52" height="72" rx="12" fill="#EDE7DA"/>
+  <rect x="338" y="748" width="52" height="72" rx="12" fill="#EDE7DA"/>
+  <rect x="402" y="748" width="52" height="72" rx="12" fill="#EDE7DA"/>
+  <rect x="466" y="748" width="52" height="72" rx="12" fill="#EDE7DA"/>
+  <rect x="530" y="748" width="52" height="72" rx="12" fill="#EDE7DA"/>
+  <rect x="594" y="748" width="28" height="48" rx="8" fill="#050505"/>
+  <rect x="302" y="748" width="28" height="48" rx="8" fill="#050505"/>
+  <rect x="366" y="748" width="28" height="48" rx="8" fill="#050505"/>
+  <rect x="430" y="748" width="28" height="48" rx="8" fill="#050505"/>
+  <rect x="494" y="748" width="28" height="48" rx="8" fill="#050505"/>
+    <path d="M884 394L978 300" stroke="#C8A96A" stroke-opacity="0.35" stroke-width="8" stroke-linecap="round"/>
+  <path d="M978 300L1018 448" stroke="#C8A96A" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round"/>
+  <rect x="856" y="404" width="10" height="344" rx="5" fill="#1B1B1B"/>
+  <circle cx="862" cy="394" r="18" fill="#C8A96A" fill-opacity="0.32"/>
+  <path d="M214 604C354 494 504 464 660 514" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="4" stroke-linecap="round"/>
+    <g>
+    <circle cx="1048" cy="326" r="78" fill="#1A1A1A"/>
+    <path d="M930 964C952 736 992 518 1058 518C1124 518 1160 734 1184 964H930Z" fill="#121212"/>
+    <path d="M978 534C1008 476 1040 456 1076 456C1112 456 1144 476 1176 534C1138 560 1100 572 1056 572C1018 572 994 562 978 534Z" fill="#1B1B1B"/>
+    <rect x="1004" y="414" width="88" height="86" rx="32" fill="#171717"/>
+  </g>
+</svg>

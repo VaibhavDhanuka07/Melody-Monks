@@ -1,9 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
+import ProgressStats from "@/components/ai/ProgressStats";
+import { site } from "@/data/site";
 
 const supabaseReady = Boolean(supabase);
 
@@ -65,15 +67,17 @@ export default function StudentDashboard() {
           Welcome back, {session.user.email}
         </h1>
         <p className="mt-2 text-sm text-ink-muted">
-          Track your progress, lessons, and practice.
+          Track your progress, lessons, practice, and upcoming live sessions on{" "}
+          {site.liveClassPlatforms}.
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-4">
         {[
           { label: "Course progress", value: "42%" },
-          { label: "Next lesson", value: "Improvisation Basics" },
+          { label: "Next lesson", value: "Raag Yaman - Bandish" },
           { label: "Practice time", value: "2h this week" },
+          { label: "Upcoming live class", value: "Sat 6:00 PM | Zoom" },
         ].map((item) => (
           <div key={item.label} className="card p-6">
             <p className="text-sm text-ink-muted">{item.label}</p>
@@ -89,26 +93,108 @@ export default function StudentDashboard() {
           <p className="text-sm font-semibold text-ink">My Courses</p>
           <div className="mt-4 space-y-3 text-sm text-ink-muted">
             <div className="card px-4 py-3">
-              Piano Mastery Program - 42% complete
+              Indian Music Mastery Program - 42% complete
             </div>
-            <div className="card px-4 py-3">Technique Lab - 18% complete</div>
+            <div className="card px-4 py-3">
+              Bollywood Singing - 18% complete
+            </div>
           </div>
         </div>
-        <div className="card p-6">
-          <p className="text-sm font-semibold text-ink">Quick Actions</p>
-          <div className="mt-4 space-y-3 text-sm text-ink-muted">
-            <Link href="/dashboard/lessons" className="card px-4 py-3">
-              Continue next lesson
-            </Link>
-            <Link href="/dashboard/practice" className="card px-4 py-3">
-              Log practice session
-            </Link>
-            <Link href="/dashboard/performance-upload" className="card px-4 py-3">
-              Upload performance
+        <div className="space-y-6">
+          <div className="card p-6">
+            <p className="text-sm font-semibold text-ink">Quick Actions</p>
+            <div className="mt-4 space-y-3 text-sm text-ink-muted">
+              <Link href="/dashboard/lessons" className="card px-4 py-3">
+                Continue next lesson
+              </Link>
+              <Link href="/dashboard/live-classes" className="card px-4 py-3">
+                Join upcoming Zoom / Meet class
+              </Link>
+              <Link href="/dashboard/practice" className="card px-4 py-3">
+                Log practice session
+              </Link>
+              <Link href="/dashboard/tools" className="card px-4 py-3">
+                Open practice tools
+              </Link>
+              <Link href="/dashboard/ai-practice" className="card px-4 py-3">
+                Open AI practice assistant
+              </Link>
+              <Link href="/dashboard/practice-plan" className="card px-4 py-3">
+                Open AI practice planner
+              </Link>
+              <Link href="/dashboard/performance-upload" className="card px-4 py-3">
+                Upload performance
+              </Link>
+            </div>
+          </div>
+          <div className="card-strong p-6">
+            <p className="text-sm font-semibold text-brand-gold">
+              Practice Plan
+            </p>
+            <h3 className="mt-3 text-xl font-semibold text-ink">
+              Today&apos;s practice routine
+            </h3>
+            <ul className="mt-4 space-y-2 text-sm text-ink-muted">
+              <li>- Warmup · 5 min</li>
+              <li>- Technique exercises · 10 min</li>
+              <li>- Lesson practice · 10 min</li>
+              <li>- Song practice · 15 min</li>
+              <li>- Improvisation · 5 min</li>
+            </ul>
+            <Link href="/dashboard/practice-plan" className="btn-secondary mt-5">
+              View Practice Plan
             </Link>
           </div>
         </div>
       </div>
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="card-strong p-6">
+          <p className="text-sm font-semibold text-brand-gold">
+            AI Music Practice Assistant
+          </p>
+          <h3 className="mt-3 text-2xl font-semibold text-ink">
+            Plan, analyze, and improve daily
+          </h3>
+          <p className="mt-2 text-sm text-ink-muted">
+            Generate daily practice plans, get feedback, and track your pitch
+            accuracy in one place.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink-muted">
+            {[
+              "Daily plans",
+              "Pitch analysis",
+              "Exercise generator",
+              "AI coach chat",
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/10 px-3 py-1"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <Link href="/dashboard/ai-practice" className="btn-primary mt-6">
+            Open AI Practice
+          </Link>
+        </div>
+        <div className="card p-6">
+          <p className="text-sm font-semibold text-ink">Latest AI insights</p>
+          <div className="mt-4 space-y-3 text-sm text-ink-muted">
+            <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3">
+              Focus on sur stability using a tanpura drone.
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3">
+              Increase metronome tempo by 5 BPM every 3 days.
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3">
+              Record a 60-second performance clip for review.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ProgressStats />
 
       <div className="card p-6">
         <p className="text-sm font-semibold text-ink">Practice Analytics</p>

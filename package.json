@@ -6,7 +6,9 @@
     "backend"
   ],
   "scripts": {
+    "clean:frontend": "npm run clean --workspace frontend",
     "dev": "npm run dev --workspace frontend",
+    "dev:clean": "npm run dev:clean --workspace frontend",
     "build": "npm run build --workspace frontend",
     "start": "npm run start --workspace frontend",
     "lint": "npm run lint --workspace frontend",

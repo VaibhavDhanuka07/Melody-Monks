@@ -1,6 +1,6 @@
-# Melody Monks Piano Academy
+# Melody Monks Indian Music Academy
 
-Premium piano learning platform with a cinematic, high-end EdTech experience.
+Premium Indian music learning platform with a cinematic, high-end EdTech experience.
 
 ## Stack
 
@@ -43,7 +43,7 @@ Frontend (`/frontend/.env.example`):
 ```
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5001
 NEXT_PUBLIC_WHATSAPP_NUMBER=91XXXXXXXXXX
-NEXT_PUBLIC_WHATSAPP_MESSAGE=Hi, I want to book a free piano trial class.
+NEXT_PUBLIC_WHATSAPP_MESSAGE=Hi, I want to book a free Indian music trial class.
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
 NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
 ```
@@ -55,7 +55,7 @@ DATABASE_URL=
 DIRECT_URL=
 CORS_ORIGIN=http://localhost:3000
 WHATSAPP_NUMBER=91XXXXXXXXXX
-WHATSAPP_MESSAGE=Hi, I want to book a free piano trial class.
+WHATSAPP_MESSAGE=Hi, I want to book a free Indian music trial class.
 PORT=5001
 ```
 

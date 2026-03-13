@@ -1,4 +1,5 @@
 import Image from "next/image";
+import InstagramGallery from "@/components/site/InstagramGallery";
 import { galleryCategories, galleryItems } from "@/data/gallery";
 
 export default function GalleryPage() {
@@ -8,13 +9,17 @@ export default function GalleryPage() {
         <div className="card-strong p-10">
           <p className="text-sm font-semibold text-brand-gold">Gallery</p>
           <h1 className="mt-3 text-4xl font-semibold text-ink">
-            Performances, practice clips, and student showcases
+            Performances, live classes, and student showcases
           </h1>
           <p className="mt-4 text-sm text-ink-muted">
             A curated archive of instructor recitals, student performances, and
             behind-the-scenes moments.
           </p>
         </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6">
+        <InstagramGallery />
       </section>
 
       {galleryCategories.map((category) => {

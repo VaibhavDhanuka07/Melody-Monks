@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { apiBaseUrl } from "@/data/site";
-
-const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+import { apiFetch } from "@/lib/api/client";
+import { uploadFileWithSignedUrl } from "@/lib/storage/upload";
 
 export default function PerformanceUploadPage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
@@ -15,27 +13,14 @@ export default function PerformanceUploadPage() {
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
 
   const handleUpload = async (file: File) => {
-    if (!cloudName || !uploadPreset) {
-      setMessage("Configure Cloudinary to enable direct uploads.");
-      return null;
-    }
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", uploadPreset);
-
     setUploading(true);
     try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`,
-        { method: "POST", body: formData }
-      );
-      if (!response.ok) {
-        throw new Error("Upload failed");
-      }
-      const data = (await response.json()) as { secure_url?: string };
-      setUploadedUrl(data.secure_url || null);
-      return data.secure_url || null;
+      const uploaded = await uploadFileWithSignedUrl({
+        file,
+        kind: "performance-upload",
+      });
+      setUploadedUrl(uploaded.url);
+      return uploaded.url;
     } catch (error) {
       setMessage(
         error instanceof Error ? error.message : "Unable to upload video"
@@ -76,9 +61,10 @@ export default function PerformanceUploadPage() {
     };
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/performance-submissions`, {
+      const response = await apiFetch("/api/performance-submissions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        auth: true,
         body: JSON.stringify(payload),
       });
 
@@ -140,7 +126,7 @@ export default function PerformanceUploadPage() {
             />
           </label>
           <label className="text-sm text-ink-muted md:col-span-2">
-            Video link (Cloudinary, Vimeo, or Drive)
+            Video link (Supabase, Vimeo, or Drive)
             <input
               name="videoUrl"
               placeholder="https://..."
@@ -177,7 +163,7 @@ export default function PerformanceUploadPage() {
       </form>
 
       <div className="card p-6 text-sm text-ink-muted">
-        Tip: Configure Cloudinary to enable direct video uploads from this
+        Tip: configure Supabase storage to enable direct video uploads from this
         dashboard.
       </div>
     </div>

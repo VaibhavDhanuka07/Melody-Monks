@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { apiBaseUrl, site } from "@/data/site";
+import { apiBaseUrl, coursePaths, site } from "@/data/site";
 
 const defaultForm = {
   name: "",
   phone: "",
-  instrument: "Piano",
+  instrument: "Hindustani Classical Vocal",
   mode: "Online",
   preferredTime: "",
 };
@@ -61,7 +61,7 @@ export default function BookingForm() {
       <div>
         <p className="text-sm font-semibold text-brand-gold">Book a free trial</p>
         <h3 className="mt-2 text-2xl font-semibold text-ink">
-          Reserve your piano session
+          Reserve your music session
         </h3>
         <p className="mt-2 text-sm text-ink-muted">
           Tell us your preferred time and we will confirm the slot on WhatsApp.
@@ -90,13 +90,19 @@ export default function BookingForm() {
           />
         </label>
         <label className="text-sm text-ink-muted">
-          Instrument
-          <input
+          Course interest
+          <select
             name="instrument"
             value={form.instrument}
             onChange={handleChange}
             className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink outline-none focus:border-brand-gold"
-          />
+          >
+            {coursePaths.map((course) => (
+              <option key={course.title} value={course.title}>
+                {course.title}
+              </option>
+            ))}
+          </select>
         </label>
         <label className="text-sm text-ink-muted">
           Online or Offline
@@ -125,7 +131,7 @@ export default function BookingForm() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
-          className="btn-primary"
+          className="btn-primary w-full sm:w-auto"
           disabled={status === "loading"}
         >
           {status === "loading" ? "Submitting..." : "Book Your Free Trial"}

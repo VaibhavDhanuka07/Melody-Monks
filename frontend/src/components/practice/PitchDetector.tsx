@@ -53,7 +53,19 @@ const detectFrequency = (analyser: AnalyserNode, sampleRate: number) => {
   return { frequency, clarity };
 };
 
-export default function PitchDetector() {
+type PitchDetectorProps = {
+  label?: string;
+  title?: string;
+  description?: string;
+  reference?: string;
+};
+
+export default function PitchDetector({
+  label = "AI Piano Note Detection",
+  title = "Detect notes in real time",
+  description = "Uses FFT frequency analysis to identify notes from your microphone.",
+  reference = "Reference: A4 = 440 Hz, C4 = 261 Hz, E4 = 329 Hz.",
+}: PitchDetectorProps) {
   const [isListening, setIsListening] = useState(false);
   const [note, setNote] = useState("--");
   const [frequency, setFrequency] = useState<number | null>(null);
@@ -125,15 +137,9 @@ export default function PitchDetector() {
     <div className="card p-6">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="text-sm font-semibold text-brand-gold">
-            AI Piano Note Detection
-          </p>
-          <h3 className="mt-2 text-2xl font-semibold text-ink">
-            Detect notes in real time
-          </h3>
-          <p className="mt-2 text-sm text-ink-muted">
-            Uses FFT frequency analysis to identify notes from your microphone.
-          </p>
+          <p className="text-sm font-semibold text-brand-gold">{label}</p>
+          <h3 className="mt-2 text-2xl font-semibold text-ink">{title}</h3>
+          <p className="mt-2 text-sm text-ink-muted">{description}</p>
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -163,9 +169,7 @@ export default function PitchDetector() {
           </p>
         </div>
       </div>
-      <div className="mt-4 text-xs text-ink-muted">
-        Reference: A4 = 440 Hz, C4 = 261 Hz, E4 = 329 Hz.
-      </div>
+      <div className="mt-4 text-xs text-ink-muted">{reference}</div>
     </div>
   );
 }

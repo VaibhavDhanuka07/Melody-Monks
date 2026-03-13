@@ -1,8 +1,16 @@
+import { getCatalogCourseImage } from "@/data/media";
+
 export type CoursePath = {
   title: string;
   description: string;
   topics: string[];
   image: string;
+  modules: number;
+  lessons: number;
+  format: string;
+  level?: string;
+  duration?: string;
+  slug?: string;
 };
 
 export type PerformanceVideo = {
@@ -31,26 +39,42 @@ export type PricingPlan = {
   highlighted?: boolean;
 };
 
+export type InstructorStat = {
+  label: string;
+  value: string;
+};
+
 const whatsappNumber =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "91XXXXXXXXXX";
 const whatsappMessage =
   process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ||
-  "Hi, I want to book a free piano trial class.";
+  "Hi, I want to book a free Indian music trial class.";
 
 export const site = {
-  name: "Melody Monks Piano Academy",
-  programName: "Piano Mastery Program",
+  name: "Melody Monks Indian Music Academy",
+  programName: "Indian Music Mastery Program",
+  instagramUrl: "https://www.instagram.com/musicianvasu",
+  liveClassPlatforms: "Google Meet or Zoom",
+  liveClassDelivery: "Live classes on Google Meet or Zoom, plus recordings",
   instructor: {
-    name: "Ariya Sen",
-    fullName: "Ariya Sen",
-    role: "Concert pianist, educator, curriculum designer",
-    bio: "Ariya blends classical precision with modern coaching to guide students from first notes to confident performances.",
-    experience: "10+ years teaching globally",
+    name: "Debojeet Lahiri",
+    fullName: "Debojeet Lahiri",
+    role: "Indian music educator, performer, composer",
+    bio: "Debojeet Lahiri (Musician Vasu) is a veteran music educator known for transforming beginners into confident performers. He brings 37 years of teaching experience, a deep Hindustani classical foundation, and real-world performance coaching tailored to Indian music.",
+    experience: "37 years teaching experience",
     achievements: [
-      "Performed in international recitals and festivals",
-      "Trained 500+ students from beginner to advanced",
-      "Specialist in technique, musicality, and performance psychology",
+      "Trained 2000+ students across classical, Bollywood, and light music",
+      "300-350 students earning through music and performances",
+      "Mentors underprivileged students with free training",
+      "Collaborated with leading Bollywood artists",
+      "Invited to 15-20 reality shows as chief guest and judge",
     ],
+    stats: [
+      { label: "Age", value: "52 years" },
+      { label: "Teaching", value: "37 years" },
+      { label: "Students Trained", value: "2000+" },
+      { label: "Earning Through Music", value: "300-350" },
+    ] as InstructorStat[],
   },
   whatsappNumber,
   whatsappMessage,
@@ -62,123 +86,243 @@ export const site = {
 
 export const coursePaths: CoursePath[] = [
   {
-    title: "Beginner",
-    description: "Build strong foundations with posture, rhythm, and note reading.",
-    topics: ["Piano basics", "Reading music", "Hand coordination"],
-    image: "/piano/piano-foundations.svg",
+    title: "Hindustani Classical Vocal",
+    description: "Riyaz-first training rooted in raag, taal, and sur accuracy.",
+    topics: ["Sargam & swaras", "Raag foundations", "Taal practice"],
+    modules: 6,
+    lessons: 24,
+    format: "Google Meet / Zoom Live",
+    level: "Beginner to Advanced",
+    duration: "12 weeks",
+    slug: "singing",
+    image: getCatalogCourseImage("Hindustani Classical Vocal", "singing"),
   },
   {
-    title: "Intermediate",
-    description: "Strengthen technique, harmony, and musical expression.",
-    topics: ["Scales & arpeggios", "Chord harmony", "Stylistic fluency"],
-    image: "/piano/piano-studio.svg",
+    title: "Bollywood Singing",
+    description: "Song interpretation, mic technique, and stage presence.",
+    topics: ["Breath control", "Phrase shaping", "Performance delivery"],
+    modules: 5,
+    lessons: 20,
+    format: "Google Meet / Zoom + Studio",
+    level: "Beginner to Advanced",
+    duration: "10 weeks",
+    slug: "singing",
+    image: getCatalogCourseImage("Bollywood Singing", "singing"),
   },
   {
-    title: "Advanced",
-    description: "Master performance, improvisation, and advanced repertoire.",
-    topics: ["Improvisation", "Advanced technique", "Performance mastery"],
-    image: "/piano/piano-performance.svg",
+    title: "Light Classical Music",
+    description: "Thumri, bhajan, and semi-classical expression coaching.",
+    topics: ["Ornamentation", "Emotive phrasing", "Classical light styles"],
+    modules: 5,
+    lessons: 18,
+    format: "Google Meet / Zoom Live",
+    level: "Intermediate",
+    duration: "8 weeks",
+    image: getCatalogCourseImage("Light Classical Music"),
+  },
+  {
+    title: "Playback Singing",
+    description: "Studio discipline and playback-ready vocal delivery.",
+    topics: ["Recording workflow", "Pitch accuracy", "Professional takes"],
+    modules: 4,
+    lessons: 16,
+    format: "Studio coaching + Recorded",
+    level: "Intermediate",
+    duration: "8 weeks",
+    image: getCatalogCourseImage("Playback Singing", "singing"),
+  },
+  {
+    title: "Piano / Keyboard",
+    description: "Keyboard skills for Bollywood accompaniment and scoring.",
+    topics: ["Chords & harmony", "Rhythm patterns", "Performance setup"],
+    modules: 5,
+    lessons: 20,
+    format: "Google Meet / Zoom Live",
+    level: "Beginner to Advanced",
+    duration: "10 weeks",
+    slug: "piano",
+    image: getCatalogCourseImage("Piano / Keyboard", "piano"),
+  },
+  {
+    title: "Guitar",
+    description: "Acoustic and electric foundations for stage and studio.",
+    topics: ["Chords & strumming", "Lead basics", "Song arrangement"],
+    modules: 5,
+    lessons: 20,
+    format: "Google Meet / Zoom Live",
+    level: "Beginner to Advanced",
+    duration: "10 weeks",
+    slug: "guitar",
+    image: getCatalogCourseImage("Guitar", "guitar"),
+  },
+  {
+    title: "Harmonium",
+    description: "Harmonium playing for accompaniment and solo pieces.",
+    topics: ["Sargam on harmonium", "Taal support", "Song accompaniment"],
+    modules: 4,
+    lessons: 16,
+    format: "Google Meet / Zoom Live",
+    level: "Beginner to Intermediate",
+    duration: "8 weeks",
+    slug: "harmonium",
+    image: getCatalogCourseImage("Harmonium", "harmonium"),
+  },
+  {
+    title: "Tabla",
+    description: "Taal vocabulary, bols, and accompaniment practice.",
+    topics: ["Teentaal basics", "Bols & kayda", "Layakari drills"],
+    modules: 5,
+    lessons: 20,
+    format: "Google Meet / Zoom Live",
+    level: "Beginner to Intermediate",
+    duration: "10 weeks",
+    slug: "tabla",
+    image: getCatalogCourseImage("Tabla", "tabla"),
+  },
+  {
+    title: "Music Theory",
+    description: "Notation, harmony, composition basics, and ear training.",
+    topics: ["Notation", "Harmony basics", "Ear training"],
+    modules: 4,
+    lessons: 16,
+    format: "Recorded + Assignments",
+    level: "Beginner",
+    duration: "6 weeks",
+    image: getCatalogCourseImage("Music Theory"),
+  },
+  {
+    title: "Music Composition",
+    description: "Melody writing, arrangements, and production concepts.",
+    topics: ["Melody writing", "Arrangements", "Song structure"],
+    modules: 4,
+    lessons: 16,
+    format: "Recorded + Projects",
+    level: "Intermediate",
+    duration: "8 weeks",
+    image: getCatalogCourseImage("Music Composition"),
+  },
+  {
+    title: "Stage Performance",
+    description: "Confidence, mic control, and audience engagement.",
+    topics: ["Stage presence", "Mic technique", "Performance practice"],
+    modules: 3,
+    lessons: 12,
+    format: "Google Meet / Zoom Coaching",
+    level: "All levels",
+    duration: "4 weeks",
+    image: getCatalogCourseImage("Stage Performance"),
+  },
+  {
+    title: "Recording Techniques",
+    description: "Home studio setup, tracking, and vocal capture.",
+    topics: ["Mic placement", "Session workflow", "Editing basics"],
+    modules: 3,
+    lessons: 12,
+    format: "Studio + Recorded",
+    level: "Intermediate",
+    duration: "4 weeks",
+    image: getCatalogCourseImage("Recording Techniques"),
   },
 ];
 
 export const performanceVideos: PerformanceVideo[] = [
   {
     id: "perf-instructor",
-    title: "Instructor performance",
-    subtitle: "Concert hall recital highlight",
+    title: "Hindustani recital",
+    subtitle: "Live stage highlight with classical vocals",
     src: "/videos/piano-instructor.mp4",
-    poster: "/piano/piano-performance.svg",
+    poster: "/vasu/vasu-hero-stage.svg",
     category: "Instructor",
   },
   {
     id: "perf-student",
     title: "Student showcase",
-    subtitle: "Graduation performance clip",
+    subtitle: "Bollywood medley performance",
     src: "/videos/piano-student.mp4",
-    poster: "/piano/piano-students.svg",
+    poster: "/vasu/vasu-student-recital.svg",
     category: "Student",
   },
   {
     id: "perf-practice",
-    title: "Practice clip",
-    subtitle: "Daily technique routine",
+    title: "Riyaz routine",
+    subtitle: "Daily practice essentials",
     src: "/videos/piano-practice.mp4",
-    poster: "/piano/piano-practice.svg",
+    poster: "/vasu/vasu-practice-room.svg",
     category: "Practice",
   },
   {
     id: "perf-session",
-    title: "Live session",
+    title: "Live class session",
     subtitle: "Behind-the-scenes coaching",
     src: "/videos/piano-session.mp4",
-    poster: "/piano/piano-class.svg",
+    poster: "/vasu/vasu-live-class.svg",
     category: "Instructor",
   },
 ];
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Meera D.",
-    title: "Beginner Student",
+    name: "Riya S.",
+    title: "Hindustani Classical Student",
     rating: "5.0",
     quote:
-      "The 12-week structure kept me consistent. I can finally read music and play full pieces.",
-    image: "/piano/piano-students.svg",
+      "Sur accuracy and taal practice changed everything. I can finally sing full raags confidently.",
+    image: "/vasu/vasu-student-recital.svg",
   },
   {
-    name: "Lucas P.",
-    title: "Intermediate Student",
+    name: "Arjun K.",
+    title: "Playback Singing Student",
     rating: "4.9",
     quote:
-      "Technique drills plus performance coaching made a huge difference in my confidence.",
-    image: "/piano/piano-performance.svg",
+      "The recording feedback helped me polish my takes and perform in the studio with confidence.",
+    image: "/vasu/vasu-hero-stage.svg",
   },
   {
-    name: "Sanya R.",
-    title: "Advanced Student",
+    name: "Sneha M.",
+    title: "Bollywood Singing Student",
     rating: "5.0",
     quote:
-      "The musicality lessons feel like a conservatory experience online.",
-    image: "/piano/piano-studio.svg",
+      "I learned breath control, phrasing, and stage presence. My live performances feel professional now.",
+    image: "/vasu/vasu-studio-session.svg",
   },
 ];
 
 export const pricingPlans: PricingPlan[] = [
   {
-    name: "Beginner Program",
+    name: "Foundation Program",
     price: "INR 4,500",
     cadence: "one-time",
-    description: "Full 12-week curriculum with guided assignments.",
+    description: "Core Indian music curriculum with guided assignments.",
     features: [
-      "48 video lessons",
-      "Practice tracker",
-      "Weekly feedback",
+      "Module-based lessons",
+      "Weekly practice tracker",
+      "Instructor feedback",
       "Certificate eligibility",
     ],
   },
   {
-    name: "Monthly Piano Membership",
+    name: "All-Access Membership",
     price: "INR 2,500",
     cadence: "per month",
-    description: "Ongoing lessons, live sessions, and updated repertoire.",
+    description: "Live classes, recordings, and multi-genre access.",
     features: [
-      "New lessons every month",
-      "Live group classes",
-      "Performance reviews",
-      "Member-only resources",
+      "Live group sessions on Google Meet or Zoom",
+      "Recorded class library",
+      "Performance feedback",
+      "Priority support",
     ],
     highlighted: true,
   },
   {
-    name: "Private Coaching",
+    name: "Private Mentorship",
     price: "INR 9,000",
     cadence: "per month",
-    description: "1:1 mentorship with Ariya Sen.",
+    description: "1:1 mentoring with Debojeet Lahiri.",
     features: [
-      "Weekly private lessons",
+      "Weekly private lessons on Google Meet or Zoom",
       "Custom practice plan",
-      "Performance feedback",
-      "Priority scheduling",
+      "Performance review",
+      "Flexible scheduling",
     ],
   },
 ];

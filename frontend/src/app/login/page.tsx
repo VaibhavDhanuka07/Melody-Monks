@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Login",
-  description: "Sign in to access your piano student dashboard.",
+  description: "Sign in to access your Indian music student dashboard.",
 };
 
 export default function LoginPage() {

@@ -2,16 +2,20 @@ import CertificateDownloadButton from "@/components/site/CertificateDownloadButt
 
 const certificates = [
   {
-    title: "Foundation Pianist",
+    title: "Foundation Musician",
     detail: "Awarded after completing the first 4 modules.",
   },
   {
-    title: "Developing Pianist",
+    title: "Intermediate Musician",
     detail: "Awarded after completing intermediate modules.",
   },
   {
-    title: "Advanced Pianist",
+    title: "Advanced Musician",
     detail: "Awarded after performance mastery and final recital.",
+  },
+  {
+    title: "Professional Performer",
+    detail: "Awarded after completing advanced performance milestones.",
   },
 ];
 

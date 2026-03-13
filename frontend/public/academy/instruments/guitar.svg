@@ -1,0 +1,35 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="60" x2="1420" y2="1040" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#040404"/>
+      <stop offset="1" stop-color="#161616"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 220) rotate(45) scale(420)">
+      <stop offset="0" stop-color="#2F80ED" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#2F80ED" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="220" y1="150" x2="1340" y2="960" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111111"/>
+      <stop offset="1" stop-color="#090909"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#bg)"/>
+  <circle cx="1240" cy="220" r="340" fill="url(#glow)"/>
+  <circle cx="340" cy="860" r="240" fill="#FFFFFF" fill-opacity="0.03"/>
+  <rect x="96" y="88" width="1408" height="924" rx="54" fill="url(#panel)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="134" y="126" width="1332" height="848" rx="38" fill="#090909" fill-opacity="0.65"/>
+  <path d="M96 850C298 768 478 760 700 818C948 882 1184 900 1504 754V1012H96V850Z" fill="#0B0B0B"/>
+  <path d="M180 202H1420" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
+  <path d="M170 876C410 786 612 782 858 840C1092 896 1262 890 1428 842" stroke="#C8A96A" stroke-opacity="0.22" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="1112" cy="612" r="84" fill="#151515" stroke="#C8A96A" stroke-opacity="0.20" stroke-width="6"/><circle cx="1112" cy="612" r="42" fill="#0B0B0B"/><rect x="1088" y="336" width="48" height="272" rx="24" fill="#1B1B1B"/><rect x="1098" y="222" width="28" height="122" rx="14" fill="#1B1B1B"/><path d="M1112 222L1214 164" stroke="#C8A96A" stroke-opacity="0.30" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="920" cy="336" r="78" fill="#171717"/><path d="M812 948C838 748 882 520 936 520C992 520 1028 746 1052 948H812Z" fill="#101010"/>
+  <path d="M1132 360V590" stroke="#F5F2EC" stroke-opacity="0.15" stroke-width="2"/><path d="M1118 360V590" stroke="#F5F2EC" stroke-opacity="0.12" stroke-width="2"/><path d="M1104 360V590" stroke="#F5F2EC" stroke-opacity="0.12" stroke-width="2"/>
+  <rect x="190" y="262" width="420" height="194" rx="28" fill="#0D0D0D" stroke="rgba(255,255,255,0.06)"/>
+  <rect x="226" y="298" width="176" height="18" rx="9" fill="#C8A96A" fill-opacity="0.44"/>
+  <rect x="226" y="340" width="300" height="14" rx="7" fill="#F5F2EC" fill-opacity="0.20"/>
+  <rect x="226" y="378" width="254" height="14" rx="7" fill="#F5F2EC" fill-opacity="0.14"/>
+  <rect x="226" y="416" width="198" height="14" rx="7" fill="#F5F2EC" fill-opacity="0.12"/>
+  <text x="220" y="708" fill="#F5F2EC" font-family="Montserrat, sans-serif" font-size="72" font-weight="700">Guitar</text>
+  <text x="222" y="762" fill="#C7C7C7" font-family="Inter, sans-serif" font-size="24">Chords, fingerstyle, and live arrangements</text>
+  <text x="222" y="814" fill="#C8A96A" font-family="Inter, sans-serif" font-size="18" letter-spacing="6">MELODY MONKS</text>
+</svg>

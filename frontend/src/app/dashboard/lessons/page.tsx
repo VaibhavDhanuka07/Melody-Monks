@@ -1,7 +1,20 @@
+"use client";
+
 import Link from "next/link";
-import { curriculumModules } from "@/data/curriculum";
+import { useMemo, useState } from "react";
+import { curriculumCourses } from "@/data/universal-curriculum";
 
 export default function DashboardLessonsPage() {
+  const [activeSlug, setActiveSlug] = useState(curriculumCourses[0]?.slug ?? "singing");
+  const activeCourse = useMemo(
+    () => curriculumCourses.find((course) => course.slug === activeSlug) ?? curriculumCourses[0],
+    [activeSlug]
+  );
+
+  if (!activeCourse) {
+    return null;
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -14,20 +27,37 @@ export default function DashboardLessonsPage() {
         </p>
       </div>
 
+      <div className="card-strong p-6">
+        <label className="text-xs text-ink-muted">
+          Select course
+          <select
+            value={activeSlug}
+            onChange={(event) => setActiveSlug(event.target.value)}
+            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
+          >
+            {curriculumCourses.map((course) => (
+              <option key={course.slug} value={course.slug}>
+                {course.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
       <div className="grid gap-6">
-        {curriculumModules.map((module, index) => (
+        {activeCourse.modules.map((module) => (
           <div key={module.id} className="card p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-ink-muted">
-                  Week {index + 1}
+                  Week {module.order}
                 </p>
                 <h2 className="mt-2 text-xl font-semibold text-ink">
                   {module.title}
                 </h2>
               </div>
               <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-ink-muted">
-                4 lessons
+                {module.lessonCount} lessons
               </span>
             </div>
             <div className="mt-4 grid gap-3 md:grid-cols-2">

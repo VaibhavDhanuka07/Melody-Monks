@@ -51,6 +51,8 @@ export default function VideoLightbox({
               controls
               autoPlay
               poster={video.poster}
+              preload="none"
+              playsInline
               className="h-full w-full bg-black"
             >
               <source src={video.src} />
