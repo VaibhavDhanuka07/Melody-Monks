@@ -104,7 +104,15 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
               </div>
             ) : null}
           </div>
-          <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10">
+          <div
+            className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10"
+            style={{
+              // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+              position: "relative",
+              aspectRatio: "16 / 9",
+              overflow: "hidden",
+            }}
+          >
             <Image
               src={post.image}
               alt={post.title}

@@ -6,77 +6,94 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 type ShowcaseImage = {
   id: string;
   src: string;
+  fallbackSrc: string;
   title: string;
   caption: string;
   layout: string;
+  overlay?: "caption" | "none";
 };
 
 const showcaseImages: ShowcaseImage[] = [
   {
-    id: "hero-stage",
-    src: "/vasu/vasu-hero-stage.svg",
-    title: "Signature Stage Presence",
-    caption: "Cinematic performance coaching rooted in Indian stage craft.",
-    layout: "md:col-span-2 md:row-span-2",
-  },
-  {
     id: "mentor-portrait",
-    src: "/vasu/vasu-mentor-portrait.svg",
+    src: "/vasu/showcase/mentor-portrait.png",
+    fallbackSrc: "/vasu/vasu-mentor-portrait.svg",
     title: "Mentor Portrait",
     caption: "A premium brand frame for Debojeet Lahiri and Melody Monks.",
     layout: "md:row-span-2",
   },
   {
     id: "masterclass",
-    src: "/vasu/vasu-masterclass.svg",
+    src: "/academy/course-posters/photography/hindustani-classical-vocal.png",
+    fallbackSrc: "/vasu/vasu-masterclass.svg",
     title: "Masterclass Moments",
     caption: "High-touch coaching with students in structured live sessions.",
     layout: "",
   },
   {
     id: "live-class",
-    src: "/vasu/vasu-live-class.svg",
+    src: "/vasu/showcase/live-class-frames.png",
+    fallbackSrc: "/vasu/vasu-live-class.svg",
     title: "Live Class Frames",
     caption: "Online and offline classes designed to feel like studio mentorship.",
     layout: "",
+    overlay: "none",
   },
   {
     id: "studio-session",
-    src: "/vasu/vasu-studio-session.svg",
+    src: "/vasu/showcase/studio-sessions.png",
+    fallbackSrc: "/vasu/vasu-studio-session.svg",
     title: "Studio Sessions",
     caption: "Recording, playback review, and professional feedback loops.",
     layout: "md:col-span-2",
+    overlay: "none",
   },
   {
     id: "student-recital",
-    src: "/vasu/vasu-student-recital.svg",
+    src: "/vasu/showcase/industry-authority.png",
+    fallbackSrc: "/vasu/vasu-student-recital.svg",
     title: "Student Recitals",
     caption: "Students move from practice rooms to recital-ready performances.",
     layout: "",
+    overlay: "none",
   },
   {
     id: "judge-panel",
-    src: "/vasu/vasu-judge-panel.svg",
+    src: "/vasu/showcase/student-recitals.png",
+    fallbackSrc: "/vasu/vasu-judge-panel.svg",
     title: "Industry Authority",
     caption: "Built around the instructor's judge, guest, and mentor profile.",
     layout: "",
+    overlay: "none",
   },
   {
     id: "practice-room",
-    src: "/vasu/vasu-practice-room.svg",
+    src: "/vasu/showcase/daily-practice-rooms.png",
+    fallbackSrc: "/vasu/vasu-practice-room.svg",
     title: "Daily Practice Rooms",
     caption: "Practice systems, keys, rhythm, and repetition that build confidence.",
     layout: "",
+    overlay: "none",
   },
 ];
 
 export default function PhotoShowcaseSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const markFailed = useCallback((id: string) => {
+    setFailedImages((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
+  }, []);
 
   const activeImage = useMemo(
     () => (activeIndex === null ? null : showcaseImages[activeIndex]),
     [activeIndex]
+  );
+
+  const getDisplaySrc = useCallback(
+    (image: ShowcaseImage) => (failedImages[image.id] ? image.fallbackSrc : image.src),
+    [failedImages]
   );
 
   const openImage = useCallback((index: number) => {
@@ -139,7 +156,7 @@ export default function PhotoShowcaseSection() {
           </p>
         </div>
         <div className="text-xs uppercase tracking-[0.35em] text-ink-muted">
-          6 curated scenes
+          {showcaseImages.length} curated scenes
         </div>
       </div>
 
@@ -148,6 +165,12 @@ export default function PhotoShowcaseSection() {
           <div
             key={image.id}
             className={`relative ${image.layout} overflow-hidden rounded-3xl border border-white/10 bg-black/50`}
+            style={{
+              // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+              position: "relative",
+              overflow: "hidden",
+              minHeight: "140px",
+            }}
           >
             <button
               type="button"
@@ -156,17 +179,22 @@ export default function PhotoShowcaseSection() {
               aria-label={`Open ${image.title}`}
             >
               <Image
-                src={image.src}
+                src={getDisplaySrc(image)}
                 alt={image.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={() => markFailed(image.id)}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <p className="text-sm font-semibold text-ink">{image.title}</p>
-                <p className="mt-1 text-xs text-ink-muted">{image.caption}</p>
-              </div>
+              {image.overlay !== "none" ? (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="text-sm font-semibold text-ink">{image.title}</p>
+                    <p className="mt-1 text-xs text-ink-muted">{image.caption}</p>
+                  </div>
+                </>
+              ) : null}
             </button>
           </div>
         ))}
@@ -233,7 +261,7 @@ export default function PhotoShowcaseSection() {
             <div className="mt-6 overflow-hidden rounded-3xl border border-white/10 bg-black/70">
               <div className="relative aspect-[16/9] w-full cursor-zoom-in">
                 <Image
-                  src={activeImage.src}
+                  src={getDisplaySrc(activeImage)}
                   alt={activeImage.title}
                   fill
                   sizes="100vw"
@@ -241,6 +269,7 @@ export default function PhotoShowcaseSection() {
                     isZoomed ? "scale-110" : "scale-100"
                   }`}
                   onClick={() => setIsZoomed((prev) => !prev)}
+                  onError={() => markFailed(activeImage.id)}
                 />
               </div>
             </div>

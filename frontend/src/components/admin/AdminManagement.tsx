@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { apiFetch } from "@/lib/api/client";
 import { apiBaseUrl } from "@/data/site";
 import { blogCategories } from "@/data/blog";
+import { uploadFileWithSignedUrl } from "@/lib/storage/upload";
+import UserApprovals from "@/components/admin/UserApprovals";
 
 type AdminBlog = {
   id: string;
@@ -58,6 +60,7 @@ type LessonPayload = {
   notes?: string;
   duration?: string;
   theory?: string;
+  pdfUrl?: string;
 };
 
 type AssignmentPayload = {
@@ -66,6 +69,7 @@ type AssignmentPayload = {
   title: string;
   instructions: string;
   dueDays?: number;
+  pdfUrl?: string;
 };
 
 type PracticeExercisePayload = {
@@ -74,6 +78,7 @@ type PracticeExercisePayload = {
   title: string;
   description: string;
   duration?: string;
+  pdfUrl?: string;
 };
 
 type BlogFormState = {
@@ -102,12 +107,6 @@ const defaultReviewForm = {
   videoUrl: "",
 };
 
-const defaultToolForm = {
-  instrument: "General",
-  toolName: "",
-  description: "",
-  toolType: "Practice",
-};
 
 const defaultModuleForm = {
   courseId: "",
@@ -125,6 +124,7 @@ const defaultLessonForm = {
   notes: "",
   duration: "45 min",
   theory: "",
+  pdfUrl: "",
 };
 
 const defaultAssignmentForm = {
@@ -132,6 +132,7 @@ const defaultAssignmentForm = {
   title: "",
   instructions: "",
   dueDays: 7,
+  pdfUrl: "",
 };
 
 const defaultExerciseForm = {
@@ -139,6 +140,7 @@ const defaultExerciseForm = {
   title: "",
   description: "",
   duration: "10 min",
+  pdfUrl: "",
 };
 
 export default function AdminManagement() {
@@ -153,7 +155,6 @@ export default function AdminManagement() {
 
   const [blogForm, setBlogForm] = useState<BlogFormState>(defaultBlogForm);
   const [reviewForm, setReviewForm] = useState(defaultReviewForm);
-  const [toolForm, setToolForm] = useState(defaultToolForm);
   const [moduleForm, setModuleForm] = useState(defaultModuleForm);
   const [lessonForm, setLessonForm] = useState(defaultLessonForm);
   const [assignmentForm, setAssignmentForm] = useState(defaultAssignmentForm);
@@ -161,11 +162,17 @@ export default function AdminManagement() {
 
   const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
   const [editingReviewId, setEditingReviewId] = useState<string | null>(null);
-  const [editingToolId, setEditingToolId] = useState<string | null>(null);
   const [editingModuleId, setEditingModuleId] = useState<string | null>(null);
   const [editingLessonId, setEditingLessonId] = useState<string | null>(null);
   const [editingAssignmentId, setEditingAssignmentId] = useState<string | null>(null);
   const [editingExerciseId, setEditingExerciseId] = useState<string | null>(null);
+
+  const [lessonPdfUploading, setLessonPdfUploading] = useState(false);
+  const [assignmentPdfUploading, setAssignmentPdfUploading] = useState(false);
+  const [exercisePdfUploading, setExercisePdfUploading] = useState(false);
+  const [lessonPdfStatus, setLessonPdfStatus] = useState<string | null>(null);
+  const [assignmentPdfStatus, setAssignmentPdfStatus] = useState<string | null>(null);
+  const [exercisePdfStatus, setExercisePdfStatus] = useState<string | null>(null);
 
   const [status, setStatus] = useState<string | null>(null);
   const [courseFilterId, setCourseFilterId] = useState<string>("");
@@ -281,6 +288,31 @@ export default function AdminManagement() {
     []
   );
 
+  const uploadPdf = useCallback(
+    async (
+      file: File,
+      onUploaded: (url: string) => void,
+      setUploading: (value: boolean) => void,
+      setMessage: (value: string | null) => void
+    ) => {
+      setUploading(true);
+      setMessage(null);
+      try {
+        const uploaded = await uploadFileWithSignedUrl({
+          file,
+          kind: "resource",
+        });
+        onUploaded(uploaded.url);
+        setMessage("PDF uploaded.");
+      } catch (error) {
+        setMessage(error instanceof Error ? error.message : "Unable to upload PDF.");
+      } finally {
+        setUploading(false);
+      }
+    },
+    []
+  );
+
   const fetchData = useCallback(async () => {
     try {
       const response = await request("/api/admin/bootstrap", {
@@ -370,29 +402,6 @@ export default function AdminManagement() {
     }
   };
 
-  const handleToolSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus(null);
-    const method = editingToolId ? "PUT" : "POST";
-    const endpoint = editingToolId
-      ? `/api/tools/${editingToolId}`
-      : "/api/tools";
-
-    const response = await request(endpoint, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(toolForm),
-    });
-
-    if (response.ok) {
-      setToolForm(defaultToolForm);
-      setEditingToolId(null);
-      await fetchData();
-      setStatus("Tool saved.");
-    } else {
-      setStatus("Unable to save tool.");
-    }
-  };
 
   const handleModuleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -434,6 +443,7 @@ export default function AdminManagement() {
     const lessonPayload = {
       ...lessonForm,
       moduleId: lessonForm.moduleId || undefined,
+      pdfUrl: lessonForm.pdfUrl || undefined,
     };
 
     const response = await request(endpoint, {
@@ -465,6 +475,7 @@ export default function AdminManagement() {
     const assignmentPayload = {
       ...assignmentForm,
       lessonId: assignmentForm.lessonId || undefined,
+      pdfUrl: assignmentForm.pdfUrl || undefined,
     };
 
     const response = await request(endpoint, {
@@ -496,6 +507,7 @@ export default function AdminManagement() {
     const exercisePayload = {
       ...exerciseForm,
       lessonId: exerciseForm.lessonId || undefined,
+      pdfUrl: exerciseForm.pdfUrl || undefined,
     };
 
     const response = await request(endpoint, {
@@ -538,6 +550,8 @@ export default function AdminManagement() {
         </p>
         {status ? <p className="mt-2 text-xs text-ink-muted">{status}</p> : null}
       </div>
+
+      <UserApprovals />
 
       <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
         <form onSubmit={handleBlogSubmit} className="card p-6 space-y-4">
@@ -789,114 +803,34 @@ export default function AdminManagement() {
         </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-        <form onSubmit={handleToolSubmit} className="card p-6 space-y-4">
-          <p className="text-sm font-semibold text-ink">Tool</p>
-          <label className="text-sm text-ink-muted">
-            Instrument
-            <input
-              value={toolForm.instrument}
-              onChange={(event) =>
-                setToolForm((prev) => ({
-                  ...prev,
-                  instrument: event.target.value,
-                }))
-              }
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
-              required
-            />
-          </label>
-          <label className="text-sm text-ink-muted">
-            Tool name
-            <input
-              value={toolForm.toolName}
-              onChange={(event) =>
-                setToolForm((prev) => ({
-                  ...prev,
-                  toolName: event.target.value,
-                }))
-              }
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
-              required
-            />
-          </label>
-          <label className="text-sm text-ink-muted">
-            Tool type
-            <input
-              value={toolForm.toolType}
-              onChange={(event) =>
-                setToolForm((prev) => ({
-                  ...prev,
-                  toolType: event.target.value,
-                }))
-              }
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
-              required
-            />
-          </label>
-          <label className="text-sm text-ink-muted">
-            Description
-            <textarea
-              value={toolForm.description}
-              onChange={(event) =>
-                setToolForm((prev) => ({
-                  ...prev,
-                  description: event.target.value,
-                }))
-              }
-              rows={3}
-              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
-            />
-          </label>
-          <button type="submit" className="btn-primary">
-            {editingToolId ? "Update Tool" : "Add Tool"}
-          </button>
-        </form>
-
-        <div className="card p-6 space-y-4">
-          <p className="text-sm font-semibold text-ink">Existing Tools</p>
-          <div className="space-y-3 text-sm text-ink-muted">
-            {tools.length === 0 ? (
-              <p>No tools yet.</p>
-            ) : (
-              tools.map((tool) => (
-                <div key={tool.id} className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3">
-                  <p className="text-sm font-semibold text-ink">
-                    {tool.toolName}
-                  </p>
-                  <p className="text-xs text-ink-muted">
-                    {tool.instrument} - {tool.toolType}
-                  </p>
-                  <div className="mt-3 flex gap-2 text-xs">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setEditingToolId(tool.id);
-                        setToolForm({
-                          instrument: tool.instrument || "General",
-                          toolName: tool.toolName,
-                          description: tool.description,
-                          toolType: tool.toolType,
-                        });
-                      }}
-                      className="rounded-full border border-white/10 px-3 py-1"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        deleteItem(`${apiBaseUrl}/api/tools/${tool.id}`)
-                      }
-                      className="rounded-full border border-white/10 px-3 py-1"
-                    >
-                      Delete
-                    </button>
-                  </div>
+      <div className="card p-6 space-y-4">
+        <p className="text-sm font-semibold text-ink">Existing Tools</p>
+        <div className="space-y-3 text-sm text-ink-muted">
+          {tools.length === 0 ? (
+            <p>No tools yet.</p>
+          ) : (
+            tools.map((tool) => (
+              <div key={tool.id} className="rounded-2xl border border-white/10 bg-black/50 px-4 py-3">
+                <p className="text-sm font-semibold text-ink">
+                  {tool.toolName}
+                </p>
+                <p className="text-xs text-ink-muted">
+                  {tool.instrument} - {tool.toolType}
+                </p>
+                <div className="mt-3 flex gap-2 text-xs">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      deleteItem(`${apiBaseUrl}/api/tools/${tool.id}`)
+                    }
+                    className="rounded-full border border-white/10 px-3 py-1"
+                  >
+                    Delete
+                  </button>
                 </div>
-              ))
-            )}
-          </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
@@ -922,7 +856,7 @@ export default function AdminManagement() {
               }}
               className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
             >
-              <option value="">All courses</option>
+              <option value="">All</option>
               {courses.map((course) => (
                 <option key={course.id} value={course.id}>
                   {course.title} {course.instrument ? `(${course.instrument})` : ""}
@@ -941,7 +875,7 @@ export default function AdminManagement() {
               }}
               className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
             >
-              <option value="">All modules</option>
+              <option value="">All</option>
               {filteredModules.map((module) => (
                 <option key={module.id} value={module.id}>
                   Week {module.order} - {module.title}
@@ -956,7 +890,7 @@ export default function AdminManagement() {
               onChange={(event) => setLessonFilterId(event.target.value)}
               className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
             >
-              <option value="">All lessons</option>
+              <option value="">All</option>
               {filteredLessons.map((lesson) => {
                 const moduleTitle = lesson.moduleId
                   ? moduleMap.get(lesson.moduleId)?.title
@@ -1240,6 +1174,49 @@ export default function AdminManagement() {
             />
           </label>
           <label className="text-sm text-ink-muted">
+            PDF Attachment
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                uploadPdf(
+                  file,
+                  (url) => setLessonForm((prev) => ({ ...prev, pdfUrl: url })),
+                  setLessonPdfUploading,
+                  setLessonPdfStatus
+                );
+              }}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink file:mr-4 file:rounded-full file:border-0 file:bg-white/10 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-ink"
+            />
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
+              {lessonPdfUploading ? <span>Uploading...</span> : null}
+              {lessonPdfStatus ? <span>{lessonPdfStatus}</span> : null}
+              {lessonForm.pdfUrl ? (
+                <>
+                  <a
+                    href={lessonForm.pdfUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-brand-gold hover:text-brand-gold-soft"
+                  >
+                    View PDF
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setLessonForm((prev) => ({ ...prev, pdfUrl: "" }))
+                    }
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-ink-muted transition hover:text-ink"
+                  >
+                    Remove
+                  </button>
+                </>
+              ) : null}
+            </div>
+          </label>
+          <label className="text-sm text-ink-muted">
             Duration
             <input
               value={lessonForm.duration}
@@ -1287,6 +1264,7 @@ export default function AdminManagement() {
                           notes: lesson.notes ?? "",
                           duration: lesson.duration ?? "45 min",
                           theory: lesson.theory ?? "",
+                          pdfUrl: lesson.pdfUrl ?? "",
                         });
                       }}
                       className="rounded-full border border-white/10 px-3 py-1"
@@ -1368,6 +1346,49 @@ export default function AdminManagement() {
             />
           </label>
           <label className="text-sm text-ink-muted">
+            PDF Attachment
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                uploadPdf(
+                  file,
+                  (url) => setAssignmentForm((prev) => ({ ...prev, pdfUrl: url })),
+                  setAssignmentPdfUploading,
+                  setAssignmentPdfStatus
+                );
+              }}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink file:mr-4 file:rounded-full file:border-0 file:bg-white/10 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-ink"
+            />
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
+              {assignmentPdfUploading ? <span>Uploading...</span> : null}
+              {assignmentPdfStatus ? <span>{assignmentPdfStatus}</span> : null}
+              {assignmentForm.pdfUrl ? (
+                <>
+                  <a
+                    href={assignmentForm.pdfUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-brand-gold hover:text-brand-gold-soft"
+                  >
+                    View PDF
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setAssignmentForm((prev) => ({ ...prev, pdfUrl: "" }))
+                    }
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-ink-muted transition hover:text-ink"
+                  >
+                    Remove
+                  </button>
+                </>
+              ) : null}
+            </div>
+          </label>
+          <label className="text-sm text-ink-muted">
             Due Days
             <input
               type="number"
@@ -1415,6 +1436,7 @@ export default function AdminManagement() {
                           title: assignment.title,
                           instructions: assignment.instructions,
                           dueDays: assignment.dueDays ?? 7,
+                          pdfUrl: assignment.pdfUrl ?? "",
                         });
                       }}
                       className="rounded-full border border-white/10 px-3 py-1"
@@ -1490,6 +1512,49 @@ export default function AdminManagement() {
             />
           </label>
           <label className="text-sm text-ink-muted">
+            PDF Attachment
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                uploadPdf(
+                  file,
+                  (url) => setExerciseForm((prev) => ({ ...prev, pdfUrl: url })),
+                  setExercisePdfUploading,
+                  setExercisePdfStatus
+                );
+              }}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink file:mr-4 file:rounded-full file:border-0 file:bg-white/10 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-ink"
+            />
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
+              {exercisePdfUploading ? <span>Uploading...</span> : null}
+              {exercisePdfStatus ? <span>{exercisePdfStatus}</span> : null}
+              {exerciseForm.pdfUrl ? (
+                <>
+                  <a
+                    href={exerciseForm.pdfUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-brand-gold hover:text-brand-gold-soft"
+                  >
+                    View PDF
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExerciseForm((prev) => ({ ...prev, pdfUrl: "" }))
+                    }
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-ink-muted transition hover:text-ink"
+                  >
+                    Remove
+                  </button>
+                </>
+              ) : null}
+            </div>
+          </label>
+          <label className="text-sm text-ink-muted">
             Duration
             <input
               value={exerciseForm.duration}
@@ -1535,6 +1600,7 @@ export default function AdminManagement() {
                           title: exercise.title,
                           description: exercise.description,
                           duration: exercise.duration ?? "10 min",
+                          pdfUrl: exercise.pdfUrl ?? "",
                         });
                       }}
                       className="rounded-full border border-white/10 px-3 py-1"

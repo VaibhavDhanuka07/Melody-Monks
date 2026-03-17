@@ -42,10 +42,12 @@ Frontend (`/frontend/.env.example`):
 
 ```
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5001
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_WHATSAPP_NUMBER=91XXXXXXXXXX
 NEXT_PUBLIC_WHATSAPP_MESSAGE=Hi, I want to book a free Indian music trial class.
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
-NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_ADMIN_API_KEY=
 ```
 
 Backend (`/backend/.env.example`):
@@ -57,6 +59,27 @@ CORS_ORIGIN=http://localhost:3000
 WHATSAPP_NUMBER=91XXXXXXXXXX
 WHATSAPP_MESSAGE=Hi, I want to book a free Indian music trial class.
 PORT=5001
+ALLOW_IN_MEMORY_FALLBACKS=true
+ENFORCE_HTTPS=false
+RATE_LIMIT_ENABLED=true
+REDIS_URL=
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_JWT_SECRET=
+ADMIN_API_KEY=
+ADMIN_2FA_SECRET=
+REQUIRE_2FA=false
+ENCRYPTION_KEY=
+CAPTCHA_PROVIDER=turnstile
+CAPTCHA_SECRET=
+OTEL_SERVICE_NAME=melody-monks-backend
+AI_IMAGE_PROVIDER=openai
+OPENAI_API_KEY=
+OPENAI_IMAGE_MODEL=gpt-image-1
+OPENAI_IMAGE_SIZE=1024x1024
+OPENAI_IMAGE_QUALITY=high
+AI_IMAGE_STYLE=dark cinematic background, premium music academy aesthetic, studio lighting, high detail, no text, no watermark
+AI_IMAGE_INLINE=false
 ```
 
 ## Media Assets

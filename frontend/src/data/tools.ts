@@ -1,5 +1,3 @@
-import { classVisuals, instrumentArt } from "@/data/media";
-
 export type Tool = {
   id: string;
   name: string;
@@ -20,7 +18,7 @@ export const tools: Tool[] = [
     href: "/practice/metronome",
     badge: "Live Tool",
     instrument: "General",
-    image: classVisuals.rehearsal,
+    image: "/academy/tools/metronome.svg",
   },
   {
     id: "tool-scale",
@@ -29,7 +27,7 @@ export const tools: Tool[] = [
     toolType: "Practice",
     href: "/practice/scale-trainer",
     instrument: "General",
-    image: instrumentArt.piano,
+    image: "/academy/tools/scale-practice.svg",
   },
   {
     id: "tool-chord",
@@ -38,7 +36,7 @@ export const tools: Tool[] = [
     toolType: "Reference",
     href: "/piano-chord-finder",
     instrument: "Piano",
-    image: instrumentArt.guitar,
+    image: "/academy/tools/chord-finder.svg",
   },
   {
     id: "tool-timer",
@@ -47,7 +45,7 @@ export const tools: Tool[] = [
     toolType: "Routine",
     href: "/tools/practice-timer",
     instrument: "General",
-    image: classVisuals.onlineMentor,
+    image: "/academy/tools/practice-timer.svg",
   },
   {
     id: "tool-raag",
@@ -56,7 +54,7 @@ export const tools: Tool[] = [
     toolType: "Theory",
     href: "/tools/raag-guide",
     instrument: "General",
-    image: instrumentArt.harmonium,
+    image: "/academy/tools/raag-guide.svg",
   },
   {
     id: "tool-warmup",
@@ -65,7 +63,7 @@ export const tools: Tool[] = [
     toolType: "Vocal",
     href: "/tools/voice-warmups",
     instrument: "Vocal",
-    image: instrumentArt.singing,
+    image: "/academy/tools/voice-warmups.svg",
   },
   {
     id: "tool-pitch",
@@ -75,6 +73,6 @@ export const tools: Tool[] = [
     href: "/tools/pitch-training",
     badge: "AI",
     instrument: "General",
-    image: classVisuals.studioFeedback,
+    image: "/academy/tools/pitch-training.svg",
   },
 ];

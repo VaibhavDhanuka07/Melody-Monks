@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { instrumentArt } from "@/data/media";
+import { instrumentArt, instrumentPhotoMap } from "@/data/media";
 
 type InstrumentCard = {
   id: string;
@@ -15,63 +15,63 @@ const instrumentCards: InstrumentCard[] = [
     id: "instrument-singing",
     name: "Singing",
     description: "Vocal strength, sur accuracy, and performance skills.",
-    image: instrumentArt.singing,
+    image: instrumentPhotoMap.singing ?? instrumentArt.singing,
     slug: "singing",
   },
   {
     id: "instrument-piano",
     name: "Piano",
     description: "Technique drills, chords, and expressive performance.",
-    image: instrumentArt.piano,
+    image: instrumentPhotoMap.piano ?? instrumentArt.piano,
     slug: "piano",
   },
   {
     id: "instrument-guitar",
     name: "Guitar",
     description: "Chords, fingerstyle, and Bollywood arrangements.",
-    image: instrumentArt.guitar,
+    image: instrumentPhotoMap.guitar ?? instrumentArt.guitar,
     slug: "guitar",
   },
   {
     id: "instrument-drums",
     name: "Drums",
     description: "Groove control, fills, and rhythm precision.",
-    image: instrumentArt.drums,
+    image: instrumentPhotoMap.drums ?? instrumentArt.drums,
     slug: "drums",
   },
   {
     id: "instrument-violin",
     name: "Violin",
     description: "Bow control, pitch accuracy, and musical expression.",
-    image: instrumentArt.violin,
+    image: instrumentPhotoMap.violin ?? instrumentArt.violin,
     slug: "violin",
   },
   {
     id: "instrument-flute",
     name: "Flute",
     description: "Breathing, fingering, and tone development.",
-    image: instrumentArt.flute,
+    image: instrumentPhotoMap.flute ?? instrumentArt.flute,
     slug: "flute",
   },
   {
     id: "instrument-harmonium",
     name: "Harmonium",
     description: "Raag practice, chords, and accompaniment skills.",
-    image: instrumentArt.harmonium,
+    image: instrumentPhotoMap.harmonium ?? instrumentArt.harmonium,
     slug: "harmonium",
   },
   {
     id: "instrument-tabla",
     name: "Tabla",
     description: "Taal clarity, bols, and stage-ready rhythm.",
-    image: instrumentArt.tabla,
+    image: instrumentPhotoMap.tabla ?? instrumentArt.tabla,
     slug: "tabla",
   },
   {
     id: "instrument-trumpet",
     name: "Trumpet",
     description: "Embouchure, range, and live performance focus.",
-    image: instrumentArt.trumpet,
+    image: instrumentPhotoMap.trumpet ?? instrumentArt.trumpet,
     slug: "trumpet",
   },
 ];
@@ -105,14 +105,25 @@ export default function InstrumentShowcaseSection() {
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-soft"
           >
             <div className="relative h-48 w-full sm:h-56 lg:h-60">
-              <Image
-                src={instrument.image}
-                alt={instrument.name}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+              <div
+                // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                style={{
+                  position: "relative",
+                  minHeight: "12rem",
+                  height: "100%",
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                <Image
+                  src={instrument.image}
+                  alt={instrument.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+              </div>
             </div>
             <div className="absolute inset-0 flex flex-col justify-end p-6">
               <h3 className="text-xl font-semibold text-ink">

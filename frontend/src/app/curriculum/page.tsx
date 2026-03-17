@@ -90,7 +90,7 @@ export default function CurriculumPage() {
                       sizes="(max-width: 1024px) 100vw, 30vw"
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
                       <p className="text-xs uppercase tracking-[0.3em] text-ink-muted">
                         Week {module.order}

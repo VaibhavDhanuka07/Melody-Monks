@@ -1,6 +1,5 @@
 import ToolsGrid from "@/components/site/ToolsGrid";
 import { instruments } from "@/data/instruments";
-import { tools } from "@/data/tools";
 
 export const metadata = {
   title: "Music Tools",
@@ -36,19 +35,6 @@ export default function ToolsPage() {
         <ToolsGrid tools={instrumentCards} />
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-brand-gold">Featured Tools</p>
-            <h2 className="mt-2 text-2xl font-semibold text-ink">
-              Essential practice utilities
-            </h2>
-          </div>
-        </div>
-        <div className="mt-6">
-          <ToolsGrid tools={tools} />
-        </div>
-      </section>
     </div>
   );
 }

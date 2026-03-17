@@ -1,4 +1,4 @@
-import { instrumentArt } from "@/data/media";
+import { instrumentArt, instrumentPhotoMap } from "@/data/media";
 
 export type Instrument = {
   id: string;
@@ -16,7 +16,7 @@ export const instruments: Instrument[] = [
     description: "Virtual piano, chords, and scale practice routines.",
     href: "/tools/piano",
     highlight: "Virtual Piano",
-    image: instrumentArt.piano,
+    image: instrumentPhotoMap.piano ?? instrumentArt.piano,
   },
   {
     id: "instrument-guitar",
@@ -24,7 +24,7 @@ export const instruments: Instrument[] = [
     description: "Chord finder, tuner, and strumming trainer.",
     href: "/tools/guitar",
     highlight: "Tuner + Strumming",
-    image: instrumentArt.guitar,
+    image: instrumentPhotoMap.guitar ?? instrumentArt.guitar,
   },
   {
     id: "instrument-violin",
@@ -32,7 +32,7 @@ export const instruments: Instrument[] = [
     description: "Pitch training, tuner, and scale drills.",
     href: "/tools/violin",
     highlight: "Pitch Trainer",
-    image: instrumentArt.violin,
+    image: instrumentPhotoMap.violin ?? instrumentArt.violin,
   },
   {
     id: "instrument-drums",
@@ -40,7 +40,7 @@ export const instruments: Instrument[] = [
     description: "Rhythm trainer, beat generator, and timers.",
     href: "/tools/drums",
     highlight: "Beat Generator",
-    image: instrumentArt.drums,
+    image: instrumentPhotoMap.drums ?? instrumentArt.drums,
   },
   {
     id: "instrument-flute",
@@ -48,7 +48,7 @@ export const instruments: Instrument[] = [
     description: "Breathing trainer, pitch focus, and scales.",
     href: "/tools/flute",
     highlight: "Breathing",
-    image: instrumentArt.flute,
+    image: instrumentPhotoMap.flute ?? instrumentArt.flute,
   },
   {
     id: "instrument-harmonium",
@@ -56,7 +56,7 @@ export const instruments: Instrument[] = [
     description: "Scale practice and raag support.",
     href: "/tools/harmonium",
     highlight: "Raag Guide",
-    image: instrumentArt.harmonium,
+    image: instrumentPhotoMap.harmonium ?? instrumentArt.harmonium,
   },
   {
     id: "instrument-tabla",
@@ -64,7 +64,7 @@ export const instruments: Instrument[] = [
     description: "Rhythm cycles and practice timers.",
     href: "/tools/tabla",
     highlight: "Rhythm Trainer",
-    image: instrumentArt.tabla,
+    image: instrumentPhotoMap.tabla ?? instrumentArt.tabla,
   },
   {
     id: "instrument-vocal",
@@ -72,6 +72,6 @@ export const instruments: Instrument[] = [
     description: "Pitch trainer, warmups, and raag practice.",
     href: "/tools/vocal-practice",
     highlight: "Pitch + Warmups",
-    image: instrumentArt.vocal,
+    image: instrumentPhotoMap.singing ?? instrumentArt.vocal,
   },
 ];

@@ -1,7 +1,9 @@
 import {
+  curriculumArt,
   getClassImagesForCourse,
   getCourseArt,
   getModuleImage,
+  instrumentPhotoMap,
 } from "@/data/media";
 
 export type CurriculumLesson = {
@@ -39,6 +41,21 @@ export type CurriculumCourse = {
 };
 
 const lessonVideo = "/videos/lesson-sample.mp4";
+
+const moduleVisuals = [
+  "/academy/modules/foundations.svg",
+  "/academy/modules/technique.svg",
+  "/academy/modules/scales.svg",
+  "/academy/modules/rhythm.svg",
+  "/academy/modules/harmony.svg",
+  "/academy/modules/expression.svg",
+  "/academy/modules/sight-reading.svg",
+  "/academy/modules/progressions.svg",
+  "/academy/modules/improvisation.svg",
+  "/academy/modules/performance.svg",
+  "/academy/modules/recording.svg",
+  "/academy/modules/mastery.svg",
+];
 
 const slugify = (value: string) =>
   value
@@ -81,6 +98,7 @@ const buildModule = (
   week: number,
   lessonTitles?: string[]
 ): CurriculumModule => {
+  const visual = moduleVisuals[(week - 1) % moduleVisuals.length];
   const titles =
     lessonTitles ??
     [
@@ -101,7 +119,7 @@ const buildModule = (
     order: week,
     duration: "45 min",
     lessonCount: lessons.length,
-    image: getModuleImage(moduleTitle),
+    image: visual ?? getModuleImage(moduleTitle),
     lessons,
   };
 };
@@ -360,13 +378,17 @@ const buildGenericCourse = (
     )
   );
 
+  const photo = instrumentPhotoMap[slug as keyof typeof instrumentPhotoMap];
+  const curriculum =
+    curriculumArt[slug as keyof typeof curriculumArt];
+
   return {
     id: `course-${slug}`,
     slug,
     name,
     description,
     level,
-    image: getCourseArt(slug, name),
+    image: curriculum ?? photo ?? getCourseArt(slug, name),
     classImages: getClassImagesForCourse(slug),
     modules: moduleData,
   };
@@ -379,7 +401,10 @@ const singingCourse: CurriculumCourse = {
   description:
     "12-week vocal training pathway covering pitch, rhythm, expression, and performance.",
   level: "Beginner to Advanced",
-  image: getCourseArt("singing", "Singing"),
+  image:
+    curriculumArt.singing ??
+    instrumentPhotoMap.singing ??
+    getCourseArt("singing", "Singing"),
   classImages: getClassImagesForCourse("singing"),
   modules: singingModules.map((module, index) =>
     buildModule("Singing", module.title, module.description, index + 1, module.lessons)

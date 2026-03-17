@@ -37,6 +37,7 @@ import { allowInMemoryFallbacks, prisma } from "./services/prisma.js";
 import { queueService } from "./services/queue.js";
 import { realtimeService } from "./services/realtime.js";
 import { storageService, type UploadKind } from "./services/storage.js";
+import { getSupabaseAdmin, isSupabaseAdminConfigured } from "./services/supabaseAdmin.js";
 
 dotenv.config();
 
@@ -704,12 +705,14 @@ const lessonSchema = z.object({
   notes: z.string().trim().max(2000).optional(),
   duration: z.string().trim().max(80).optional(),
   theory: z.string().trim().max(2000).optional(),
+  pdfUrl: z.string().trim().max(2048).optional(),
 });
 
 const assignmentSchema = z.object({
   lessonId: z.string().uuid().optional(),
   title: z.string().trim().min(2).max(120),
   instructions: z.string().trim().min(4).max(2000),
+  pdfUrl: z.string().trim().max(2048).optional(),
   dueDays: z.coerce.number().int().min(1).max(365).optional(),
 });
 
@@ -717,6 +720,7 @@ const practiceExerciseSchema = z.object({
   lessonId: z.string().uuid().optional(),
   title: z.string().trim().min(2).max(120),
   description: z.string().trim().min(4).max(2000),
+  pdfUrl: z.string().trim().max(2048).optional(),
   duration: z.string().trim().max(80).optional(),
 });
 
@@ -726,6 +730,10 @@ const paymentSchema = z.object({
   status: z.string().trim().min(2).max(40),
   method: z.string().trim().min(2).max(40),
   reference: z.string().trim().max(120).optional(),
+});
+
+const approvalSchema = z.object({
+  approved: z.boolean(),
 });
 
 const uploadRequestSchema = z.object({
@@ -1368,11 +1376,16 @@ app.get("/api/instruments", async (req, res) => {
     const db = prisma;
     const response = await cacheService.wrap(cacheKey, 300, async () => {
       recordCacheMetric("miss");
-      const where = search
+      const where: Prisma.InstrumentWhereInput | undefined = search
         ? {
             OR: [
-              { name: { contains: search, mode: "insensitive" } },
-              { description: { contains: search, mode: "insensitive" } },
+              { name: { contains: search, mode: Prisma.QueryMode.insensitive } },
+              {
+                description: {
+                  contains: search,
+                  mode: Prisma.QueryMode.insensitive,
+                },
+              },
             ],
           }
         : undefined;
@@ -2748,6 +2761,7 @@ app.post("/api/lessons", authorize(["admin", "instructor"]), async (req, res) =>
         notes: parsed.data.notes ?? null,
         duration: parsed.data.duration ?? "45 min",
         theory: parsed.data.theory ?? null,
+        pdfUrl: parsed.data.pdfUrl ?? null,
         module: parsed.data.title,
         week: 1,
         order: 1,
@@ -2995,6 +3009,100 @@ app.delete(
   }
   inMemoryPracticeExercises.splice(index, 1);
   return res.json({ ok: true });
+});
+
+app.get("/api/admin/users", authorize(["admin"]), async (req, res) => {
+  if (!req.auth || req.auth.role !== "admin") {
+    return res.status(403).json({ error: "Insufficient permissions" });
+  }
+  if (!isSupabaseAdminConfigured()) {
+    return res.status(503).json({ error: "Supabase admin is not configured" });
+  }
+  const supabaseAdmin = getSupabaseAdmin();
+  if (!supabaseAdmin) {
+    return res.status(503).json({ error: "Supabase admin is not configured" });
+  }
+
+  const page = Math.max(Number(req.query.page ?? 1) || 1, 1);
+  const perPage = Math.min(Math.max(Number(req.query.perPage ?? 50) || 50, 1), 200);
+
+  const { data, error } = await supabaseAdmin.auth.admin.listUsers({
+    page,
+    perPage,
+  });
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  const users = (data?.users ?? []).map((user) => {
+    const userMetadata = (user.user_metadata ?? {}) as Record<string, unknown>;
+    const appMetadata = (user.app_metadata ?? {}) as Record<string, unknown>;
+    const approvedFlag = userMetadata.approved;
+    const approved = approvedFlag === true || approvedFlag === "true";
+    return {
+      id: user.id,
+      email: user.email ?? null,
+      role: String(appMetadata.role ?? "student"),
+      approved,
+      createdAt: user.created_at ?? null,
+      lastSignInAt: user.last_sign_in_at ?? null,
+    };
+  });
+
+  return res.json({ users, page, perPage, total: data?.total ?? null });
+});
+
+app.post("/api/admin/users/:id/approval", authorize(["admin"]), async (req, res) => {
+  if (!req.auth || req.auth.role !== "admin") {
+    return res.status(403).json({ error: "Insufficient permissions" });
+  }
+  if (!isSupabaseAdminConfigured()) {
+    return res.status(503).json({ error: "Supabase admin is not configured" });
+  }
+  const supabaseAdmin = getSupabaseAdmin();
+  if (!supabaseAdmin) {
+    return res.status(503).json({ error: "Supabase admin is not configured" });
+  }
+
+  const parsed = approvalSchema.safeParse(req.body);
+  if (!parsed.success) {
+    return res.status(400).json({ error: "Invalid approval payload" });
+  }
+
+  const userId = req.params.id;
+  if (!userId) {
+    return res.status(400).json({ error: "User ID is required" });
+  }
+
+  const { data: existing, error: readError } =
+    await supabaseAdmin.auth.admin.getUserById(userId);
+  if (readError || !existing?.user) {
+    return res.status(404).json({ error: readError?.message ?? "User not found" });
+  }
+
+  const userMetadata = (existing.user.user_metadata ?? {}) as Record<string, unknown>;
+  const nextMetadata = { ...userMetadata, approved: parsed.data.approved };
+
+  const { data, error } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+    user_metadata: nextMetadata,
+  });
+
+  if (error || !data?.user) {
+    return res.status(500).json({ error: error?.message ?? "Unable to update user" });
+  }
+
+  const approvedFlag = (data.user.user_metadata as Record<string, unknown> | undefined)
+    ?.approved;
+  const approved = approvedFlag === true || approvedFlag === "true";
+
+  return res.json({
+    user: {
+      id: data.user.id,
+      email: data.user.email ?? null,
+      approved,
+    },
+  });
 });
 
 app.get("/api/admin/bootstrap", authorize(["admin", "instructor"]), async (req, res) => {

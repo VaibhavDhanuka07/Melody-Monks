@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c0a08"/>
+      <stop offset="0.55" stop-color="#19110b"/>
+      <stop offset="1" stop-color="#2a1e15"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 160) rotate(110) scale(700 520)">
+      <stop offset="0" stop-color="#3a2919"/>
+      <stop offset="0.5" stop-color="#1d140c" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0c0a08" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f2d28b"/>
+      <stop offset="0.5" stop-color="#caa052"/>
+      <stop offset="1" stop-color="#f0c77c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="48" fill="url(#bg)"/>
+  <rect width="1200" height="800" rx="48" fill="url(#spot)" opacity="0.95"/>
+  <path d="M70 610 C240 520 430 530 640 600 C850 670 1030 670 1130 620" stroke="#caa052" stroke-width="2" opacity="0.22"/>
+  <path d="M140 220 C320 150 520 170 720 240 C900 310 1060 310 1160 260" stroke="#7a5528" stroke-width="2" opacity="0.25"/>
+  <g transform="translate(600 420)" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-260" y="-120" width="520" height="240" rx="28" fill="#15100b" opacity="0.8"/>
+    <rect x="-230" y="-40" width="460" height="120" rx="18" fill="#0f0b08"/>
+    <rect x="-220" y="-30" width="440" height="100" rx="12"/>
+    <path d="M-180 -30 V70"/>
+    <path d="M-120 -30 V70"/>
+    <path d="M-60 -30 V70"/>
+    <path d="M0 -30 V70"/>
+    <path d="M60 -30 V70"/>
+    <path d="M120 -30 V70"/>
+    <path d="M180 -30 V70"/>
+    <rect x="-145" y="-30" width="50" height="60" rx="6" fill="#0b0907"/>
+    <rect x="-25" y="-30" width="50" height="60" rx="6" fill="#0b0907"/>
+    <rect x="95" y="-30" width="50" height="60" rx="6" fill="#0b0907"/>
+    <circle cx="190" cy="-80" r="10"/>
+    <circle cx="-190" cy="-80" r="10"/>
+  </g>
+</svg>

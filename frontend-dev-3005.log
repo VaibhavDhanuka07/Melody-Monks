@@ -1,0 +1,15 @@
+
+> melody-monks-frontend@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3005
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling /gallery ...
+ ✓ Compiled /gallery in 4.4s (741 modules)
+ GET /gallery 200 in 4737ms
+ ✓ Compiled in 519ms (324 modules)
+[?25h

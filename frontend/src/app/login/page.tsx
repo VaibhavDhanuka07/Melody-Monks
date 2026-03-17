@@ -1,3 +1,5 @@
+import LoginForm from "@/components/auth/LoginForm";
+
 export const metadata = {
   title: "Login",
   description: "Sign in to access your Indian music student dashboard.",
@@ -22,28 +24,7 @@ export default function LoginPage() {
         </div>
 
         <div className="card p-8">
-          <form className="space-y-4">
-            <div>
-              <label className="text-xs font-semibold text-ink">Email</label>
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-semibold text-ink">Password</label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-ink"
-              />
-            </div>
-            <button className="btn-primary w-full">Log In</button>
-            <button type="button" className="btn-secondary w-full">
-              Continue with Google
-            </button>
-          </form>
+          <LoginForm />
         </div>
       </div>
     </div>

@@ -1,0 +1,17 @@
+
+> melody-monks-backend@0.2.0 dev
+> tsx watch src/index.ts
+
+Melody Monks backend running on port 5001
+{"event":"request_completed","time":"2026-03-17T10:28:51.493Z","requestId":"f92653c4-a5f4-46f2-942a-b7420e385e88","method":"GET","path":"/api/admin/users","statusCode":403,"durationMs":11,"userId":null}
+{"event":"request_completed","time":"2026-03-17T10:28:51.495Z","requestId":"1872afd2-5394-4e76-a604-7437c8bdeda7","method":"GET","path":"/api/admin/users","statusCode":403,"durationMs":1,"userId":null}
+4:02:55 pm [tsx] unlink in ./..\node_modules\.prisma\client\default.js Rerunning...
+cMelody Monks backend running on port 5001
+{"event":"request_completed","time":"2026-03-17T10:33:58.902Z","requestId":"537ffd40-f1f9-4136-9712-611fa22db577","method":"GET","path":"/ready","statusCode":200,"durationMs":1500,"userId":null}
+{"event":"request_completed","time":"2026-03-17T10:34:25.982Z","requestId":"baf6afa7-5065-44ee-9c71-3b979314474e","method":"GET","path":"/api/admin/users","statusCode":403,"durationMs":6,"userId":null}
+{"event":"request_completed","time":"2026-03-17T10:35:55.972Z","requestId":"c1d8415f-f01b-449a-9730-6911d15ce6b0","method":"GET","path":"/api/admin/bootstrap","statusCode":200,"durationMs":1797,"userId":null}
+{"event":"request_completed","time":"2026-03-17T10:39:49.977Z","requestId":"2e443302-5cf0-4593-aac7-27fb542eb18e","method":"GET","path":"/ready","statusCode":200,"durationMs":1130,"userId":null}
+11:27:11 pm [tsx] change in ./src\index.ts Rerunning...
+c11:58:15 pm [tsx] change in ./..\node_modules\.prisma\client\index.js Rerunning...
+c11:59:05 pm [tsx] unlink in ./..\node_modules\.prisma\client\default.js Rerunning...
+c

@@ -1,0 +1,39 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#050505" />
+      <stop offset="0.55" stop-color="#0B0A08" />
+      <stop offset="1" stop-color="#141210" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(440 220) rotate(25) scale(420)">
+      <stop offset="0" stop-color="#D3AF6B" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#D3AF6B" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E6C47A" />
+      <stop offset="1" stop-color="#B8893F" />
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="460" cy="240" r="320" fill="url(#glow)" />
+
+  <path d="M160 720C340 678 540 668 760 702C1004 742 1220 742 1440 690" stroke="rgba(211,175,107,0.16)" stroke-width="4" stroke-linecap="round" />
+  <path d="M160 760C360 724 580 720 820 752C1048 782 1260 782 1440 736" stroke="rgba(211,175,107,0.12)" stroke-width="3" stroke-linecap="round" />
+
+  <g filter="url(#softShadow)">
+    <path d="M520 640H1080" stroke="url(#goldStroke)" stroke-width="10" stroke-linecap="round" />
+
+    <rect x="740" y="330" width="120" height="260" rx="60" fill="rgba(0,0,0,0.35)" stroke="url(#goldStroke)" stroke-width="8" />
+    <rect x="770" y="280" width="60" height="70" rx="30" fill="rgba(0,0,0,0.35)" stroke="url(#goldStroke)" stroke-width="6" />
+    <rect x="770" y="590" width="60" height="40" rx="20" fill="rgba(0,0,0,0.35)" stroke="url(#goldStroke)" stroke-width="6" />
+
+    <path d="M700 420C660 440 640 470 630 510" stroke="rgba(211,175,107,0.22)" stroke-width="6" stroke-linecap="round" />
+    <path d="M900 420C940 440 960 470 970 510" stroke="rgba(211,175,107,0.22)" stroke-width="6" stroke-linecap="round" />
+    <path d="M660 390C600 430 570 470 560 520" stroke="rgba(211,175,107,0.14)" stroke-width="6" stroke-linecap="round" />
+    <path d="M940 390C1000 430 1030 470 1040 520" stroke="rgba(211,175,107,0.14)" stroke-width="6" stroke-linecap="round" />
+  </g>
+</svg>

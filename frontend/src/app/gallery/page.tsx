@@ -1,5 +1,5 @@
 import Image from "next/image";
-import InstagramGallery from "@/components/site/InstagramGallery";
+import InstagramFeed from "@/components/InstagramFeed";
 import { galleryCategories, galleryItems } from "@/data/gallery";
 
 export default function GalleryPage() {
@@ -12,14 +12,14 @@ export default function GalleryPage() {
             Performances, live classes, and student showcases
           </h1>
           <p className="mt-4 text-sm text-ink-muted">
-            A curated archive of instructor recitals, student performances, and
-            behind-the-scenes moments.
+            A curated archive of instructor recitals, student performances, and live
+            class clips.
           </p>
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6">
-        <InstagramGallery />
+        <InstagramFeed />
       </section>
 
       {galleryCategories.map((category) => {
@@ -36,7 +36,40 @@ export default function GalleryPage() {
                   className="group overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-soft"
                 >
                   <div className="relative aspect-[4/3]">
-                    {item.src ? (
+                    {item.kind === "video" ? (
+                      item.src ? (
+                        <video
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          preload={
+                            item.category === "Live Classes" ||
+                            item.category === "Student Performances"
+                              ? "auto"
+                              : "metadata"
+                          }
+                          autoPlay={
+                            item.category === "Live Classes" ||
+                            item.category === "Student Performances"
+                          }
+                          muted={
+                            item.category === "Live Classes" ||
+                            item.category === "Student Performances"
+                          }
+                          loop={
+                            item.category === "Live Classes" ||
+                            item.category === "Student Performances"
+                          }
+                          controls
+                          playsInline
+                          poster={item.poster}
+                        >
+                          <source src={item.src} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-xs text-ink-muted">
+                          Video placeholder
+                        </div>
+                      )
+                    ) : item.src ? (
                       <Image
                         src={item.src}
                         alt={item.title}
@@ -46,7 +79,7 @@ export default function GalleryPage() {
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-xs text-ink-muted">
-                        Video placeholder
+                        Image placeholder
                       </div>
                     )}
                   </div>

@@ -15,7 +15,7 @@ export default function ContactPage() {
               collaborations.
             </p>
             <div className="mt-6 space-y-3 text-sm text-ink-muted">
-              <p>Email: hello@melodymonks.com</p>
+              <p>Email: melodymonks@gmail.com</p>
               <p>Studio: Kolkata, India</p>
               <p>Online sessions available worldwide</p>
               <p>Instagram: @musicianvasu</p>

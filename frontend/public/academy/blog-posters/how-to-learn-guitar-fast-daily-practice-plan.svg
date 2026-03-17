@@ -1,35 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1800" height="1100" viewBox="0 0 1800 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
   <defs>
-    <linearGradient id="bg-how-to-learn-guitar-fast-daily-practice-plan" x1="80" y1="60" x2="1660" y2="1040" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#030303"/>
-      <stop offset="1" stop-color="#151515"/>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c0a08"/>
+      <stop offset="1" stop-color="#1c130c"/>
     </linearGradient>
-    <radialGradient id="glow-how-to-learn-guitar-fast-daily-practice-plan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1420 180) rotate(35) scale(460 360)">
-      <stop offset="0" stop-color="#0EA5E9" stop-opacity="0.42"/>
-      <stop offset="1" stop-color="#0EA5E9" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gold-how-to-learn-guitar-fast-daily-practice-plan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 960) rotate(-18) scale(420 260)">
-      <stop offset="0" stop-color="#F59E0B" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 160) rotate(30) scale(520)">
+      <stop offset="0" stop-color="#A0DD4B" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#A0DD4B" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="1800" height="1100" fill="url(#bg-how-to-learn-guitar-fast-daily-practice-plan)"/>
-  <circle cx="1420" cy="180" r="360" fill="url(#glow-how-to-learn-guitar-fast-daily-practice-plan)"/>
-  <circle cx="260" cy="960" r="280" fill="url(#gold-how-to-learn-guitar-fast-daily-practice-plan)"/>
-  <rect x="74" y="66" width="1652" height="968" rx="64" fill="#0A0A0A" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
-  <rect x="116" y="108" width="1568" height="884" rx="42" fill="#070707" fill-opacity="0.74"/>
-  <path d="M74 886C296 804 504 802 738 854C1038 920 1292 926 1726 782V1034H74V886Z" fill="#090909"/>
-  <path d="M150 216H1648" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="3"/>
-  <path d="M156 930C412 840 638 842 890 896C1148 952 1354 950 1642 888" stroke="#FB7185" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
-  <rect x="186" y="252" width="450" height="212" rx="30" fill="#0D0D0D" stroke="#FFFFFF" stroke-opacity="0.05"/>
-  <rect x="224" y="294" width="122" height="16" rx="8" fill="#F59E0B" fill-opacity="0.36"/>
-  <rect x="224" y="334" width="262" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.12"/>
-  <rect x="224" y="372" width="208" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.08"/>
-  <rect x="224" y="410" width="164" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.06"/>
-  
-        <path d="M1394 386C1472 386 1522 454 1492 528C1470 580 1470 638 1492 690C1524 764 1474 832 1394 832C1314 832 1266 764 1296 690C1320 638 1320 580 1296 528C1268 454 1316 386 1394 386Z" fill="#131313" stroke="#F59E0B" stroke-opacity="0.18"/>
-        <rect x="1382" y="226" width="24" height="188" rx="12" fill="#181818"/>
-        <path d="M1406 232L1510 166" stroke="#FB7185" stroke-opacity="0.52" stroke-width="8" stroke-linecap="round"/>
-      
+  <rect width="1200" height="800" rx="36" fill="url(#bg)"/>
+  <rect width="1200" height="800" rx="36" fill="url(#glow)"/>
+  <path d="M80 620C260 540 430 540 610 600C820 670 980 660 1120 610" stroke="#A0DD4B" stroke-opacity="0.28" stroke-width="4" stroke-linecap="round"/>
+  <path d="M140 220H1060" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+  <circle cx="180" cy="243" r="27" fill="#A0DD4B" fill-opacity="0.18"/><circle cx="759" cy="491" r="14" fill="#A0DD4B" fill-opacity="0.12"/><circle cx="390" cy="322" r="14" fill="#A0DD4B" fill-opacity="0.12"/>
+  <path d="M210 612 C 520 527, 995 656, 1120 620" stroke="#A0DD4B" stroke-opacity="0.18" stroke-width="3" stroke-linecap="round"/>
+  <g transform="translate(600 420) rotate(0.87) scale(1.06)" stroke="#A0DD4B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="180" fill="#120e0a" opacity="0.75" stroke="none"/>
+    <circle cx="0" cy="0" r="70"/>
+    <circle cx="0" cy="0" r="12" fill="#120e0a" stroke="none"/>
+    <path d="M-200 -160L-120 -80"/>
+    <path d="M120 80L200 160"/>
+  </g>
 </svg>

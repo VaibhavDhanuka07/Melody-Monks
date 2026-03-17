@@ -1,17 +1,10 @@
 import Image from "next/image";
-import { instrumentArt } from "@/data/media";
+import { instrumentPhotography } from "@/data/media";
 
-const instrumentImages = [
-  { name: "Singing", src: instrumentArt.singing },
-  { name: "Piano", src: instrumentArt.piano },
-  { name: "Guitar", src: instrumentArt.guitar },
-  { name: "Drums", src: instrumentArt.drums },
-  { name: "Violin", src: instrumentArt.violin },
-  { name: "Flute", src: instrumentArt.flute },
-  { name: "Harmonium", src: instrumentArt.harmonium },
-  { name: "Tabla", src: instrumentArt.tabla },
-  { name: "Trumpet", src: instrumentArt.trumpet },
-];
+const instrumentImages = instrumentPhotography.map((item) => ({
+  name: item.name,
+  src: item.src,
+}));
 
 const duplicated = [...instrumentImages, ...instrumentImages];
 
@@ -35,6 +28,17 @@ export default function InstrumentImageMarqueeSection() {
               className="relative h-32 w-44 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black/70 shadow-soft"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
+              <div
+                // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                style={{
+                  position: "relative",
+                  minHeight: "8rem",
+                  minWidth: "11rem",
+                  height: "100%",
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
               <Image
                 src={item.src}
                 alt={item.name}
@@ -43,6 +47,7 @@ export default function InstrumentImageMarqueeSection() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              </div>
             </div>
           ))}
         </div>
@@ -56,6 +61,17 @@ export default function InstrumentImageMarqueeSection() {
               className="relative h-28 w-40 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black/70 shadow-soft"
               style={{ animationDelay: `${index * 0.12}s` }}
             >
+              <div
+                // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                style={{
+                  position: "relative",
+                  minHeight: "7rem",
+                  minWidth: "10rem",
+                  height: "100%",
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
               <Image
                 src={item.src}
                 alt={item.name}
@@ -64,6 +80,7 @@ export default function InstrumentImageMarqueeSection() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              </div>
             </div>
           ))}
         </div>

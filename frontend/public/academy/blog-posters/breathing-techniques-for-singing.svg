@@ -1,36 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1800" height="1100" viewBox="0 0 1800 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
   <defs>
-    <linearGradient id="bg-breathing-techniques-for-singing" x1="80" y1="60" x2="1660" y2="1040" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#030303"/>
-      <stop offset="1" stop-color="#151515"/>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c0a08"/>
+      <stop offset="1" stop-color="#1c130c"/>
     </linearGradient>
-    <radialGradient id="glow-breathing-techniques-for-singing" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1420 180) rotate(35) scale(460 360)">
-      <stop offset="0" stop-color="#0EA5E9" stop-opacity="0.42"/>
-      <stop offset="1" stop-color="#0EA5E9" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gold-breathing-techniques-for-singing" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 960) rotate(-18) scale(420 260)">
-      <stop offset="0" stop-color="#E7C57B" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#E7C57B" stop-opacity="0"/>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 160) rotate(30) scale(520)">
+      <stop offset="0" stop-color="#DD4BDA" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#DD4BDA" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="1800" height="1100" fill="url(#bg-breathing-techniques-for-singing)"/>
-  <circle cx="1420" cy="180" r="360" fill="url(#glow-breathing-techniques-for-singing)"/>
-  <circle cx="260" cy="960" r="280" fill="url(#gold-breathing-techniques-for-singing)"/>
-  <rect x="74" y="66" width="1652" height="968" rx="64" fill="#0A0A0A" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2"/>
-  <rect x="116" y="108" width="1568" height="884" rx="42" fill="#070707" fill-opacity="0.74"/>
-  <path d="M74 886C296 804 504 802 738 854C1038 920 1292 926 1726 782V1034H74V886Z" fill="#090909"/>
-  <path d="M150 216H1648" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="3"/>
-  <path d="M156 930C412 840 638 842 890 896C1148 952 1354 950 1642 888" stroke="#67E8F9" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
-  <rect x="186" y="252" width="450" height="212" rx="30" fill="#0D0D0D" stroke="#FFFFFF" stroke-opacity="0.05"/>
-  <rect x="224" y="294" width="122" height="16" rx="8" fill="#E7C57B" fill-opacity="0.36"/>
-  <rect x="224" y="334" width="262" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.12"/>
-  <rect x="224" y="372" width="208" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.08"/>
-  <rect x="224" y="410" width="164" height="16" rx="8" fill="#F5F1E8" fill-opacity="0.06"/>
-  
-        <circle cx="1308" cy="356" r="90" fill="#161616" />
-        <path d="M1240 516C1266 486 1290 472 1308 472C1328 472 1350 486 1378 516V776H1240V516Z" fill="#111111"/>
-        <path d="M1158 610C1240 552 1324 540 1438 580" stroke="#67E8F9" stroke-opacity="0.52" stroke-width="10" stroke-linecap="round"/>
-        <path d="M1118 708C1212 648 1320 632 1476 690" stroke="#0EA5E9" stroke-opacity="0.34" stroke-width="10" stroke-linecap="round"/>
-      
+  <rect width="1200" height="800" rx="36" fill="url(#bg)"/>
+  <rect width="1200" height="800" rx="36" fill="url(#glow)"/>
+  <path d="M80 620C260 540 430 540 610 600C820 670 980 660 1120 610" stroke="#DD4BDA" stroke-opacity="0.28" stroke-width="4" stroke-linecap="round"/>
+  <path d="M140 220H1060" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+  <circle cx="408" cy="177" r="21" fill="#DD4BDA" fill-opacity="0.18"/><circle cx="876" cy="425" r="9" fill="#DD4BDA" fill-opacity="0.12"/><circle cx="706" cy="523" r="23" fill="#DD4BDA" fill-opacity="0.12"/>
+  <path d="M172 637 C 683 584, 948 599, 1120 620" stroke="#DD4BDA" stroke-opacity="0.18" stroke-width="3" stroke-linecap="round"/>
+  <g transform="translate(600 420) rotate(-6.89) scale(0.9)" stroke="#DD4BDA" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-180 60C-180 -80 -40 -160 0 -160C40 -160 180 -80 180 60"/>
+    <rect x="-220" y="40" width="70" height="140" rx="30"/>
+    <rect x="150" y="40" width="70" height="140" rx="30"/>
+    <circle cx="0" cy="40" r="50" fill="#120e0a" opacity="0.75" stroke="none"/>
+  </g>
 </svg>

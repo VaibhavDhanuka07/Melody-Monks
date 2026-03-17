@@ -16,7 +16,15 @@ export default function ToolsGrid({ tools }: ToolsGridProps) {
           className="group overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-soft transition hover:-translate-y-1"
         >
           {tool.image ? (
-            <div className="relative h-36 overflow-hidden border-b border-white/10">
+            <div
+              className="relative h-36 overflow-hidden border-b border-white/10"
+              style={{
+                // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                position: "relative",
+                height: "9rem",
+                overflow: "hidden",
+              }}
+            >
               <Image
                 src={tool.image}
                 alt={tool.name}
@@ -24,7 +32,7 @@ export default function ToolsGrid({ tools }: ToolsGridProps) {
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="object-cover transition duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
             </div>
           ) : null}
           <div className="p-6">

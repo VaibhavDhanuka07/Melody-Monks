@@ -1,0 +1,25 @@
+
+> melody-monks-backend@0.2.0 dev
+> tsx watch src/index.ts
+
+Melody Monks backend running on port 5001 
+{"event":"request_completed","time":"2026-03-17T17:47:21.601Z","requestId":"d3c52f00-953b-4b4d-abeb-0ac24f021123","method":"GET","path":"/api/admin/users","statusCode":200,"durationMs":1023,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:48:01.916Z","requestId":"44577b2c-3abf-42ea-807b-7892b39c887b","method":"GET","path":"/api/admin/users","statusCode":200,"durationMs":400,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:48:02.015Z","requestId":"f2e71b90-1d97-4a97-864b-525e9b507b02","method":"GET","path":"/api/admin/users","statusCode":304,"durationMs":96,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:48:04.318Z","requestId":"111423bc-bcb4-49f2-a076-2e19b5892b2e","method":"GET","path":"/api/admin/bootstrap","statusCode":200,"durationMs":2849,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:48:04.777Z","requestId":"7213abdb-6204-4f73-8c31-e27f72f138e1","method":"GET","path":"/api/admin/bootstrap","statusCode":304,"durationMs":457,"userId":"admin"}
+{"event":"admin_action","time":"2026-03-17T17:48:22.390Z","path":"/api/admin/users/6d84e40b-b421-4d29-9328-f3d258519f2c/approval","method":"POST","ip":"::1","userId":"admin","role":"admin","statusCode":200}
+{"event":"request_completed","time":"2026-03-17T17:48:22.390Z","requestId":"f38a3a12-18af-4a4b-9cc2-478e7490059c","method":"POST","path":"/api/admin/users/6d84e40b-b421-4d29-9328-f3d258519f2c/approval","statusCode":200,"durationMs":437,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:19.812Z","requestId":"293efd67-6598-454b-8e84-903122bdf893","method":"GET","path":"/api/admin/users","statusCode":200,"durationMs":488,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:19.884Z","requestId":"f0dacfdd-f342-4e78-b36f-0c162740d0a7","method":"GET","path":"/api/admin/bootstrap","statusCode":304,"durationMs":536,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:19.900Z","requestId":"78ad652a-4c0b-4e4c-aafb-4812df8dcfa6","method":"GET","path":"/api/admin/users","statusCode":304,"durationMs":86,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:20.434Z","requestId":"03b72fe0-df85-494c-9927-bdab260a78ce","method":"GET","path":"/api/admin/bootstrap","statusCode":304,"durationMs":548,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:56.408Z","requestId":"e6a6e57f-3078-40b9-8596-152dc01de057","method":"GET","path":"/api/admin/users","statusCode":304,"durationMs":344,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:56.511Z","requestId":"802f9939-f1ec-46b2-974e-728c73bd58c2","method":"GET","path":"/api/admin/users","statusCode":304,"durationMs":102,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:56.659Z","requestId":"958c8aca-fdb8-4d04-b3b5-640e62b53a1d","method":"GET","path":"/api/admin/bootstrap","statusCode":304,"durationMs":614,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:57.119Z","requestId":"94c74411-1f52-495a-b4a9-54340d562202","method":"GET","path":"/api/admin/bootstrap","statusCode":304,"durationMs":458,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:51:57.637Z","requestId":"d1dd838d-3aea-4893-bb86-b85e5a7a1e96","method":"GET","path":"/api/admin/bootstrap","statusCode":304,"durationMs":515,"userId":"admin"}
+11:27:11 pm [tsx] change in ./src\index.ts Restarting...
+c11:58:15 pm [tsx] change in ./..\node_modules\.prisma\client\index.js Rerunning...
+c11:59:05 pm [tsx] unlink in ./..\node_modules\.prisma\client\default.js Rerunning...
+c

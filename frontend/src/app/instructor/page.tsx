@@ -7,13 +7,22 @@ export default function InstructorPage() {
     <div className="space-y-16 pb-24">
       <section className="mx-auto w-full max-w-6xl px-6 pt-20">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-white/10">
+          <div
+            className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-white/10"
+            style={{
+              // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+              position: "relative",
+              aspectRatio: "3 / 4",
+              overflow: "hidden",
+            }}
+          >
             <Image
-              src="/vasu/vasu-mentor-portrait.svg"
-              alt={site.instructor.fullName}
+              src="/vasu/debojeet-award.png"
+              alt={`${site.instructor.fullName} holding a National Prestige Award certificate`}
               fill
               sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover"
+              className="object-cover object-center"
+              priority
             />
           </div>
           <div className="space-y-6">
@@ -73,13 +82,19 @@ export default function InstructorPage() {
       <section className="mx-auto w-full max-w-6xl px-6">
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            "/vasu/vasu-hero-stage.svg",
-            "/vasu/vasu-masterclass.svg",
-            "/vasu/vasu-judge-panel.svg",
+            "/vasu/instructor-1.webp",
+            "/vasu/instructor-2.jpeg",
+            "/vasu/instructor-3.webp",
           ].map((src) => (
             <div
               key={src}
               className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10"
+              style={{
+                // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                position: "relative",
+                aspectRatio: "4 / 3",
+                overflow: "hidden",
+              }}
             >
               <Image
                 src={src}

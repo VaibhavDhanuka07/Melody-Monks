@@ -20,17 +20,28 @@ export default function BlogCard({ post }: BlogCardProps) {
       className="group overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-soft transition hover:-translate-y-1"
     >
       <div className="relative h-44 overflow-hidden">
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-xs font-semibold text-ink">
-          {post.category}
-        </span>
+        <div
+          // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+          style={{
+            position: "relative",
+            minHeight: "11rem",
+            height: "100%",
+            width: "100%",
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+          <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-xs font-semibold text-ink">
+            {post.category}
+          </span>
+        </div>
       </div>
       <div className="space-y-3 px-5 py-5">
         <p className="text-lg font-semibold text-ink">{post.title}</p>

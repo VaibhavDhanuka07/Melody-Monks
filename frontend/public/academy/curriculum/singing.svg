@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c0a08"/>
+      <stop offset="0.55" stop-color="#1b120c"/>
+      <stop offset="1" stop-color="#2a1f16"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 180) rotate(120) scale(720 520)">
+      <stop offset="0" stop-color="#3b2a19"/>
+      <stop offset="0.45" stop-color="#1d140c" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0c0a08" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f2d28b"/>
+      <stop offset="0.5" stop-color="#caa052"/>
+      <stop offset="1" stop-color="#f0c77c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="48" fill="url(#bg)"/>
+  <rect width="1200" height="800" rx="48" fill="url(#spot)" opacity="0.95"/>
+  <path d="M80 600 C240 520 420 540 620 610 C820 680 1020 670 1120 620" stroke="#caa052" stroke-width="2" opacity="0.22"/>
+  <path d="M120 220 C300 140 520 160 720 230 C900 300 1080 300 1160 250" stroke="#7a5528" stroke-width="2" opacity="0.25"/>
+  <g transform="translate(600 390)" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-60" y="-170" width="120" height="170" rx="60" fill="#1b120c" opacity="0.7"/>
+    <rect x="-44" y="-150" width="88" height="100" rx="44"/>
+    <path d="M-22 -118 H22"/>
+    <path d="M-22 -96 H22"/>
+    <path d="M-22 -74 H22"/>
+    <rect x="-16" y="0" width="32" height="110" rx="16"/>
+    <path d="M0 110 V170"/>
+    <path d="M-70 -40 C-110 -10 -110 10 -70 40"/>
+    <path d="M70 -40 C110 -10 110 10 70 40"/>
+    <path d="M-100 -70 C-150 -20 -150 20 -100 70" opacity="0.5"/>
+    <path d="M100 -70 C150 -20 150 20 100 70" opacity="0.5"/>
+  </g>
+</svg>

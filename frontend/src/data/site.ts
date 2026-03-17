@@ -1,5 +1,7 @@
 import { getCatalogCourseImage } from "@/data/media";
 
+export { getCatalogCourseImage };
+
 export type CoursePath = {
   title: string;
   description: string;
@@ -95,7 +97,8 @@ export const coursePaths: CoursePath[] = [
     level: "Beginner to Advanced",
     duration: "12 weeks",
     slug: "singing",
-    image: getCatalogCourseImage("Hindustani Classical Vocal", "singing"),
+    image:
+      "/academy/course-posters/photography/hindustani-classical-vocal.png",
   },
   {
     title: "Bollywood Singing",
@@ -107,7 +110,7 @@ export const coursePaths: CoursePath[] = [
     level: "Beginner to Advanced",
     duration: "10 weeks",
     slug: "singing",
-    image: getCatalogCourseImage("Bollywood Singing", "singing"),
+    image: "/academy/course-posters/photography/bollywood-singing.png",
   },
   {
     title: "Light Classical Music",
@@ -118,7 +121,7 @@ export const coursePaths: CoursePath[] = [
     format: "Google Meet / Zoom Live",
     level: "Intermediate",
     duration: "8 weeks",
-    image: getCatalogCourseImage("Light Classical Music"),
+    image: "/academy/course-posters/photography/light-classical-music.png",
   },
   {
     title: "Playback Singing",
@@ -129,7 +132,7 @@ export const coursePaths: CoursePath[] = [
     format: "Studio coaching + Recorded",
     level: "Intermediate",
     duration: "8 weeks",
-    image: getCatalogCourseImage("Playback Singing", "singing"),
+    image: "/academy/course-posters/photography/playback-singing.png",
   },
   {
     title: "Piano / Keyboard",
@@ -141,7 +144,7 @@ export const coursePaths: CoursePath[] = [
     level: "Beginner to Advanced",
     duration: "10 weeks",
     slug: "piano",
-    image: getCatalogCourseImage("Piano / Keyboard", "piano"),
+    image: "/academy/instruments/photography/piano.png",
   },
   {
     title: "Guitar",
@@ -153,7 +156,7 @@ export const coursePaths: CoursePath[] = [
     level: "Beginner to Advanced",
     duration: "10 weeks",
     slug: "guitar",
-    image: getCatalogCourseImage("Guitar", "guitar"),
+    image: "/academy/instruments/photography/guitar.png",
   },
   {
     title: "Harmonium",
@@ -165,7 +168,7 @@ export const coursePaths: CoursePath[] = [
     level: "Beginner to Intermediate",
     duration: "8 weeks",
     slug: "harmonium",
-    image: getCatalogCourseImage("Harmonium", "harmonium"),
+    image: "/academy/instruments/photography/harmonium.png",
   },
   {
     title: "Tabla",
@@ -177,7 +180,7 @@ export const coursePaths: CoursePath[] = [
     level: "Beginner to Intermediate",
     duration: "10 weeks",
     slug: "tabla",
-    image: getCatalogCourseImage("Tabla", "tabla"),
+    image: "/academy/instruments/photography/tabla.png",
   },
   {
     title: "Music Theory",
@@ -188,7 +191,7 @@ export const coursePaths: CoursePath[] = [
     format: "Recorded + Assignments",
     level: "Beginner",
     duration: "6 weeks",
-    image: getCatalogCourseImage("Music Theory"),
+    image: "/academy/course-posters/photography/music-theory.png",
   },
   {
     title: "Music Composition",
@@ -199,7 +202,7 @@ export const coursePaths: CoursePath[] = [
     format: "Recorded + Projects",
     level: "Intermediate",
     duration: "8 weeks",
-    image: getCatalogCourseImage("Music Composition"),
+    image: "/academy/course-posters/photography/music-composition.png",
   },
   {
     title: "Stage Performance",
@@ -210,7 +213,7 @@ export const coursePaths: CoursePath[] = [
     format: "Google Meet / Zoom Coaching",
     level: "All levels",
     duration: "4 weeks",
-    image: getCatalogCourseImage("Stage Performance"),
+    image: "/academy/course-posters/photography/stage-performance.png",
   },
   {
     title: "Recording Techniques",
@@ -221,7 +224,7 @@ export const coursePaths: CoursePath[] = [
     format: "Studio + Recorded",
     level: "Intermediate",
     duration: "4 weeks",
-    image: getCatalogCourseImage("Recording Techniques"),
+    image: "/academy/course-posters/photography/recording-techniques.png",
   },
 ];
 

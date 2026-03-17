@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c0a08"/>
+      <stop offset="0.55" stop-color="#1a110b"/>
+      <stop offset="1" stop-color="#2a1f16"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 160) rotate(118) scale(700 520)">
+      <stop offset="0" stop-color="#3a2919"/>
+      <stop offset="0.5" stop-color="#1d140c" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0c0a08" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f2d28b"/>
+      <stop offset="0.5" stop-color="#caa052"/>
+      <stop offset="1" stop-color="#f0c77c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="48" fill="url(#bg)"/>
+  <rect width="1200" height="800" rx="48" fill="url(#spot)" opacity="0.95"/>
+  <path d="M80 610 C260 520 460 540 660 610 C860 680 1040 670 1140 620" stroke="#caa052" stroke-width="2" opacity="0.22"/>
+  <path d="M140 210 C320 140 520 160 720 230 C900 300 1080 300 1160 250" stroke="#7a5528" stroke-width="2" opacity="0.25"/>
+  <g transform="translate(600 400)" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="0" cy="70" rx="70" ry="90" fill="#15100b" opacity="0.8"/>
+    <ellipse cx="0" cy="-50" rx="55" ry="70" fill="#15100b" opacity="0.8"/>
+    <rect x="-12" y="-170" width="24" height="120" rx="12"/>
+    <rect x="-6" y="-210" width="12" height="40" rx="6"/>
+    <path d="M-30 -20 C-20 -40 -20 -60 -30 -80"/>
+    <path d="M30 -20 C20 -40 20 -60 30 -80"/>
+    <path d="M-140 140 L140 -140"/>
+  </g>
+</svg>

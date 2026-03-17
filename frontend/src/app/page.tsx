@@ -3,12 +3,14 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import ToolsGrid from "@/components/site/ToolsGrid";
 import BlogCard from "@/components/blog/BlogCard";
+import InstagramGallery from "@/components/site/InstagramGallery";
 import InstrumentImageMarqueeSection from "@/components/InstrumentImageMarqueeSection";
 import { coursePaths, site, pricingPlans } from "@/data/site";
 import { curriculumCourses } from "@/data/universal-curriculum";
 import { getLatestPosts } from "@/data/blog";
 import { reviews } from "@/data/reviews";
 import { instruments } from "@/data/instruments";
+import HeroSection from "@/components/HeroSection";
 
 const PhotoShowcaseSection = dynamic(
   () => import("@/components/PhotoShowcaseSection"),
@@ -34,30 +36,6 @@ const InstrumentShowcaseSection = dynamic(
           Loading instrument showcase...
         </div>
       </section>
-    ),
-  }
-);
-
-const PerformanceGallery = dynamic(
-  () => import("@/components/site/PerformanceGallery"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="card p-6 text-sm text-ink-muted">
-        Loading performances...
-      </div>
-    ),
-  }
-);
-
-const InstagramGallery = dynamic(
-  () => import("@/components/site/InstagramGallery"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="card p-6 text-sm text-ink-muted">
-        Loading Instagram highlights...
-      </div>
     ),
   }
 );
@@ -116,52 +94,7 @@ export default function Home() {
 
   return (
     <div className="space-y-28 pb-28">
-      <section className="relative min-h-[75vh] sm:min-h-[85vh] overflow-hidden">
-        <div className="absolute inset-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/vasu/vasu-hero-stage.svg"
-            preload="none"
-            className="h-full w-full object-cover"
-          >
-            <source src="/videos/hero-piano.mp4" />
-          </video>
-          <div className="absolute inset-0 bg-black/70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/80 to-black" />
-        </div>
-
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col justify-center gap-8 px-6 pb-16 pt-24 sm:pt-28">
-          <div className="space-y-6 animate-fade-up text-center sm:text-left">
-            <span className="badge">Premium Indian music academy</span>
-            <h1 className="text-balance text-3xl font-semibold leading-tight text-ink sm:text-4xl md:text-6xl">
-              Master Indian Music with a Legendary Mentor
-            </h1>
-            <p className="mx-auto max-w-2xl text-base text-ink-muted sm:mx-0 sm:text-lg">
-              Live on {site.liveClassPlatforms} | Recorded Lessons | Professional
-              Certification
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link href="/book-trial" className="btn-primary w-full sm:w-auto">
-                Book Free Trial
-              </Link>
-              <Link href="/courses" className="btn-secondary w-full sm:w-auto">
-                Explore Courses
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
-            {trustBadges.map((badge) => (
-              <div key={badge} className="badge">
-                {badge}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HeroSection trustBadges={trustBadges} />
 
       <PhotoShowcaseSection />
 
@@ -182,7 +115,7 @@ export default function Home() {
               <p className="text-sm text-ink-muted">{site.instructor.bio}</p>
               <div className="flex flex-wrap gap-3 text-xs text-ink-muted">
                 <span className="rounded-full border border-white/10 px-3 py-1">
-                  {site.instructor.experience}
+                  {site.instructor.experience}{" "}
                 </span>
                 <span className="rounded-full border border-white/10 px-3 py-1">
                   Live mentorship on {site.liveClassPlatforms}
@@ -210,14 +143,20 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              "/vasu/vasu-mentor-portrait.svg",
-              "/vasu/vasu-studio-session.svg",
-              "/vasu/vasu-masterclass.svg",
+              "/vasu/instructor-1.webp",
+              "/vasu/instructor-2.jpeg",
+              "/vasu/instructor-3.webp",
             ].map(
               (src) => (
                 <div
                   key={src}
                   className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10"
+                  style={{
+                    // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                    position: "relative",
+                    aspectRatio: "4 / 5",
+                    overflow: "hidden",
+                  }}
                 >
                   <Image
                     src={src}
@@ -257,7 +196,15 @@ export default function Home() {
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {coursePaths.slice(0, 6).map((path) => (
             <div key={path.title} className="card-strong flex flex-col gap-6 p-6">
-              <div className="relative h-40 overflow-hidden rounded-2xl border border-white/10">
+              <div
+                className="relative h-40 overflow-hidden rounded-2xl border border-white/10"
+                style={{
+                  // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                  position: "relative",
+                  height: "10rem",
+                  overflow: "hidden",
+                }}
+              >
                 <Image
                   src={path.image}
                   alt={path.title}
@@ -361,26 +308,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6" id="performances">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-brand-gold">Performances</p>
-            <h2 className="mt-2 text-3xl font-semibold text-ink">
-              Performances and class highlights
-            </h2>
-            <p className="mt-2 text-sm text-ink-muted">
-              Watch classical recitals, Bollywood showcases, and live class clips.
-            </p>
-          </div>
-          <Link href="/gallery" className="btn-secondary px-4 py-2 text-xs">
-            Open Gallery
-          </Link>
-        </div>
-        <div className="mt-8">
-          <PerformanceGallery />
-        </div>
-      </section>
-
       <section className="mx-auto w-full max-w-6xl px-6" id="instagram">
         <InstagramGallery />
       </section>
@@ -404,7 +331,15 @@ export default function Home() {
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           {featuredCurriculum.modules.map((module, index) => (
             <div key={module.id} className="card-strong p-6">
-              <div className="relative h-40 overflow-hidden rounded-2xl border border-white/10">
+              <div
+                className="relative h-40 overflow-hidden rounded-2xl border border-white/10"
+                style={{
+                  // Defensive sizing so `next/image` fill never escapes if utility CSS fails to load.
+                  position: "relative",
+                  height: "10rem",
+                  overflow: "hidden",
+                }}
+              >
                 <Image
                   src={module.image}
                   alt={module.title}

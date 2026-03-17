@@ -1,0 +1,12 @@
+
+> melody-monks-backend@0.2.0 dev
+> tsx watch src/index.ts
+
+Melody Monks backend running on port 5001 
+{"event":"request_completed","time":"2026-03-17T17:41:33.726Z","requestId":"b8ab596e-bb57-4467-9216-58e0a7da84cd","method":"GET","path":"/api/admin/users","statusCode":503,"durationMs":14,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:41:43.586Z","requestId":"663348e0-9da8-406d-8e34-db2bc7f36ac7","method":"GET","path":"/api/admin/users","statusCode":503,"durationMs":2,"userId":"admin"}
+{"event":"request_completed","time":"2026-03-17T17:42:00.327Z","requestId":"3d95c604-0cce-4cd8-85a4-63edb4b8f4a9","method":"GET","path":"/api/admin/bootstrap","statusCode":200,"durationMs":3260,"userId":"admin"}
+11:27:11 pm [tsx] change in ./src\index.ts Rerunning...
+c11:58:15 pm [tsx] change in ./..\node_modules\.prisma\client\index.js Rerunning...
+c11:59:05 pm [tsx] unlink in ./..\node_modules\.prisma\client\default.js Rerunning...
+c

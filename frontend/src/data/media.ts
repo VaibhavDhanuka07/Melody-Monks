@@ -11,6 +11,88 @@ export const instrumentArt = {
   vocal: "/academy/course-posters/singing-ai.svg",
 } as const;
 
+export const instrumentPhotography = [
+  {
+    id: "photo-flute",
+    name: "Flute",
+    src: "/academy/instruments/photography/flute.png",
+  },
+  {
+    id: "photo-drums",
+    name: "Drums",
+    src: "/academy/instruments/photography/drums.png",
+  },
+  {
+    id: "photo-harmonium",
+    name: "Harmonium",
+    src: "/academy/instruments/photography/harmonium.png",
+  },
+  {
+    id: "photo-tabla",
+    name: "Tabla",
+    src: "/academy/instruments/photography/tabla.png",
+  },
+  {
+    id: "photo-trumpet",
+    name: "Trumpet",
+    src: "/academy/instruments/photography/trumpet.png",
+  },
+  {
+    id: "photo-violin",
+    name: "Violin",
+    src: "/academy/instruments/photography/violin.png",
+  },
+  {
+    id: "photo-violin-detail",
+    name: "Violin Detail",
+    src: "/academy/instruments/photography/violin-2.png",
+  },
+  {
+    id: "photo-guitar",
+    name: "Guitar",
+    src: "/academy/instruments/photography/guitar.png",
+  },
+  {
+    id: "photo-piano",
+    name: "Piano",
+    src: "/academy/instruments/photography/piano.png",
+  },
+  {
+    id: "photo-piano-detail",
+    name: "Piano Detail",
+    src: "/academy/instruments/photography/piano-2.png",
+  },
+  {
+    id: "photo-microphone",
+    name: "Vocal Mic",
+    src: "/academy/instruments/photography/microphone.png",
+  },
+] as const;
+
+export const instrumentPhotoMap = {
+  singing: "/academy/instruments/photography/microphone.png",
+  piano: "/academy/instruments/photography/piano.png",
+  guitar: "/academy/instruments/photography/guitar.png",
+  drums: "/academy/instruments/photography/drums.png",
+  violin: "/academy/instruments/photography/violin.png",
+  flute: "/academy/instruments/photography/flute.png",
+  harmonium: "/academy/instruments/photography/harmonium.png",
+  tabla: "/academy/instruments/photography/tabla.png",
+  trumpet: "/academy/instruments/photography/trumpet.png",
+} as const;
+
+export const curriculumArt = {
+  singing: "/academy/curriculum/singing.svg",
+  piano: "/academy/curriculum/piano.svg",
+  guitar: "/academy/curriculum/guitar.svg",
+  drums: "/academy/curriculum/drums.svg",
+  violin: "/academy/curriculum/violin.svg",
+  flute: "/academy/curriculum/flute.svg",
+  trumpet: "/academy/curriculum/trumpet.svg",
+  harmonium: "/academy/curriculum/harmonium.svg",
+  tabla: "/academy/curriculum/tabla.svg",
+} as const;
+
 export const classVisuals = {
   liveStage: "/academy/classes/live-stage-class.svg",
   onlineMentor: "/academy/classes/online-mentor-class.svg",

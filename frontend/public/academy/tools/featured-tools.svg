@@ -1,0 +1,36 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#050505" />
+      <stop offset="0.5" stop-color="#0C0B09" />
+      <stop offset="1" stop-color="#161412" />
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1200 160) rotate(20) scale(520)">
+      <stop offset="0" stop-color="#D3AF6B" stop-opacity="0.35" />
+      <stop offset="1" stop-color="#D3AF6B" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E5C27B" />
+      <stop offset="1" stop-color="#B98B41" />
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="1220" cy="170" r="360" fill="url(#goldGlow)" />
+
+  <path d="M120 720C320 670 520 660 740 700C980 744 1200 744 1480 660" stroke="rgba(211,175,107,0.18)" stroke-width="4" stroke-linecap="round" />
+  <path d="M120 760C340 716 560 712 820 750C1060 784 1240 780 1480 732" stroke="rgba(211,175,107,0.12)" stroke-width="3" stroke-linecap="round" />
+
+  <g filter="url(#softShadow)">
+    <path d="M520 640H1160" stroke="url(#goldStroke)" stroke-width="10" stroke-linecap="round" />
+
+    <rect x="560" y="420" width="180" height="220" rx="24" fill="rgba(0,0,0,0.35)" stroke="url(#goldStroke)" stroke-width="8" />
+    <rect x="760" y="360" width="180" height="280" rx="24" fill="rgba(0,0,0,0.35)" stroke="url(#goldStroke)" stroke-width="8" />
+    <rect x="960" y="300" width="180" height="340" rx="24" fill="rgba(0,0,0,0.35)" stroke="url(#goldStroke)" stroke-width="8" />
+  </g>
+
+  <circle cx="1040" cy="330" r="130" fill="rgba(211,175,107,0.08)" />
+</svg>

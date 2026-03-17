@@ -1,0 +1,45 @@
+
+> melody-monks-frontend@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3005
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.6s
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 11.5s (712 modules)
+ GET /admin 200 in 12844ms
+ ✓ Compiled in 1265ms (316 modules)
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 2s (410 modules)
+ GET /favicon.ico 200 in 2336ms
+ GET /favicon.ico 200 in 38ms
+ ✓ Compiled in 2.1s (694 modules)
+ ✓ Compiled /favicon.ico in 200ms (410 modules)
+ GET /favicon.ico 200 in 426ms
+ GET /favicon.ico 200 in 23ms
+ GET /favicon.ico 200 in 30ms
+ ✓ Compiled in 715ms (726 modules)
+ ✓ Compiled in 911ms (694 modules)
+ ✓ Compiled in 752ms (694 modules)
+ ✓ Compiled in 648ms (694 modules)
+ ✓ Compiled in 606ms (694 modules)
+ ✓ Compiled in 645ms (696 modules)
+ ✓ Compiled in 1285ms (696 modules)
+ ✓ Compiled in 597ms (696 modules)
+ ✓ Compiled in 2.2s (696 modules)
+ ✓ Compiled in 1204ms (696 modules)
+ ✓ Compiled in 1318ms (696 modules)
+ ✓ Compiled in 2.5s (696 modules)
+ ✓ Compiled in 1747ms (696 modules)
+ ✓ Compiled in 1076ms (696 modules)
+ ✓ Compiled in 664ms (696 modules)
+ ✓ Compiled in 800ms (696 modules)
+ ✓ Compiled in 649ms (696 modules)
+ ✓ Compiled in 657ms (696 modules)
+ ✓ Compiled in 2.1s (317 modules)
+ ✓ Compiled in 2.8s (317 modules)
+ ✓ Compiled in 769ms (317 modules)
+ ✓ Compiled in 744ms (317 modules)

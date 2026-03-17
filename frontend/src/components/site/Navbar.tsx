@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import type { Session } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase/client";
+import { isUserAdmin, isUserApproved } from "@/lib/supabase/approval";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -27,6 +30,7 @@ const isActiveRoute = (pathname: string, href: string) => {
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
   const pathname = usePathname();
 
   const mobileLinks = useMemo(
@@ -54,6 +58,35 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!supabase) return;
+
+    let active = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) setSession(data.session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, newSession) => {
+      setSession(newSession);
+    });
+
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleSignOut = async () => {
+    if (!supabase) return;
+    await supabase.auth.signOut();
+  };
+
+  const isAuthed = Boolean(session);
+  const isApproved = isUserApproved(session?.user);
+  const isAdmin = isUserAdmin(session?.user);
+
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-6">
       <div className="mx-auto flex w-full max-w-[1380px] items-center justify-between gap-3 rounded-[28px] border border-white/10 bg-black/80 px-4 py-3 shadow-soft backdrop-blur-xl">
@@ -72,7 +105,7 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex">
-          <div className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2">
+          <div className="flex w-full min-w-0 flex-wrap items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2">
             {navItems.map((item) => {
               const active = isActiveRoute(pathname, item.href);
               return (
@@ -93,12 +126,48 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex">
-          <Link
-            href="/login"
-            className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm font-semibold text-ink-muted transition hover:border-white/20 hover:text-ink"
-          >
-            Login
-          </Link>
+          {isAuthed ? (
+            <>
+              {isAdmin ? (
+                <Link
+                  href="/admin"
+                  className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm font-semibold text-ink-muted transition hover:border-white/20 hover:text-ink"
+                >
+                  Admin
+                </Link>
+              ) : null}
+              {isApproved ? (
+                <Link
+                  href="/dashboard"
+                  className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm font-semibold text-ink-muted transition hover:border-white/20 hover:text-ink"
+                >
+                  Dashboard
+                </Link>
+              ) : null}
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm font-semibold text-ink-muted transition hover:border-white/20 hover:text-ink"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm font-semibold text-ink-muted transition hover:border-white/20 hover:text-ink"
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-5 py-2 text-sm font-semibold text-brand-gold transition hover:border-brand-gold/70 hover:text-brand-gold-soft"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
           <Link
             href="/book-trial"
             className="btn-primary min-h-[46px] shrink-0 whitespace-nowrap px-5 py-2.5 text-sm"
@@ -187,13 +256,55 @@ export default function Navbar() {
             >
               Book Free Trial
             </Link>
-            <Link
-              href="/login"
-              onClick={() => setMenuOpen(false)}
-              className="btn-secondary w-full"
-            >
-              Login
-            </Link>
+            {isAuthed ? (
+              <>
+                {isAdmin ? (
+                  <Link
+                    href="/admin"
+                    onClick={() => setMenuOpen(false)}
+                    className="btn-secondary w-full"
+                  >
+                    Admin
+                  </Link>
+                ) : null}
+                {isApproved ? (
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMenuOpen(false)}
+                    className="btn-secondary w-full"
+                  >
+                    Dashboard
+                  </Link>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setMenuOpen(false);
+                    await handleSignOut();
+                  }}
+                  className="btn-secondary w-full"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/signup"
+                  onClick={() => setMenuOpen(false)}
+                  className="btn-secondary w-full"
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="btn-secondary w-full"
+                >
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

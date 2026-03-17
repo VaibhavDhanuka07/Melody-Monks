@@ -47,6 +47,9 @@ export default function Footer() {
           <Link href="/login" className="block text-ink-muted hover:text-ink">
             Student Login
           </Link>
+          <Link href="/signup" className="block text-ink-muted hover:text-ink">
+            Create Account
+          </Link>
         </div>
 
         <div className="space-y-3 text-sm">
@@ -79,7 +82,7 @@ export default function Footer() {
 
         <div className="space-y-4 text-sm">
           <p className="font-semibold text-ink">Contact</p>
-          <p className="text-ink-muted">Email: hello@melodymonks.com</p>
+          <p className="text-ink-muted">Email: melodymonks@gmail.com</p>
           <p className="text-ink-muted">Studio: Kolkata, India</p>
           <a
             href={site.whatsappLink}

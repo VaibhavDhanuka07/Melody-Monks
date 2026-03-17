@@ -1,0 +1,74 @@
+{"event":"request_failed","time":"2026-03-17T17:41:33.726Z","path":"/api/admin/users","method":"GET","ip":"::1","userId":"admin","role":"admin","statusCode":503,"requestId":"b8ab596e-bb57-4467-9216-58e0a7da84cd"}
+{"event":"request_failed","time":"2026-03-17T17:41:43.586Z","path":"/api/admin/users","method":"GET","ip":"::1","userId":"admin","role":"admin","statusCode":503,"requestId":"663348e0-9da8-406d-8e34-db2bc7f36ac7"}
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5001
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\vaibh\Desktop\Debojeet lehri\node_modules\express\lib\application.js:635:24)
+    at <anonymous> (C:\Users\vaibh\Desktop\Debojeet lehri\backend\src\index.ts:3270:5)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5001
+}
+
+Node.js v22.15.0
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5001
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\vaibh\Desktop\Debojeet lehri\node_modules\express\lib\application.js:635:24)
+    at <anonymous> (C:\Users\vaibh\Desktop\Debojeet lehri\backend\src\index.ts:3270:5)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5001
+}
+
+Node.js v22.15.0
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5001
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\vaibh\Desktop\Debojeet lehri\node_modules\express\lib\application.js:635:24)
+    at <anonymous> (C:\Users\vaibh\Desktop\Debojeet lehri\backend\src\index.ts:3270:5)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5001
+}
+
+Node.js v22.15.0
