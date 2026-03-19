@@ -1,5 +1,4 @@
 import cors from "cors";
-import { Prisma } from "@prisma/client";
 import dotenv from "dotenv";
 import express from "express";
 import {
@@ -46,6 +45,9 @@ type AuthContext = {
   role: string;
   email?: string | null;
 };
+
+type JsonPrimitive = string | number | boolean;
+type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue };
 
 declare global {
   namespace Express {
@@ -1376,14 +1378,14 @@ app.get("/api/instruments", async (req, res) => {
     const db = prisma;
     const response = await cacheService.wrap(cacheKey, 300, async () => {
       recordCacheMetric("miss");
-      const where: Prisma.InstrumentWhereInput | undefined = search
+      const where = search
         ? {
             OR: [
-              { name: { contains: search, mode: Prisma.QueryMode.insensitive } },
+              { name: { contains: search, mode: "insensitive" as const } },
               {
                 description: {
                   contains: search,
-                  mode: Prisma.QueryMode.insensitive,
+                  mode: "insensitive" as const,
                 },
               },
             ],
@@ -2025,7 +2027,7 @@ app.post("/api/practice-plans", async (req, res) => {
       data: {
         userId: userId || null,
         instrument,
-        planData: planData as Prisma.InputJsonValue,
+        planData: planData as JsonValue,
         date: planDate,
       },
     });
@@ -2114,14 +2116,14 @@ app.get("/api/competition-submissions", async (req, res) => {
   if (prisma) {
     const db = prisma;
     const response = await cacheService.wrap(cacheKey, 120, async () => {
-      const submissions = await db.competitionSubmission.findMany({
+      const submissions = (await db.competitionSubmission.findMany({
         where: {
           ...(instrument ? { instrument } : {}),
           ...(competitionId ? { competitionId } : {}),
         },
         orderBy: { createdAt: pagination.sort === "createdAt_asc" ? "asc" : "desc" },
         ...buildPrismaPagination(pagination),
-      });
+      })) as CompetitionSubmissionRecord[];
       const voteCountMap = await getVoteCountMap(
         db,
         submissions.map((submission) => submission.id)
@@ -2394,7 +2396,7 @@ app.post("/api/services", async (req, res) => {
         sellerBio: parsed.data.sellerBio ?? null,
         sellerImage: parsed.data.sellerImage ?? null,
         portfolio: parsed.data.portfolio
-          ? (parsed.data.portfolio as Prisma.InputJsonValue)
+          ? (parsed.data.portfolio as JsonValue)
           : undefined,
       },
     });
@@ -2528,6 +2530,13 @@ app.post("/api/marketplace-reviews", async (req, res) => {
   return res.json({ review: entry });
 });
 
+type TalentRecord = Record<string, unknown> & {
+  id: string;
+  rankingScore?: number | null;
+  instrument?: string | null;
+  username?: string | null;
+};
+
 const calculateTalentRanking = (talent: Record<string, unknown>) => {
   const competitionScore = Number(talent.competitionScore ?? 0);
   const aiScore = Number(talent.aiScore ?? 0);
@@ -2543,7 +2552,7 @@ app.get("/api/talents", async (req, res) => {
     const db = prisma;
     const cacheKey = `talents:list:${instrument || "all"}:${pagination.cursor || "first"}:${pagination.limit}:${pagination.sort}`;
     const response = await cacheService.wrap(cacheKey, 300, async () => {
-      const talents = await db.talent.findMany({
+      const talents = (await db.talent.findMany({
         where: instrument ? { instrument } : undefined,
         orderBy:
           pagination.sort === "createdAt_desc"
@@ -2552,7 +2561,7 @@ app.get("/api/talents", async (req, res) => {
               ? { createdAt: "asc" }
               : { rankingScore: "desc" },
         ...buildPrismaPagination(pagination),
-      });
+      })) as TalentRecord[];
       const ranked = talents.map((talent) => ({
         ...talent,
         rankingScore:

@@ -15,6 +15,11 @@ export type CompetitionSubmissionRecord = {
   expressionScore?: number | null;
 };
 
+type CompetitionVoteGroupRecord = {
+  submissionId: string | null;
+  _count: { submissionId: number };
+};
+
 export const computeJudgeScore = (submission: CompetitionSubmissionRecord) => {
   const values = [
     Number(submission.pitchScore ?? 0),
@@ -50,11 +55,17 @@ export const submissionsCacheKey = (instrument?: string, competitionId?: string)
 export const getVoteCountMap = async (
   prisma: PrismaClient,
   submissionIds: string[]
-) => {
+): Promise<Map<string, number>> => {
   if (!submissionIds.length) {
     return new Map<string, number>();
   }
-  const groups = await prisma.competitionVote.groupBy({
+  const groupBy = prisma.competitionVote.groupBy as unknown as (args: {
+    by: ["submissionId"];
+    where: { submissionId: { in: string[] } };
+    _count: { submissionId: true };
+  }) => Promise<CompetitionVoteGroupRecord[]>;
+
+  const groups = await groupBy({
     by: ["submissionId"],
     where: {
       submissionId: { in: submissionIds },
@@ -64,11 +75,14 @@ export const getVoteCountMap = async (
     },
   });
 
-  return new Map(
-    groups
-      .filter((group) => group.submissionId)
-      .map((group) => [group.submissionId as string, group._count.submissionId])
-  );
+  const entries = groups
+    .filter(
+      (group): group is CompetitionVoteGroupRecord & { submissionId: string } =>
+        Boolean(group.submissionId)
+    )
+    .map((group) => [group.submissionId, group._count.submissionId] as const);
+
+  return new Map<string, number>(entries);
 };
 
 export const recomputeLeaderboardCache = async (
@@ -78,13 +92,13 @@ export const recomputeLeaderboardCache = async (
     competitionId?: string;
   }
 ) => {
-  const submissions = await prisma.competitionSubmission.findMany({
+  const submissions = (await prisma.competitionSubmission.findMany({
     where: {
       ...(params.instrument ? { instrument: params.instrument } : {}),
       ...(params.competitionId ? { competitionId: params.competitionId } : {}),
     },
     orderBy: { createdAt: "desc" },
-  });
+  })) as CompetitionSubmissionRecord[];
   const voteCountMap = await getVoteCountMap(
     prisma,
     submissions.map((submission) => submission.id)
