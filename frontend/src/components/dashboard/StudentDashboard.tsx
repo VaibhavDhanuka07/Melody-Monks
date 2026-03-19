@@ -104,25 +104,34 @@ export default function StudentDashboard() {
           <div className="card p-6">
             <p className="text-sm font-semibold text-ink">Quick Actions</p>
             <div className="mt-4 space-y-3 text-sm text-ink-muted">
-              <Link href="/dashboard/lessons" className="card px-4 py-3">
+              <Link href="/dashboard/lessons" className="card block px-4 py-3">
                 Continue next lesson
               </Link>
-              <Link href="/dashboard/live-classes" className="card px-4 py-3">
+              <Link
+                href="/dashboard/live-classes"
+                className="card block px-4 py-3"
+              >
                 Join upcoming Zoom / Meet class
               </Link>
-              <Link href="/dashboard/practice" className="card px-4 py-3">
+              <Link href="/dashboard/practice" className="card block px-4 py-3">
                 Log practice session
               </Link>
-              <Link href="/dashboard/tools" className="card px-4 py-3">
+              <Link href="/dashboard/tools" className="card block px-4 py-3">
                 Open practice tools
               </Link>
-              <Link href="/dashboard/ai-practice" className="card px-4 py-3">
+              <Link href="/dashboard/ai-practice" className="card block px-4 py-3">
                 Open AI practice assistant
               </Link>
-              <Link href="/dashboard/practice-plan" className="card px-4 py-3">
+              <Link
+                href="/dashboard/practice-plan"
+                className="card block px-4 py-3"
+              >
                 Open AI practice planner
               </Link>
-              <Link href="/dashboard/performance-upload" className="card px-4 py-3">
+              <Link
+                href="/dashboard/performance-upload"
+                className="card block px-4 py-3"
+              >
                 Upload performance
               </Link>
             </div>

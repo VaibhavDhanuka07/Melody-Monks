@@ -20,24 +20,44 @@ const chordLibrary: Record<string, string[]> = {
 
 export default function PianoKeyboard() {
   const samplerRef = useRef<Tone.Sampler | null>(null);
+  const samplerLoadingRef = useRef<Promise<void> | null>(null);
   const [ready, setReady] = useState(false);
   const [activeNotes, setActiveNotes] = useState<string[]>([]);
   const [activeChord, setActiveChord] = useState<string>("");
 
   const initSampler = useCallback(async () => {
-    if (samplerRef.current) return;
+    if (samplerLoadingRef.current) {
+      await samplerLoadingRef.current;
+      return;
+    }
+
     await Tone.start();
-    samplerRef.current = new Tone.Sampler({
-      urls: {
-        C4: "C4.mp3",
-        "D#4": "Ds4.mp3",
-        "F#4": "Fs4.mp3",
-        A4: "A4.mp3",
-      },
-      release: 1,
-      baseUrl: "https://tonejs.github.io/audio/salamander/",
-    }).toDestination();
-    setReady(true);
+
+    if (!samplerRef.current) {
+      samplerRef.current = new Tone.Sampler({
+        urls: {
+          C4: "C4.mp3",
+          "D#4": "Ds4.mp3",
+          "F#4": "Fs4.mp3",
+          A4: "A4.mp3",
+        },
+        release: 1,
+        baseUrl: "https://tonejs.github.io/audio/salamander/",
+      }).toDestination();
+    }
+
+    samplerLoadingRef.current = Tone.loaded()
+      .then(() => {
+        setReady(true);
+      })
+      .catch((error) => {
+        console.error("Failed to load piano samples", error);
+        samplerRef.current?.dispose();
+        samplerRef.current = null;
+        samplerLoadingRef.current = null;
+      });
+
+    await samplerLoadingRef.current;
   }, []);
 
   const flashNote = useCallback((note: string, duration = 240) => {
